@@ -1,0 +1,8 @@
+DirectoryPath: "public"
+CheckExternal: false
+CheckInternal: true
+CheckMailto: false
+CheckTelephone: false
+IgnoreAltEmpty: true
+IgnoreInternalEmptyHash: true
+IgnoreDirectoryMissingTrailingSlash: true
