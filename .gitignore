@@ -1,0 +1,30 @@
+# Dependencies (CI installs tools on the fly via npx/curl)
+node_modules/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+*.swp
+
+# Environment / secrets
+.env
+.env.*
+*.pem
+*.key
+*.p12
+*.pfx
+.gitcredentials
+
+# Claude Code local settings
+.claude/settings.local.json
+.claude/worktrees/
+
+# Temporary files
+tmp/
+
+# Wrangler
+.wrangler/
