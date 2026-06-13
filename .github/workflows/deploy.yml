@@ -93,7 +93,7 @@ jobs:
       # Check out the exact commit that passed validation (not the branch tip),
       # so a push landing between the gate check and here can't ship unvalidated
       # code. Branch deletion below still uses the branch name from steps.pr.
-      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
+      - uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10 # v6
         with:
           ref: ${{ steps.pr.outputs.sha }}
           fetch-depth: 0
