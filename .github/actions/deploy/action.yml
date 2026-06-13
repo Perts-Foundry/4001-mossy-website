@@ -1,0 +1,29 @@
+name: Deploy to Cloudflare Workers
+description: Deploy the static site to Cloudflare Workers with Wrangler
+
+inputs:
+  cloudflare-api-token:
+    description: Cloudflare API token for wrangler deploy
+    required: true
+  cloudflare-account-id:
+    description: Cloudflare account ID
+    required: true
+
+outputs:
+  deploy-output:
+    description: Wrangler deploy stdout
+    value: ${{ steps.wrangler.outputs.command-output }}
+  deploy-stderr:
+    description: Wrangler deploy stderr
+    value: ${{ steps.wrangler.outputs.command-stderr }}
+
+runs:
+  using: composite
+  steps:
+    - name: Deploy to Cloudflare Workers
+      id: wrangler
+      uses: cloudflare/wrangler-action@da0e0dfe58b7a431659754fdf3f186c529afbe65 # v3
+      with:
+        apiToken: ${{ inputs.cloudflare-api-token }}
+        accountId: ${{ inputs.cloudflare-account-id }}
+        command: deploy

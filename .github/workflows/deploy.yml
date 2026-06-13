@@ -1,0 +1,291 @@
+name: Deploy
+
+on:
+  issue_comment:
+    types: [created]
+
+concurrency:
+  group: deploy-production
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+  pull-requests: write
+  checks: read
+
+jobs:
+  deploy:
+    if: github.event.issue.pull_request && github.event.comment.body == 'deploy'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    environment: production
+    steps:
+      - name: React with eyes
+        continue-on-error: true
+        uses: actions/github-script@3a2844b7e9c422d3c10d287c895573f7108da1b3 # v9.0.0
+        with:
+          script: |
+            await github.rest.reactions.createForIssueComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              comment_id: context.payload.comment.id,
+              content: 'eyes',
+            });
+
+      - name: Validate deployer permissions
+        uses: actions/github-script@3a2844b7e9c422d3c10d287c895573f7108da1b3 # v9.0.0
+        with:
+          script: |
+            const { data } = await github.rest.repos.getCollaboratorPermissionLevel({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              username: context.payload.comment.user.login,
+            });
+            if (!['admin', 'write'].includes(data.permission)) {
+              core.setFailed(
+                `@${context.payload.comment.user.login} does not have write access.`
+              );
+            }
+
+      - name: Get PR details
+        id: pr
+        uses: actions/github-script@3a2844b7e9c422d3c10d287c895573f7108da1b3 # v9.0.0
+        with:
+          script: |
+            const { data: pr } = await github.rest.pulls.get({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              pull_number: context.issue.number,
+            });
+            if (pr.state !== 'open') {
+              core.setFailed('This PR is not open.');
+              return;
+            }
+            core.setOutput('sha', pr.head.sha);
+            core.setOutput('short_sha', pr.head.sha.substring(0, 7));
+            core.setOutput('ref', pr.head.ref);
+            core.setOutput('base_ref', pr.base.ref);
+
+      - name: Verify validation passed
+        uses: actions/github-script@3a2844b7e9c422d3c10d287c895573f7108da1b3 # v9.0.0
+        env:
+          PR_SHA: ${{ steps.pr.outputs.sha }}
+        with:
+          script: |
+            const { data } = await github.rest.checks.listForRef({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              ref: process.env.PR_SHA,
+            });
+            const validate = data.check_runs.find((cr) => cr.name === 'validate');
+            if (!validate) {
+              core.setFailed(
+                'No validation run found for this commit. Push to trigger validation first.'
+              );
+              return;
+            }
+            if (validate.status !== 'completed' || validate.conclusion !== 'success') {
+              core.setFailed(
+                `Validation has not passed (${validate.status}/${validate.conclusion}). All checks must pass before deploying.`
+              );
+            }
+
+      # Check out the exact commit that passed validation (not the branch tip),
+      # so a push landing between the gate check and here can't ship unvalidated
+      # code. Branch deletion below still uses the branch name from steps.pr.
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
+        with:
+          ref: ${{ steps.pr.outputs.sha }}
+          fetch-depth: 0
+
+      - name: Deploy
+        id: deploy
+        uses: ./.github/actions/deploy
+        with:
+          cloudflare-api-token: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          cloudflare-account-id: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+
+      # ── Success: comment, merge, delete branch ──────────────────
+      - name: Merge PR and report success
+        if: success()
+        uses: actions/github-script@3a2844b7e9c422d3c10d287c895573f7108da1b3 # v9.0.0
+        env:
+          DEPLOY_OUTPUT: ${{ steps.deploy.outputs.deploy-output }}
+          PR_SHORT_SHA: ${{ steps.pr.outputs.short_sha }}
+          PR_REF: ${{ steps.pr.outputs.ref }}
+          PR_BASE_REF: ${{ steps.pr.outputs.base_ref }}
+        with:
+          script: |
+            const { withRetry } = require('./.github/scripts/github-api-retry.js');
+
+            const marker = '<!-- deploy-result -->';
+            const prNumber = context.issue.number;
+            const sha = process.env.PR_SHORT_SHA;
+            const ref = process.env.PR_REF;
+            const baseRef = process.env.PR_BASE_REF;
+            const runUrl = `${context.serverUrl}/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId}`;
+            const deployer = context.payload.comment.user.login;
+            const deployOutput = process.env.DEPLOY_OUTPUT || 'No output captured.';
+
+            try {
+              await github.rest.reactions.createForIssueComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                comment_id: context.payload.comment.id,
+                content: 'rocket',
+              });
+            } catch (e) {
+              // Non-critical
+            }
+
+            let merged = true;
+            let mergeError = '';
+            try {
+              await withRetry(
+                () =>
+                  github.rest.pulls.merge({
+                    owner: context.repo.owner,
+                    repo: context.repo.repo,
+                    pull_number: prNumber,
+                    merge_method: 'squash',
+                  }),
+                { attempts: 3, delayMs: 2000, label: 'Squash merge', core }
+              );
+            } catch (e) {
+              merged = false;
+              mergeError = e.message;
+            }
+
+            let branchDeleted = false;
+            if (merged) {
+              try {
+                await withRetry(
+                  () =>
+                    github.rest.git.deleteRef({
+                      owner: context.repo.owner,
+                      repo: context.repo.repo,
+                      ref: `heads/${ref}`,
+                    }),
+                  { attempts: 2, delayMs: 1000, label: 'Delete branch', core }
+                );
+                branchDeleted = true;
+              } catch (e) {
+                // Branch may already be deleted by repo settings
+              }
+            }
+
+            const mergeStatus = merged
+              ? `🔀 Merged \`${ref}\` → \`${baseRef}\`${branchDeleted ? ' and deleted the branch.' : '.'}`
+              : `⚠️ **Merge failed:** ${mergeError}\n\nThe deployment is live, but the PR must be merged manually.`;
+
+            const body = [
+              marker,
+              '# Deployment Report',
+              '',
+              '✅ **Deployed successfully**. Changes are now live.',
+              '',
+              '| | |',
+              '|:--|:--|',
+              `| **Commit** | \`${sha}\` |`,
+              `| **Branch** | \`${ref}\` → \`${baseRef}\` |`,
+              `| **Deployed by** | @${deployer} |`,
+              `| **Workflow run** | [#${context.runNumber}](${runUrl}) |`,
+              '',
+              '---',
+              '',
+              '<details><summary><strong>Deploy output</strong> (<code>wrangler</code>)</summary>',
+              '',
+              '```',
+              deployOutput,
+              '```',
+              '',
+              '</details>',
+              '',
+              '---',
+              '',
+              mergeStatus,
+            ].join('\n');
+
+            await withRetry(
+              () =>
+                github.rest.issues.createComment({
+                  owner: context.repo.owner,
+                  repo: context.repo.repo,
+                  issue_number: prNumber,
+                  body,
+                }),
+              { attempts: 3, delayMs: 2000, label: 'Post deploy comment', core }
+            );
+
+      # ── Failure: comment with error details ─────────────────────
+      - name: Report failure
+        if: failure() && steps.pr.outcome == 'success'
+        uses: actions/github-script@3a2844b7e9c422d3c10d287c895573f7108da1b3 # v9.0.0
+        env:
+          DEPLOY_OUTPUT: ${{ steps.deploy.outputs.deploy-output }}
+          DEPLOY_STDERR: ${{ steps.deploy.outputs.deploy-stderr }}
+          PR_SHORT_SHA: ${{ steps.pr.outputs.short_sha }}
+          PR_REF: ${{ steps.pr.outputs.ref }}
+        with:
+          script: |
+            const { withRetry } = require('./.github/scripts/github-api-retry.js');
+
+            const marker = '<!-- deploy-result -->';
+            const prNumber = context.issue.number;
+            const sha = process.env.PR_SHORT_SHA;
+            const ref = process.env.PR_REF;
+            const runUrl = `${context.serverUrl}/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId}`;
+
+            try {
+              await github.rest.reactions.createForIssueComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                comment_id: context.payload.comment.id,
+                content: '-1',
+              });
+            } catch (e) {
+              // Non-critical
+            }
+
+            const deployStderr = process.env.DEPLOY_STDERR || '';
+            const deployOutput = process.env.DEPLOY_OUTPUT || '';
+            const errorDetail =
+              deployStderr || deployOutput || 'See the workflow run for details.';
+
+            const body = [
+              marker,
+              '# Deployment Report',
+              '',
+              '❌ **Deployment failed**. The PR remains open.',
+              '',
+              '| | |',
+              '|:--|:--|',
+              `| **Commit** | \`${sha}\` |`,
+              `| **Branch** | \`${ref}\` |`,
+              `| **Workflow run** | [#${context.runNumber}](${runUrl}) |`,
+              '',
+              '---',
+              '',
+              '<details open><summary><strong>Error details</strong></summary>',
+              '',
+              '```',
+              errorDetail,
+              '```',
+              '',
+              '</details>',
+              '',
+              '---',
+              '',
+              '⚠️ Fix the issue, push a new commit, wait for validation to pass, then comment `deploy` to retry.',
+            ].join('\n');
+
+            await withRetry(
+              () =>
+                github.rest.issues.createComment({
+                  owner: context.repo.owner,
+                  repo: context.repo.repo,
+                  issue_number: prNumber,
+                  body,
+                }),
+              { attempts: 3, delayMs: 2000, label: 'Post failure comment', core }
+            );
