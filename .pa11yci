@@ -1,0 +1,11 @@
+{
+  "defaults": {
+    "standard": "WCAG2AA",
+    "runners": ["axe"],
+    "chromeLaunchConfig": {
+      "args": ["--no-sandbox"]
+    },
+    "ignore": ["region", "color-contrast", "frame-tested"]
+  },
+  "urls": ["http://localhost:8080/", "http://localhost:8080/404.html"]
+}
