@@ -8,7 +8,7 @@ description: |
 
 inputs:
   cloudflare-api-token:
-    description: Cloudflare API token (needs Workers Scripts:Edit — the same token used for production deploys).
+    description: Cloudflare API token (needs Workers Scripts:Edit; the same token used for production deploys).
     required: true
   cloudflare-account-id:
     description: Cloudflare account ID.
@@ -58,27 +58,28 @@ runs:
         # and strip ANSI colour codes so the grep/regex below is reliable.
         combined="$(printf '%s\n%s\n' "$STDOUT" "$STDERR" | sed 's/\x1b\[[0-9;]*m//g')"
 
-        # Prefer the PR-scoped alias URL. Fall back to any version preview URL
-        # (version-prefixed) if the alias line is absent — e.g. an older
-        # wrangler that labels the line differently still emits the hostname.
+        # Match only the PR-scoped alias URL. We deliberately do NOT fall back to
+        # a generic *.workers.dev match: at the pinned wrangler version the alias
+        # line is always present, and a generic match would grab the per-version
+        # preview URL, which goes stale on the next push and would silently
+        # contradict the "URL never goes stale" contract. No alias match means a
+        # real misconfig, so surface it as the empty-URL warning instead.
         url="$(printf '%s\n' "$combined" \
           | grep -oE "https://pr-${PR_NUMBER}-[a-z0-9.-]+\.workers\.dev" \
           | head -n1 || true)"
-        if [ -z "$url" ]; then
-          url="$(printf '%s\n' "$combined" \
-            | grep -oE 'https://[a-z0-9][a-z0-9.-]*\.workers\.dev' \
-            | head -n1 || true)"
-        fi
 
         if [ -z "$url" ]; then
-          echo "::warning::Could not parse a preview URL from wrangler output. Is 'preview_urls' enabled on the Worker?"
+          echo "::warning::Could not parse a pr-${PR_NUMBER} preview URL from wrangler output. Is 'preview_urls' enabled and does the account have a workers.dev subdomain?"
         else
           echo "Preview URL: $url"
         fi
 
+        # Randomized heredoc delimiter so a literal 'GHEOF' line in wrangler
+        # output can't terminate the block early and corrupt step outputs.
+        delim="GHEOF_$(openssl rand -hex 8)"
         {
           echo "preview-url=$url"
-          echo "deploy-output<<GHEOF"
+          echo "deploy-output<<$delim"
           printf '%s\n' "$combined" | tail -30
-          echo "GHEOF"
+          echo "$delim"
         } >> "$GITHUB_OUTPUT"

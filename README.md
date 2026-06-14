@@ -78,7 +78,8 @@ This repo uses the same PR-and-comment flow as the other Perts Foundry sites:
 3. A **draft preview** also deploys automatically on every push. The **Preview**
    workflow posts (and keeps updating) a comment with a clickable URL where you
    can click through your changes live before anything goes to production. The
-   preview is a throwaway Cloudflare Worker version — the real site is untouched.
+   preview is a non-production Cloudflare Worker version, separate from the live
+   site, which stays untouched. When the PR closes, the comment is marked closed.
 4. When checks pass, comment **`deploy`** on the PR. That runs `wrangler deploy`
    to push the site to Cloudflare Workers, then squash-merges the PR.
 

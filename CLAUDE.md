@@ -56,8 +56,11 @@ repo (Terraform).
   untouched — preview uses `versions upload`, never `deploy`. Skips drafts, fork
   PRs (read-only token), and Dependabot (empty secrets scope). Reuses the same
   `CLOUDFLARE_*` secrets; needs `preview_urls = true` in `wrangler.toml` (set)
-  plus an account workers.dev subdomain. There is no per-PR resource to delete —
-  a preview alias points at a retained version and is superseded, not torn down.
+  plus an account workers.dev subdomain (see Infrastructure coupling). On a
+  failed upload the workflow posts an error comment instead of a silent red
+  check. There is no per-PR resource to delete: the `pr-<N>` alias is reused per
+  PR and superseded (not torn down), and each push's uploaded version is retained
+  by Cloudflare's version history and ages out automatically.
 - Deploy (production) is comment-driven: comment `deploy` on a green PR →
   `wrangler deploy` via `.github/actions/deploy` → squash-merge. Needs repo
   secrets `CLOUDFLARE_API_TOKEN` + `CLOUDFLARE_ACCOUNT_ID` and a `production`
@@ -81,6 +84,11 @@ npx wrangler dev                    # run as a Worker locally
 - The Content-Security-Policy (security-headers ruleset in the infra repo) allows
   framing `https://my.matterport.com`. If the tour host changes, update the CSP
   `frame-src` there.
+- Preview deployments require the Cloudflare account to have a registered
+  workers.dev subdomain (an account-level resource). Without it, the preview
+  `versions upload` still succeeds but mints no URL, and the PR comment shows a
+  "no preview URL" warning. Provision/verify it through the infrastructure repo
+  (Terraform), never the Cloudflare dashboard.
 - Preview deployments serve from `*.workers.dev`, a different origin than the
   production custom domain. The infra security-headers ruleset (CSP etc.) is
   attached to the custom domain, so it does **not** apply to preview URLs. That's
