@@ -251,7 +251,7 @@
       var heroIndex = 0;
       var heroTimer = null;
       var heroPlaying = false;
-      var HERO_INTERVAL = 5000;
+      var HERO_INTERVAL = 4000;
       var heroToggle = document.querySelector(".hero-toggle");
 
       var showSlide = function (next) {
