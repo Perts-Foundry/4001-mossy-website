@@ -40,6 +40,14 @@ repo (Terraform).
   price is set (the hero currently shows "Price Upon Request").
 - Contact is **display-only** (tel:/mailto:) — there is no form and no backend
   secret. Keep it that way unless a contact form is explicitly requested.
+- The site is **dark-mode only**: one dark `:root` palette in `styles.css`
+  (deep navy + mid-gray surfaces, light text). There is no light theme or
+  toggle. Call-to-action buttons (`.btn-primary`, header `.nav-cta`) are white
+  with navy text, inverting to navy on hover.
+- `styles.css` is cache-busted with a `?v=N` query on its `<link>` in
+  `index.html` and `404.html`. Bump `N` whenever you change CSS, because
+  `public/_headers` caches `/css/*` for an hour and same-filename edits would
+  otherwise be served stale.
 
 ## CI / deploy
 
