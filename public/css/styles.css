@@ -780,11 +780,6 @@ h3 {
   padding: 4px;
 }
 
-.contact-brand span {
-  font-weight: 600;
-  color: var(--green-900);
-}
-
 /* ------------------------------ Footer -------------------------------- */
 .site-footer {
   background: var(--green-900);
@@ -804,12 +799,6 @@ h3 {
   font-size: 1.15rem;
   color: #fff;
   margin: 0;
-}
-
-.footer-marketed {
-  margin: 0;
-  font-weight: 600;
-  color: rgba(255, 255, 255, 0.9);
 }
 
 .footer-disclaimer {
