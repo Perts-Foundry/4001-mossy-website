@@ -60,10 +60,14 @@ repo (Terraform).
   across pushes; the comment is marked closed when the PR closes. Production is
   untouched — preview uses `versions upload`, never `deploy`. Skips drafts, fork
   PRs (read-only token), and Dependabot (empty secrets scope). Reuses the same
-  `CLOUDFLARE_*` secrets; needs `preview_urls = true` in `wrangler.toml` (set)
-  plus an account workers.dev subdomain (see Infrastructure coupling). On a
-  failed upload the workflow posts an error comment instead of a silent red
-  check. There is no per-PR resource to delete: the `pr-<N>` alias is reused per
+  `CLOUDFLARE_*` secrets. Because `workers_dev = false`, Cloudflare leaves
+  Preview URLs disabled on the live Worker and a `versions upload` does not flip
+  that setting; the action therefore first enables Preview URLs idempotently via
+  the Workers Script Subdomain API (`previews_enabled: true`, `enabled: false` so
+  the production workers.dev route stays off) before uploading. The only
+  remaining external prerequisite is an account workers.dev subdomain (see
+  Infrastructure coupling). On a failed upload the workflow posts an error
+  comment instead of a silent red check. There is no per-PR resource to delete: the `pr-<N>` alias is reused per
   PR and superseded (not torn down), and each push's uploaded version is retained
   by Cloudflare's version history and ages out automatically.
 - Deploy (production) is comment-driven: comment `deploy` on a green PR →
