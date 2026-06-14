@@ -77,7 +77,12 @@ This repo uses the same PR-and-comment flow as the other Perts Foundry sites:
 1. Create a branch, make your edits, open a pull request.
 2. The **Validate** check runs automatically (formatting, links, accessibility,
    secret scan, a content smoke test). It posts a report on the PR.
-3. When checks pass, comment **`deploy`** on the PR. That runs `wrangler deploy`
+3. A **draft preview** also deploys automatically on every push. The **Preview**
+   workflow posts (and keeps updating) a comment with a clickable URL where you
+   can click through your changes live before anything goes to production. The
+   preview is a non-production Cloudflare Worker version, separate from the live
+   site, which stays untouched. When the PR closes, the comment is marked closed.
+4. When checks pass, comment **`deploy`** on the PR. That runs `wrangler deploy`
    to push the site to Cloudflare Workers, then squash-merges the PR.
 
 First-time setup (DNS, repo secrets, the production environment) is documented
@@ -96,8 +101,9 @@ public/              The site itself (served as-is by the Worker)
   _headers           Cache-Control TTLs for /css, /js, /images
 src/worker.js        Minimal Worker that serves the static assets
 wrangler.toml        Cloudflare Workers deploy config
-.github/workflows/   validate.yml (PR checks), deploy.yml (comment-driven deploy)
-.github/actions/     deploy composite action (wrangler deploy)
+.github/workflows/   validate.yml (PR checks), preview.yml (per-PR draft preview),
+                     deploy.yml (comment-driven production deploy)
+.github/actions/     deploy + preview-deploy composite actions (wrangler)
 docs/runbook.md      Go-live runbook (DNS cutover, secrets, deploy order)
 ```
 
