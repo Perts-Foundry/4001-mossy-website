@@ -26,4 +26,8 @@ runs:
       with:
         apiToken: ${{ inputs.cloudflare-api-token }}
         accountId: ${{ inputs.cloudflare-account-id }}
+        # Pin a current Wrangler. Without this the action installs its bundled
+        # default (3.90.0), which still deploys but prints out-of-date warnings
+        # and pulls deprecated transitive deps. Bump this periodically.
+        wranglerVersion: "4.100.0"
         command: deploy

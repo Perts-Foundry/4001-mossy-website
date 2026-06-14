@@ -1,0 +1,554 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!-- ===================================================================
+         EDIT YOUR LISTING DETAILS BELOW.
+         Search this file for "EDIT:" to find every place that holds real
+         content. Everything else is layout you can usually leave alone.
+         Full guide: README.md ("Editing your listing").
+         =================================================================== -->
+
+    <!-- EDIT: page title (shows in the browser tab and search results) -->
+    <title>4001 Mossy Bank Lane | For Sale | Fredericksburg, VA 22408</title>
+
+    <!-- EDIT: one-sentence summary for search engines and link previews -->
+    <meta
+      name="description"
+      content="4001 Mossy Bank Lane, Fredericksburg, VA 22408. A home for sale. Browse photos, take the interactive 3D tour, and get in touch to schedule a showing."
+    />
+
+    <link rel="canonical" href="https://4001mossy.com/" />
+    <meta name="robots" content="index, follow" />
+    <meta name="theme-color" content="#1f3b2d" />
+
+    <!-- Social / link-preview cards -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="4001 Mossy Bank Lane" />
+    <meta
+      property="og:title"
+      content="4001 Mossy Bank Lane | For Sale | Fredericksburg, VA"
+    />
+    <meta
+      property="og:description"
+      content="A home for sale in Fredericksburg, VA. Photos, an interactive 3D tour, and contact details."
+    />
+    <meta property="og:url" content="https://4001mossy.com/" />
+    <!-- EDIT: replace with a real 1200x630 JPG/PNG when you have one -->
+    <meta
+      property="og:image"
+      content="https://4001mossy.com/images/og-cover.svg"
+    />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta
+      name="twitter:title"
+      content="4001 Mossy Bank Lane | For Sale | Fredericksburg, VA"
+    />
+    <meta
+      name="twitter:description"
+      content="A home for sale in Fredericksburg, VA. Photos, an interactive 3D tour, and contact details."
+    />
+    <meta
+      name="twitter:image"
+      content="https://4001mossy.com/images/og-cover.svg"
+    />
+
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="/css/styles.css" />
+
+    <!-- Structured data for search engines. Address and URL are filled in.
+         EDIT: add numberOfBedrooms, numberOfBathroomsTotal, floorSize, and an
+         "offers" block with price once you are ready (see README). -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "SingleFamilyResidence",
+        "name": "4001 Mossy Bank Lane",
+        "url": "https://4001mossy.com/",
+        "image": "https://4001mossy.com/images/hero.svg",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "4001 Mossy Bank Lane",
+          "addressLocality": "Fredericksburg",
+          "addressRegion": "VA",
+          "postalCode": "22408",
+          "addressCountry": "US"
+        }
+      }
+    </script>
+  </head>
+
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+
+    <header class="site-header" id="top">
+      <div class="container header-inner">
+        <a class="brand" href="#top">
+          <span class="brand-mark" aria-hidden="true">&#9737;</span>
+          <span class="brand-text">4001 Mossy Bank Lane</span>
+        </a>
+
+        <nav class="site-nav" aria-label="Primary">
+          <button
+            class="nav-toggle"
+            type="button"
+            aria-expanded="false"
+            aria-controls="nav-menu"
+          >
+            <span class="nav-toggle-bar" aria-hidden="true"></span>
+            <span class="sr-only">Menu</span>
+          </button>
+          <ul class="nav-menu" id="nav-menu">
+            <li><a href="#gallery">Gallery</a></li>
+            <li><a href="#tour">3D Tour</a></li>
+            <li><a href="#details">Details</a></li>
+            <li><a href="#location">Location</a></li>
+            <li><a class="nav-cta" href="#contact">Contact</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <main id="main">
+      <!-- ===================== HERO ===================== -->
+      <section class="hero" aria-labelledby="hero-heading">
+        <div class="hero-media">
+          <!-- EDIT: replace /images/hero.svg with your best exterior photo -->
+          <img
+            src="/images/hero.svg"
+            alt="Front exterior of 4001 Mossy Bank Lane"
+            class="hero-img"
+            fetchpriority="high"
+            width="1600"
+            height="900"
+          />
+          <div class="hero-overlay"></div>
+        </div>
+
+        <div class="hero-content container">
+          <p class="hero-status">
+            <!-- EDIT: status, e.g. For Sale / Coming Soon / Under Contract -->
+            For Sale
+          </p>
+          <h1 id="hero-heading" class="hero-address">
+            4001 Mossy Bank Lane
+            <span class="hero-citystate">Fredericksburg, VA 22408</span>
+          </h1>
+
+          <p class="hero-price">
+            <!-- EDIT: list price, e.g. $525,000 -->
+            <span class="price-amount">Price Upon Request</span>
+          </p>
+
+          <ul class="hero-stats" aria-label="Key facts">
+            <!-- EDIT: beds / baths / square footage -->
+            <li><strong>-</strong><span>Beds</span></li>
+            <li><strong>-</strong><span>Baths</span></li>
+            <li><strong>-</strong><span>Sq Ft</span></li>
+            <li><strong>-</strong><span>Acres</span></li>
+          </ul>
+
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="#tour">View 3D Tour</a>
+            <a class="btn btn-ghost" href="#contact">Schedule a Showing</a>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===================== QUICK FACTS ===================== -->
+      <section class="facts" aria-label="Property facts">
+        <div class="container facts-grid">
+          <!-- EDIT: fill in each value -->
+          <div class="fact">
+            <span class="fact-label">Type</span
+            ><span class="fact-value">Single-Family Home</span>
+          </div>
+          <div class="fact">
+            <span class="fact-label">Year Built</span
+            ><span class="fact-value">-</span>
+          </div>
+          <div class="fact">
+            <span class="fact-label">Lot Size</span
+            ><span class="fact-value">- acres</span>
+          </div>
+          <div class="fact">
+            <span class="fact-label">Garage</span
+            ><span class="fact-value">-</span>
+          </div>
+          <div class="fact">
+            <span class="fact-label">Heating / Cooling</span
+            ><span class="fact-value">-</span>
+          </div>
+          <div class="fact">
+            <span class="fact-label">County</span
+            ><span class="fact-value">Spotsylvania</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===================== GALLERY ===================== -->
+      <section class="section" id="gallery" aria-labelledby="gallery-heading">
+        <div class="container">
+          <h2 id="gallery-heading" class="section-heading">Photo Gallery</h2>
+          <p class="section-intro">
+            <!-- EDIT: optional intro line for the gallery -->
+            Take a look inside and around the property.
+          </p>
+
+          <!-- EDIT: add/remove gallery items. Each <button> opens the lightbox.
+               Replace the /images/photo-XX.svg files with your photos and
+               update the alt text + data-caption. Keep data-full pointing at
+               the full-size image. -->
+          <ul class="gallery-grid" id="gallery-grid">
+            <li>
+              <button
+                class="gallery-item"
+                type="button"
+                data-full="/images/photo-01.svg"
+                data-caption="Living room"
+              >
+                <img
+                  src="/images/photo-01.svg"
+                  alt="Living room"
+                  loading="lazy"
+                  width="800"
+                  height="600"
+                />
+              </button>
+            </li>
+            <li>
+              <button
+                class="gallery-item"
+                type="button"
+                data-full="/images/photo-02.svg"
+                data-caption="Kitchen"
+              >
+                <img
+                  src="/images/photo-02.svg"
+                  alt="Kitchen"
+                  loading="lazy"
+                  width="800"
+                  height="600"
+                />
+              </button>
+            </li>
+            <li>
+              <button
+                class="gallery-item"
+                type="button"
+                data-full="/images/photo-03.svg"
+                data-caption="Primary bedroom"
+              >
+                <img
+                  src="/images/photo-03.svg"
+                  alt="Primary bedroom"
+                  loading="lazy"
+                  width="800"
+                  height="600"
+                />
+              </button>
+            </li>
+            <li>
+              <button
+                class="gallery-item"
+                type="button"
+                data-full="/images/photo-04.svg"
+                data-caption="Bathroom"
+              >
+                <img
+                  src="/images/photo-04.svg"
+                  alt="Bathroom"
+                  loading="lazy"
+                  width="800"
+                  height="600"
+                />
+              </button>
+            </li>
+            <li>
+              <button
+                class="gallery-item"
+                type="button"
+                data-full="/images/photo-05.svg"
+                data-caption="Dining area"
+              >
+                <img
+                  src="/images/photo-05.svg"
+                  alt="Dining area"
+                  loading="lazy"
+                  width="800"
+                  height="600"
+                />
+              </button>
+            </li>
+            <li>
+              <button
+                class="gallery-item"
+                type="button"
+                data-full="/images/photo-06.svg"
+                data-caption="Backyard"
+              >
+                <img
+                  src="/images/photo-06.svg"
+                  alt="Backyard"
+                  loading="lazy"
+                  width="800"
+                  height="600"
+                />
+              </button>
+            </li>
+            <li>
+              <button
+                class="gallery-item"
+                type="button"
+                data-full="/images/photo-07.svg"
+                data-caption="Front exterior"
+              >
+                <img
+                  src="/images/photo-07.svg"
+                  alt="Front exterior"
+                  loading="lazy"
+                  width="800"
+                  height="600"
+                />
+              </button>
+            </li>
+            <li>
+              <button
+                class="gallery-item"
+                type="button"
+                data-full="/images/photo-08.svg"
+                data-caption="Aerial view"
+              >
+                <img
+                  src="/images/photo-08.svg"
+                  alt="Aerial view"
+                  loading="lazy"
+                  width="800"
+                  height="600"
+                />
+              </button>
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- ===================== 3D TOUR ===================== -->
+      <section
+        class="section section-alt"
+        id="tour"
+        aria-labelledby="tour-heading"
+      >
+        <div class="container">
+          <h2 id="tour-heading" class="section-heading">Interactive 3D Tour</h2>
+          <p class="section-intro">
+            Walk through the entire home in 3D, at your own pace.
+          </p>
+
+          <!-- EDIT: paste your Matterport "embed" URL into BOTH the iframe src
+               and the fallback link below. It looks like:
+               https://my.matterport.com/show/?m=XXXXXXXXXXX
+               (Matterport: Share -> Embed. Use the show/?m= URL.) -->
+          <div class="tour-frame">
+            <iframe
+              title="3D virtual tour of 4001 Mossy Bank Lane"
+              src="https://my.matterport.com/show/?m=REPLACE_WITH_MODEL_ID"
+              allow="fullscreen; xr-spatial-tracking"
+              allowfullscreen
+              loading="lazy"
+            ></iframe>
+          </div>
+          <p class="tour-fallback">
+            Trouble viewing the tour?
+            <!-- EDIT: same Matterport URL as above -->
+            <a
+              href="https://my.matterport.com/show/?m=REPLACE_WITH_MODEL_ID"
+              rel="noopener"
+              target="_blank"
+            >
+              Open the 3D tour in a new tab</a
+            >.
+          </p>
+        </div>
+      </section>
+
+      <!-- ===================== DETAILS ===================== -->
+      <section class="section" id="details" aria-labelledby="details-heading">
+        <div class="container details-layout">
+          <div class="details-main">
+            <h2 id="details-heading" class="section-heading">About the Home</h2>
+            <!-- EDIT: write a few paragraphs describing the property. -->
+            <p>
+              Welcome to 4001 Mossy Bank Lane, a home in the heart of
+              Fredericksburg, Virginia. <em>Add your description here</em>:
+              describe the layout, recent updates, the kitchen and baths,
+              outdoor space, and what makes the home special.
+            </p>
+            <p>
+              <em>Second paragraph</em>: talk about the neighborhood feel,
+              natural light, storage, the lot, and any standout features buyers
+              should know about.
+            </p>
+          </div>
+
+          <aside class="details-features">
+            <h3 class="features-heading">Features &amp; Amenities</h3>
+            <!-- EDIT: list the property's notable features -->
+            <ul class="features-list">
+              <li>Feature one (e.g., updated kitchen)</li>
+              <li>Feature two (e.g., hardwood floors)</li>
+              <li>Feature three (e.g., fenced backyard)</li>
+              <li>Feature four (e.g., two-car garage)</li>
+              <li>Feature five (e.g., new HVAC)</li>
+              <li>Feature six (e.g., walk-in closets)</li>
+            </ul>
+          </aside>
+        </div>
+      </section>
+
+      <!-- ===================== LOCATION ===================== -->
+      <section
+        class="section section-alt"
+        id="location"
+        aria-labelledby="location-heading"
+      >
+        <div class="container">
+          <h2 id="location-heading" class="section-heading">Location</h2>
+          <p class="section-intro">
+            <!-- EDIT: a sentence or two about the area, commute, and what's nearby -->
+            Conveniently located in Fredericksburg, VA, close to schools,
+            shopping, dining, and I-95.
+            <em>Add neighborhood highlights here.</em>
+          </p>
+
+          <div class="location-actions">
+            <a
+              class="btn btn-primary"
+              href="https://www.google.com/maps/search/?api=1&query=4001+Mossy+Bank+Lane+Fredericksburg+VA+22408"
+              rel="noopener"
+              target="_blank"
+              >View on Google Maps</a
+            >
+          </div>
+
+          <ul class="location-highlights">
+            <!-- EDIT: nearby points of interest -->
+            <li><strong>Schools</strong><span>Add nearby schools</span></li>
+            <li><strong>Commute</strong><span>Add commute notes</span></li>
+            <li>
+              <strong>Shopping &amp; Dining</strong
+              ><span>Add nearby spots</span>
+            </li>
+            <li>
+              <strong>Parks &amp; Recreation</strong
+              ><span>Add nearby parks</span>
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- ===================== CONTACT ===================== -->
+      <section class="section" id="contact" aria-labelledby="contact-heading">
+        <div class="container contact-layout">
+          <div class="contact-copy">
+            <h2 id="contact-heading" class="section-heading">
+              Schedule a Showing
+            </h2>
+            <p>
+              Interested in 4001 Mossy Bank Lane? Reach out to arrange a private
+              showing or ask any questions about the property.
+            </p>
+          </div>
+
+          <div class="contact-card">
+            <!-- EDIT: your name (or your agent's) -->
+            <p class="contact-name">Property Owner</p>
+            <!-- EDIT: optional subtitle, e.g. "Listed by Owner" or brokerage -->
+            <p class="contact-role">For Sale by Owner</p>
+
+            <div class="contact-methods">
+              <!-- EDIT: phone number (update BOTH the tel: link and the text) -->
+              <a class="contact-method" href="tel:+10000000000">
+                <span class="contact-method-label">Call or Text</span>
+                <span class="contact-method-value">(000) 000-0000</span>
+              </a>
+              <!-- EDIT: email (update BOTH the mailto: link and the text) -->
+              <a
+                class="contact-method"
+                href="mailto:hello@4001mossy.com?subject=4001%20Mossy%20Bank%20Lane%20-%20Showing%20Request"
+              >
+                <span class="contact-method-label">Email</span>
+                <span class="contact-method-value">hello@4001mossy.com</span>
+              </a>
+            </div>
+
+            <a class="btn btn-primary btn-block" href="tel:+10000000000"
+              >Request a Showing</a
+            >
+          </div>
+        </div>
+      </section>
+
+      <!-- Lightbox (built by JS; hidden until a gallery item is clicked).
+           Kept inside <main> so all content sits within a landmark. -->
+      <div class="lightbox" id="lightbox" hidden>
+        <div class="lightbox-backdrop" data-close></div>
+        <div
+          class="lightbox-dialog"
+          role="dialog"
+          aria-modal="true"
+          aria-label="Photo viewer"
+        >
+          <button class="lightbox-btn lightbox-close" type="button" data-close>
+            <span aria-hidden="true">&times;</span
+            ><span class="sr-only">Close</span>
+          </button>
+          <button class="lightbox-btn lightbox-prev" type="button" data-prev>
+            <span aria-hidden="true">&#8249;</span
+            ><span class="sr-only">Previous photo</span>
+          </button>
+          <figure class="lightbox-figure">
+            <img
+              class="lightbox-img"
+              id="lightbox-img"
+              src="/images/photo-01.svg"
+              alt=""
+            />
+            <figcaption
+              class="lightbox-caption"
+              id="lightbox-caption"
+            ></figcaption>
+          </figure>
+          <button class="lightbox-btn lightbox-next" type="button" data-next>
+            <span aria-hidden="true">&#8250;</span
+            ><span class="sr-only">Next photo</span>
+          </button>
+        </div>
+      </div>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container footer-inner">
+        <p class="footer-address">
+          4001 Mossy Bank Lane, Fredericksburg, VA 22408
+        </p>
+        <p class="footer-disclaimer">
+          All information is deemed reliable but not guaranteed and should be
+          independently verified. Square footage and lot size are approximate.
+          This is not an offer to sell or a solicitation where prohibited.
+        </p>
+        <p class="footer-fairhousing">
+          <span class="eho" aria-hidden="true">&#8962;</span>
+          Equal Housing Opportunity
+        </p>
+        <p class="footer-copy">
+          &copy; <span id="year">2026</span> 4001 Mossy Bank Lane. All rights
+          reserved.
+        </p>
+      </div>
+    </footer>
+
+    <script src="/js/main.js" defer></script>
+  </body>
+</html>
