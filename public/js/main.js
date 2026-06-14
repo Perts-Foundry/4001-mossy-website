@@ -11,6 +11,23 @@
     yearEl.textContent = String(new Date().getFullYear());
   }
 
+  // ------------------------ Sticky topbar offset ------------------------
+  // The banner + nav are pinned together (.topbar). Keep the anchor-scroll
+  // offset (--topbar-h) matched to its rendered height across breakpoints.
+  var topbar = document.querySelector(".topbar");
+  if (topbar) {
+    var syncTopbarHeight = function () {
+      document.documentElement.style.setProperty(
+        "--topbar-h",
+        topbar.offsetHeight + "px",
+      );
+    };
+    syncTopbarHeight();
+    window.addEventListener("resize", function () {
+      window.requestAnimationFrame(syncTopbarHeight);
+    });
+  }
+
   // --------------------------- Mobile nav -------------------------------
   var toggle = document.querySelector(".nav-toggle");
   var menu = document.getElementById("nav-menu");

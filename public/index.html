@@ -58,7 +58,7 @@
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     <!-- Bump ?v= when editing styles.css so cached copies refresh (see _headers). -->
-    <link rel="stylesheet" href="/css/styles.css?v=5" />
+    <link rel="stylesheet" href="/css/styles.css?v=6" />
 
     <!-- Structured data for search engines. -->
     <script type="application/ld+json">
@@ -151,60 +151,63 @@
   <body>
     <a class="skip-link" href="#main">Skip to content</a>
 
-    <!-- EDIT: For-Sale-by-Owner banner + open house teaser (shows at the very top). -->
-    <div class="announce-bar">
-      <div class="container announce-inner">
-        <span class="announce-fsbo">For Sale by Owner</span>
-        <a class="announce-event" href="#openhouse">
-          <span class="announce-event-tag">Open House</span>
-          <span class="announce-event-detail"
-            >Sat &amp; Sun, July 11&ndash;12 &middot; 11 AM&ndash;4 PM</span
-          >
-        </a>
-      </div>
-    </div>
-
-    <header class="site-header" id="top">
-      <div class="container header-inner">
-        <a class="brand" href="#top">
-          <span class="brand-mark" aria-hidden="true">
-            <svg
-              viewBox="0 0 32 32"
-              width="20"
-              height="20"
-              fill="none"
-              focusable="false"
+    <!-- Banner + nav stay pinned together at the top while scrolling. -->
+    <div class="topbar">
+      <!-- EDIT: For-Sale-by-Owner banner + open house teaser (shows at the very top). -->
+      <div class="announce-bar">
+        <div class="container announce-inner">
+          <span class="announce-fsbo">For Sale by Owner</span>
+          <a class="announce-event" href="#openhouse">
+            <span class="announce-event-tag">Open House</span>
+            <span class="announce-event-detail"
+              >Sat &amp; Sun, July 11&ndash;12 &middot; 11 AM&ndash;4 PM</span
             >
-              <path
-                d="M16 6 L26 15 L23.5 15 L23.5 25 L18.5 25 L18.5 18.5 L13.5 18.5 L13.5 25 L8.5 25 L8.5 15 L6 15 Z"
-                fill="currentColor"
-              />
-            </svg>
-          </span>
-          <span class="brand-text">4001 Mossy Bank Lane</span>
-        </a>
-
-        <nav class="site-nav" aria-label="Primary">
-          <button
-            class="nav-toggle"
-            type="button"
-            aria-expanded="false"
-            aria-controls="nav-menu"
-          >
-            <span class="nav-toggle-bar" aria-hidden="true"></span>
-            <span class="sr-only">Menu</span>
-          </button>
-          <ul class="nav-menu" id="nav-menu">
-            <li><a href="#gallery">Gallery</a></li>
-            <li><a href="#tour">3D Tour</a></li>
-            <li><a href="#details">Details</a></li>
-            <li><a href="#floorplan">Floor Plans</a></li>
-            <li><a href="#location">Location</a></li>
-            <li><a class="nav-cta" href="#contact">Contact</a></li>
-          </ul>
-        </nav>
+          </a>
+        </div>
       </div>
-    </header>
+
+      <header class="site-header" id="top">
+        <div class="container header-inner">
+          <a class="brand" href="#top">
+            <span class="brand-mark" aria-hidden="true">
+              <svg
+                viewBox="0 0 32 32"
+                width="20"
+                height="20"
+                fill="none"
+                focusable="false"
+              >
+                <path
+                  d="M16 6 L26 15 L23.5 15 L23.5 25 L18.5 25 L18.5 18.5 L13.5 18.5 L13.5 25 L8.5 25 L8.5 15 L6 15 Z"
+                  fill="currentColor"
+                />
+              </svg>
+            </span>
+            <span class="brand-text">4001 Mossy Bank Lane</span>
+          </a>
+
+          <nav class="site-nav" aria-label="Primary">
+            <button
+              class="nav-toggle"
+              type="button"
+              aria-expanded="false"
+              aria-controls="nav-menu"
+            >
+              <span class="nav-toggle-bar" aria-hidden="true"></span>
+              <span class="sr-only">Menu</span>
+            </button>
+            <ul class="nav-menu" id="nav-menu">
+              <li><a href="#gallery">Gallery</a></li>
+              <li><a href="#tour">3D Tour</a></li>
+              <li><a href="#details">Details</a></li>
+              <li><a href="#floorplan">Floor Plans</a></li>
+              <li><a href="#location">Location</a></li>
+              <li><a class="nav-cta" href="#contact">Contact</a></li>
+            </ul>
+          </nav>
+        </div>
+      </header>
+    </div>
 
     <main id="main">
       <!-- ===================== HERO ===================== -->

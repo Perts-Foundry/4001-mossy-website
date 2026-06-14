@@ -44,8 +44,9 @@
 
 html {
   scroll-behavior: smooth;
-  /* Offset anchor jumps so targets (e.g. #openhouse) clear the sticky header. */
-  scroll-padding-top: calc(var(--header-h) + 0.5rem);
+  /* Offset anchor jumps so targets clear the pinned banner + nav. JS keeps
+     --topbar-h in sync with the rendered height; the fallback covers no-JS. */
+  scroll-padding-top: calc(var(--topbar-h, 7rem) + 0.5rem);
   /* Reserve scrollbar space so locking scroll for the lightbox doesn't shift
      the layout. */
   scrollbar-gutter: stable;
@@ -173,10 +174,15 @@ h3 {
 }
 
 /* ----------------------------- Header --------------------------------- */
-.site-header {
+/* Banner + nav share one sticky wrapper so they stay pinned together. */
+.topbar {
   position: sticky;
   top: 0;
   z-index: 100;
+}
+
+.site-header {
+  position: relative;
   background: rgba(13, 26, 43, 0.85);
   backdrop-filter: saturate(140%) blur(8px);
   border-bottom: 1px solid var(--border);
