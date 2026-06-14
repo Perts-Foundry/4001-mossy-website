@@ -201,8 +201,13 @@ h3 {
 }
 
 .brand-mark {
+  display: inline-flex;
   color: var(--accent);
-  font-size: 1.3rem;
+}
+
+.brand-mark svg {
+  width: 1.3rem;
+  height: 1.3rem;
 }
 
 .site-nav {
