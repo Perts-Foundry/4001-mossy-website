@@ -6,46 +6,49 @@ For-sale property website for **4001 Mossy Bank Lane, Fredericksburg, VA 22408**
 live at **[4001mossy.com](https://4001mossy.com)**.
 
 A single-page listing: hero, photo gallery with lightbox, an interactive
-Matterport 3D tour, property details, location, and contact information. It is a
-plain static site (no build step) served by a Cloudflare Worker. DNS, the Worker
-route, and this repository are all managed as code in the
+Matterport 3D tour, property details and renovation highlights, floor plans,
+location and community amenities, and contact information. It is a plain static
+site (no build step) served by a Cloudflare Worker. DNS, the Worker route, and
+this repository are all managed as code in the
 [Perts-Foundry/infrastructure](https://github.com/Perts-Foundry/infrastructure)
 repo.
 
 ## Editing your listing
 
-Almost everything you'll want to change lives in **`public/index.html`**. Open
-it and search for **`EDIT:`**. Every editable spot is marked with a comment.
-Here's what to fill in:
+The listing content is populated. The handful of spots most likely to change are
+marked with **`EDIT:`** comments in **`public/index.html`** (search for `EDIT:`):
 
 | What                | Where (search `public/index.html` for…)             |
 | ------------------- | --------------------------------------------------- |
-| Price               | `EDIT: list price`                                  |
-| Beds / baths / sqft | `EDIT: beds / baths`                                |
-| Status              | `EDIT: status` (For Sale, Coming Soon, etc.)        |
-| Quick facts         | `EDIT: fill in each value` (year, lot, garage…)     |
-| Description         | `EDIT: write a few paragraphs`                      |
-| Features list       | `EDIT: list the property's notable features`        |
-| Location text       | `EDIT: a sentence or two about the area`            |
-| **Matterport tour** | `EDIT: paste your Matterport "embed" URL`           |
+| **Status**          | `EDIT: status` (For Sale, Coming Soon, etc.)        |
+| **Price**           | `EDIT: list price` (currently "Price Upon Request") |
+| **Matterport tour** | `EDIT: Matterport tour` (iframe `src` + fallback)   |
 | **Phone**           | `EDIT: phone number` (update the `tel:` link too)   |
 | **Email**           | `EDIT: email` (update the `mailto:` link too)       |
+| Social image        | `EDIT: 1200x630 social image`                       |
 | Page title / SEO    | `EDIT: page title` and `EDIT: one-sentence summary` |
+
+Everything else (beds/baths/square footage, quick facts, the written
+description, renovation highlights, floor plans, location, and amenities) is
+plain HTML in `public/index.html`. Edit it directly.
 
 ### Photos
 
-1. Drop your photos into **`public/images/`** (JPG or WebP recommended,
-   ~1600px wide for the hero, ~1200px for gallery shots).
-2. Replace the hero: overwrite/rename `public/images/hero.svg` references in the
-   `<img class="hero-img" …>` tag to point at your file (e.g. `/images/hero.jpg`).
-3. Update each gallery item in the `<ul class="gallery-grid">` block: point
-   `src` and `data-full` at your photo and write descriptive `alt`/`data-caption`
-   text. Add or remove `<li>` items freely.
-4. For nice link previews, add a 1200×630 `public/images/og-cover.jpg` and update
-   the `og:image` / `twitter:image` tags.
+Real photos live in **`public/images/`** as optimized JPGs (EXIF/GPS stripped).
+Each gallery photo ships in two sizes: a `*-sm.jpg` thumbnail used as the grid
+`src`, and a full-size `*.jpg` used by the lightbox (`data-full`). To change a
+photo:
 
-The shipped `*.svg` files are labeled placeholders; replace them with real
-photos when ready.
+1. Add your image to `public/images/` (JPG or WebP; ~2000px wide for the hero,
+   ~1600px for gallery/full views, ~800px for thumbnails).
+2. Point the gallery item's `src` (thumbnail) and `data-full` (full size) at the
+   new files and update the `alt` text and `data-caption`. Add or remove `<li>`
+   items freely; the lightbox picks up every `.gallery-item` automatically.
+3. The hero is `/images/hero.jpg` and the social card is `/images/og-cover.jpg`
+   (1200×630).
+
+The favicon is a simple house mark (`public/favicon.svg`), with
+`public/apple-touch-icon.png` for iOS.
 
 ### Matterport 3D tour
 
@@ -94,8 +97,9 @@ public/              The site itself (served as-is by the Worker)
   404.html           Not-found page
   css/styles.css     All styles (design tokens at the top)
   js/main.js         Mobile nav + accessible photo lightbox
-  images/            Photos (placeholders shipped; replace with yours)
-  robots.txt, sitemap.xml, favicon.svg
+  images/            Optimized photos, floor plans, logo, hero, og-cover
+  robots.txt, sitemap.xml, favicon.svg, apple-touch-icon.png
+  _headers           Cache-Control TTLs for /css, /js, /images
 src/worker.js        Minimal Worker that serves the static assets
 wrangler.toml        Cloudflare Workers deploy config
 .github/workflows/   validate.yml (PR checks), preview.yml (per-PR draft preview),

@@ -1,5 +1,7 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="4001 Mossy Bank Lane">
-  <rect width="64" height="64" rx="14" fill="#1f3b2d" />
-  <path d="M32 14 L50 30 H45 V48 H37 V37 H27 V48 H19 V30 H14 Z" fill="#f1ede7" />
-  <path d="M32 14 L50 30 H45 V48 H37 V37 H27 V48 H19 V30 H14 Z" fill="none" stroke="#8a5a2b" stroke-width="1.5" stroke-linejoin="round" />
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" role="img" aria-label="Home">
+  <rect width="32" height="32" rx="6" fill="#0f1c2e" />
+  <path
+    d="M16 6 L26 15 L23.5 15 L23.5 25 L18.5 25 L18.5 18.5 L13.5 18.5 L13.5 25 L8.5 25 L8.5 15 L6 15 Z"
+    fill="#ffffff"
+  />
 </svg>

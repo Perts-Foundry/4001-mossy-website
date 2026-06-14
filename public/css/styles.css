@@ -5,25 +5,28 @@
    ========================================================================= */
 
 :root {
-  --green-900: #16291f;
-  --green-700: #1f3b2d;
-  --green-600: #2c4f3c;
-  --accent: #8a5a2b;
-  --accent-dark: #6f4720;
+  /* Dark mode: deep-navy + mid-gray surfaces, light text, white CTAs. */
+  --navy-900: #0a1626;
+  --navy-700: #16263d;
+  --navy-600: #2f4d7a;
+  --accent: #7c8aa0;
+  --accent-dark: #94a2b6;
 
-  --bg: #faf8f5;
-  --surface: #ffffff;
-  --surface-alt: #f1ede7;
-  --text: #23211e;
-  --text-muted: #5c574f;
-  --border: #e3ddd4;
+  --bg: #0d1a2b;
+  --surface: #1a2c47;
+  --surface-alt: #122236;
+  --text: #e8edf4;
+  --text-muted: #9fb0c4;
+  --border: #2b3e57;
+  --heading: #f4f7fc;
+  --link: #9bb6df;
 
   --maxw: 1120px;
   --radius: 10px;
   --radius-lg: 16px;
-  --shadow-sm: 0 1px 3px rgba(20, 18, 15, 0.08);
-  --shadow-md: 0 8px 24px rgba(20, 18, 15, 0.12);
-  --shadow-lg: 0 18px 48px rgba(20, 18, 15, 0.28);
+  --shadow-sm: 0 1px 3px rgba(15, 28, 46, 0.08);
+  --shadow-md: 0 8px 24px rgba(15, 28, 46, 0.12);
+  --shadow-lg: 0 18px 48px rgba(15, 28, 46, 0.28);
 
   --font-body:
     system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
@@ -66,7 +69,7 @@ img {
 }
 
 a {
-  color: var(--accent-dark);
+  color: var(--link);
 }
 
 h1,
@@ -74,7 +77,7 @@ h2,
 h3 {
   font-family: var(--font-display);
   line-height: 1.15;
-  color: var(--green-900);
+  color: var(--heading);
   margin: 0 0 0.5em;
 }
 
@@ -103,7 +106,7 @@ h3 {
   left: 1rem;
   top: -3rem;
   z-index: 1000;
-  background: var(--green-700);
+  background: var(--navy-700);
   color: #fff;
   padding: 0.6rem 1rem;
   border-radius: var(--radius);
@@ -143,12 +146,14 @@ h3 {
 }
 
 .btn-primary {
-  background: var(--green-700);
-  color: #fff;
+  background: #fff;
+  color: var(--navy-900);
+  border-color: var(--navy-900);
 }
 
 .btn-primary:hover {
-  background: var(--green-600);
+  background: var(--navy-900);
+  color: #fff;
 }
 
 .btn-ghost {
@@ -170,7 +175,7 @@ h3 {
   position: sticky;
   top: 0;
   z-index: 100;
-  background: rgba(250, 248, 245, 0.92);
+  background: rgba(13, 26, 43, 0.85);
   backdrop-filter: saturate(140%) blur(8px);
   border-bottom: 1px solid var(--border);
 }
@@ -189,7 +194,7 @@ h3 {
   font-family: var(--font-display);
   font-weight: 700;
   font-size: 1.15rem;
-  color: var(--green-900);
+  color: var(--heading);
   text-decoration: none;
 }
 
@@ -225,15 +230,16 @@ h3 {
 }
 
 .nav-cta {
-  background: var(--green-700);
-  color: #fff !important;
+  background: #fff;
+  color: var(--navy-900) !important;
   padding: 0.5rem 1.1rem !important;
   border-radius: var(--radius);
   border-bottom: none !important;
 }
 
 .nav-cta:hover {
-  background: var(--green-600);
+  background: var(--navy-900);
+  color: #fff !important;
 }
 
 .nav-toggle {
@@ -255,7 +261,7 @@ h3 {
   left: 50%;
   width: 22px;
   height: 2px;
-  background: var(--green-900);
+  background: var(--text);
   transform: translateX(-50%);
   transition: transform 0.2s ease;
 }
@@ -278,7 +284,7 @@ h3 {
   color: #fff;
   /* Dark fallback behind the photo: keeps hero text readable if the image is
      slow/fails to load, and is the real backdrop the overlay deepens. */
-  background-color: var(--green-900);
+  background-color: var(--navy-900);
   min-height: clamp(460px, 78vh, 760px);
   display: flex;
   align-items: flex-end;
@@ -301,9 +307,9 @@ h3 {
   inset: 0;
   background: linear-gradient(
     to bottom,
-    rgba(15, 26, 20, 0.3) 0%,
-    rgba(15, 26, 20, 0.5) 45%,
-    rgba(15, 26, 20, 0.88) 100%
+    rgba(9, 18, 32, 0.3) 0%,
+    rgba(9, 18, 32, 0.5) 45%,
+    rgba(9, 18, 32, 0.9) 100%
   );
 }
 
@@ -381,7 +387,7 @@ h3 {
 
 /* ------------------------------ Facts --------------------------------- */
 .facts {
-  background: var(--green-900);
+  background: var(--navy-900);
   color: #fff;
 }
 
@@ -473,7 +479,7 @@ h3 {
   border-radius: var(--radius-lg);
   overflow: hidden;
   box-shadow: var(--shadow-md);
-  background: var(--green-900);
+  background: var(--navy-900);
 }
 
 .tour-frame iframe {
@@ -539,6 +545,110 @@ h3 {
   background: var(--accent);
 }
 
+/* ------------------------ About & feature cards ----------------------- */
+.about-intro {
+  max-width: 72ch;
+}
+
+.about-intro p {
+  font-size: 1.08rem;
+  margin: 0 0 1.2rem;
+}
+
+.subsection-heading {
+  font-size: clamp(1.4rem, 3.4vw, 1.9rem);
+  margin: 2.75rem 0 1.3rem;
+}
+
+.feature-cards {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1.1rem;
+}
+
+.feature-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 1.4rem 1.5rem;
+  box-shadow: var(--shadow-sm);
+}
+
+.feature-card h3 {
+  font-size: 1.2rem;
+  margin: 0 0 0.9rem;
+  color: var(--heading);
+}
+
+.feature-card ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 0.6rem;
+}
+
+.feature-card li {
+  position: relative;
+  padding-left: 1.5rem;
+  font-size: 0.98rem;
+}
+
+.feature-card li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.5em;
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 50%;
+  background: var(--accent);
+}
+
+/* --------------------------- Floor plans ------------------------------ */
+.floorplan-grid {
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+}
+
+.floorplan-grid .gallery-item {
+  background: #fff;
+}
+
+.floorplan-grid .gallery-item img {
+  object-fit: contain;
+  padding: 0.5rem;
+}
+
+.floorplan-grid .gallery-item:hover img {
+  transform: none;
+}
+
+/* ---------------------------- Amenities ------------------------------- */
+.amenity-list {
+  list-style: none;
+  margin: 0 0 2rem;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+}
+
+.amenity-list li {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  padding: 0.45rem 1.05rem;
+  font-size: 0.95rem;
+  font-weight: 500;
+}
+
+.amenity-gallery {
+  margin-top: 0.5rem;
+}
+
 /* ----------------------------- Location ------------------------------- */
 .location-actions {
   margin-bottom: 2rem;
@@ -564,7 +674,7 @@ h3 {
 }
 
 .location-highlights strong {
-  color: var(--green-900);
+  color: var(--heading);
 }
 
 .location-highlights span {
@@ -599,8 +709,9 @@ h3 {
 }
 
 .contact-card {
-  background: var(--green-700);
+  background: var(--navy-700);
   color: #fff;
+  border: 1px solid var(--border);
   border-radius: var(--radius-lg);
   padding: clamp(1.6rem, 4vw, 2.4rem);
   box-shadow: var(--shadow-md);
@@ -652,17 +763,9 @@ h3 {
   font-weight: 600;
 }
 
-.contact-card .btn-primary {
-  background: var(--accent);
-}
-
-.contact-card .btn-primary:hover {
-  background: var(--accent-dark);
-}
-
 /* ------------------------------ Footer -------------------------------- */
 .site-footer {
-  background: var(--green-900);
+  background: var(--navy-900);
   color: rgba(255, 255, 255, 0.82);
   padding-block: 2.5rem;
   font-size: 0.92rem;
