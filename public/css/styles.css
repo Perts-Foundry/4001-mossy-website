@@ -44,6 +44,8 @@
 
 html {
   scroll-behavior: smooth;
+  /* Offset anchor jumps so targets (e.g. #openhouse) clear the sticky header. */
+  scroll-padding-top: calc(var(--header-h) + 0.5rem);
   /* Reserve scrollbar space so locking scroll for the lightbox doesn't shift
      the layout. */
   scrollbar-gutter: stable;
@@ -386,34 +388,40 @@ h3 {
 }
 
 /* ------------------------------ Facts --------------------------------- */
+/* Dense, single-line spec bar: each fact is "label value" on one line, the
+   row wraps as needed. Much shorter than the old stacked grid. */
 .facts {
   background: var(--navy-900);
   color: #fff;
+  border-bottom: 1px solid var(--border);
 }
 
-.facts-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-  gap: 1px;
-  padding-block: 0;
-}
-
-.fact {
+.facts-bar {
+  list-style: none;
   display: flex;
-  flex-direction: column;
-  gap: 0.2rem;
-  padding: 1.3rem clamp(1rem, 4vw, 2rem);
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.4rem 1.6rem;
+  margin-inline: auto;
+  padding-block: 1.05rem;
+}
+
+.facts-bar li {
+  display: flex;
+  align-items: baseline;
+  gap: 0.5rem;
+  white-space: nowrap;
 }
 
 .fact-label {
-  font-size: 0.78rem;
+  font-size: 0.72rem;
   text-transform: uppercase;
   letter-spacing: 0.07em;
-  color: rgba(255, 255, 255, 0.7);
+  color: rgba(255, 255, 255, 0.62);
 }
 
 .fact-value {
-  font-size: 1.05rem;
+  font-size: 1rem;
   font-weight: 600;
 }
 
@@ -724,8 +732,47 @@ h3 {
 }
 
 .contact-role {
-  margin: 0.1rem 0 1.4rem;
+  margin: 0.1rem 0 1.1rem;
   color: rgba(255, 255, 255, 0.8);
+}
+
+.contact-pref {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.5rem;
+  margin: 0 0 1.3rem;
+  font-size: 0.95rem;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.contact-pref-badge {
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--navy-900);
+  background: #fff;
+  padding: 0.2rem 0.6rem;
+  border-radius: 999px;
+  white-space: nowrap;
+}
+
+.contact-method-pref {
+  border-color: rgba(255, 255, 255, 0.42);
+}
+
+.contact-tag {
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--navy-900);
+  background: #fff;
+  padding: 0.08rem 0.42rem;
+  border-radius: 999px;
+  margin-left: 0.35rem;
+  vertical-align: middle;
 }
 
 .contact-methods {
@@ -895,6 +942,212 @@ h3 {
   line-height: 1;
 }
 
+/* --------------------- Announcement bar (FSBO) ------------------------ */
+.announce-bar {
+  background: var(--navy-700);
+  border-bottom: 1px solid var(--border);
+  color: var(--text);
+}
+
+.announce-inner {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem 1.1rem;
+  padding-block: 0.55rem;
+  text-align: center;
+}
+
+.announce-fsbo {
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  font-size: 0.76rem;
+  color: #fff;
+  background: var(--accent);
+  padding: 0.22rem 0.75rem;
+  border-radius: 999px;
+  white-space: nowrap;
+}
+
+.announce-event {
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: center;
+  gap: 0.1rem 0.45rem;
+  color: var(--text);
+  text-decoration: none;
+  font-size: 0.92rem;
+  font-weight: 500;
+}
+
+.announce-event:hover {
+  text-decoration: underline;
+}
+
+.announce-event-tag {
+  font-weight: 700;
+  color: var(--heading);
+}
+
+/* ----------------------------- Open house ----------------------------- */
+.openhouse {
+  background: linear-gradient(135deg, var(--navy-600), var(--navy-700));
+  color: #fff;
+  padding-block: clamp(1.4rem, 4vw, 2.2rem);
+  border-bottom: 1px solid var(--border);
+}
+
+.openhouse-inner {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: clamp(1rem, 4vw, 2rem);
+}
+
+.openhouse-cal {
+  flex: 0 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 88px;
+  height: 88px;
+  background: #fff;
+  color: var(--navy-900);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
+  line-height: 1.05;
+}
+
+.openhouse-cal-month {
+  text-transform: uppercase;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: var(--navy-600);
+}
+
+.openhouse-cal-day {
+  font-family: var(--font-display);
+  font-size: 1.45rem;
+  font-weight: 700;
+}
+
+.openhouse-body {
+  flex: 1 1 260px;
+}
+
+.openhouse-kicker {
+  margin: 0;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-size: 0.76rem;
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.openhouse-title {
+  color: #fff;
+  font-size: clamp(1.25rem, 3vw, 1.7rem);
+  margin: 0.15rem 0 0.4rem;
+}
+
+.openhouse-sub {
+  margin: 0;
+  color: rgba(255, 255, 255, 0.85);
+  max-width: 54ch;
+}
+
+.openhouse-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.7rem;
+  flex: 0 0 auto;
+}
+
+/* --------------------------- Featured grid ---------------------------- */
+.featured-grid {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+  gap: 0.9rem;
+}
+
+.featured-item {
+  position: relative;
+}
+
+.featured-label {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 1.5rem 0.85rem 0.7rem;
+  font-size: 0.92rem;
+  font-weight: 600;
+  color: #fff;
+  text-align: left;
+  background: linear-gradient(
+    to top,
+    rgba(7, 14, 24, 0.85),
+    rgba(7, 14, 24, 0)
+  );
+  pointer-events: none;
+}
+
+/* --------------------- Show more / collapse --------------------------- */
+.gallery-more {
+  text-align: center;
+  margin-top: 1.6rem;
+}
+
+/* --------------------------- Back to top ------------------------------ */
+.back-to-top {
+  position: fixed;
+  right: clamp(1rem, 3vw, 1.6rem);
+  bottom: clamp(1rem, 3vw, 1.6rem);
+  z-index: 90;
+  width: 48px;
+  height: 48px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--border);
+  border-radius: 50%;
+  background: var(--navy-700);
+  color: #fff;
+  box-shadow: var(--shadow-md);
+  cursor: pointer;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(8px);
+  transition:
+    opacity 0.2s ease,
+    transform 0.2s ease,
+    visibility 0.2s ease,
+    background 0.18s ease;
+}
+
+.back-to-top svg {
+  width: 22px;
+  height: 22px;
+}
+
+.back-to-top:hover {
+  background: var(--navy-600);
+}
+
+.back-to-top.is-visible {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
 /* --------------------------- Responsive ------------------------------- */
 @media (max-width: 760px) {
   .nav-toggle {
@@ -943,6 +1196,24 @@ h3 {
   .details-layout,
   .contact-layout {
     grid-template-columns: 1fr;
+  }
+
+  /* Let long facts wrap instead of forcing horizontal scroll on tiny screens. */
+  .facts-bar li {
+    white-space: normal;
+  }
+
+  .openhouse-actions {
+    width: 100%;
+  }
+
+  .openhouse-actions .btn {
+    flex: 1 1 auto;
+  }
+
+  .back-to-top {
+    width: 44px;
+    height: 44px;
   }
 
   .lightbox-prev,

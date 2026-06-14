@@ -21,9 +21,12 @@ repo (Terraform).
   `EDIT:` comments; the README's "Editing your listing" table maps each one.
 - `public/css/styles.css` holds all styles; design tokens (colors, spacing) are
   CSS custom properties in `:root` at the top.
-- `public/js/main.js` is vanilla JS: mobile nav toggle + an accessible photo
-  lightbox (keyboard nav, focus trap, scroll lock). Progressive enhancement —
-  the page works with JS disabled.
+- `public/js/main.js` is vanilla JS: mobile nav toggle, an accessible photo
+  lightbox (keyboard nav, focus trap, scroll lock), a floating back-to-top
+  button (revealed past 600px of scroll), and collapsible photo/amenity grids
+  (a JS-added "Show all" toggle hides all but the first 8 photos / 6 amenities
+  to keep the first scroll short). Progressive enhancement — with JS disabled
+  the page still works (all photos show, no toggle).
 
 ## Content conventions
 
@@ -37,9 +40,18 @@ repo (Terraform).
   `fTqNmKh5YzR`).
 - Keep the JSON-LD block's address accurate. It already carries
   beds/baths/floorSize/yearBuilt; add an `offers` price block once an asking
-  price is set (the hero currently shows "Price Upon Request").
-- Contact is **display-only** (tel:/mailto:) — there is no form and no backend
-  secret. Keep it that way unless a contact form is explicitly requested.
+  price is set (the hero currently shows "Price Upon Request"). A second JSON-LD
+  block holds the open house `Event`s.
+- The top of the page carries a For-Sale-by-Owner **announcement bar**, an
+  **open house** band (`#openhouse`, gradient surface + calendar chip), and a
+  5-photo **Highlights** strip (`#highlights`, reusing `.gallery-item` so it
+  feeds the lightbox) — all tagged with `EDIT:` comments. The open house
+  date/time lives in **three** places (announcement bar, `#openhouse` band, and
+  the JSON-LD `Event`s); update all three together.
+- Contact is **display-only** (sms:/tel:/mailto:) — there is no form and no
+  backend secret. Email is listed first, text is flagged as strongly preferred,
+  and the primary button is an `sms:` link. Keep it form-free unless a contact
+  form is explicitly requested.
 - The site is **dark-mode only**: one dark `:root` palette in `styles.css`
   (deep navy + mid-gray surfaces, light text). There is no light theme or
   toggle. Call-to-action buttons (`.btn-primary`, header `.nav-cta`) are white

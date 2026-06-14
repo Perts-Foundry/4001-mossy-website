@@ -18,15 +18,18 @@ repo.
 The listing content is populated. The handful of spots most likely to change are
 marked with **`EDIT:`** comments in **`public/index.html`** (search for `EDIT:`):
 
-| What                | Where (search `public/index.html` for…)             |
-| ------------------- | --------------------------------------------------- |
-| **Status**          | `EDIT: status` (For Sale, Coming Soon, etc.)        |
-| **Price**           | `EDIT: list price` (currently "Price Upon Request") |
-| **Matterport tour** | `EDIT: Matterport tour` (iframe `src` + fallback)   |
-| **Phone**           | `EDIT: phone number` (update the `tel:` link too)   |
-| **Email**           | `EDIT: email` (update the `mailto:` link too)       |
-| Social image        | `EDIT: 1200x630 social image`                       |
-| Page title / SEO    | `EDIT: page title` and `EDIT: one-sentence summary` |
+| What                | Where (search `public/index.html` for…)                                  |
+| ------------------- | ------------------------------------------------------------------------ |
+| **Status**          | `EDIT: status` (For Sale by Owner, Coming Soon, etc.)                    |
+| **Price**           | `EDIT: list price` (currently "Price Upon Request")                      |
+| **FSBO banner**     | `EDIT: For-Sale-by-Owner banner` (top announcement bar)                  |
+| **Open house**      | `EDIT: open house` (band + JSON-LD) and `EDIT: For-Sale-by-Owner banner` |
+| **Featured photos** | `EDIT: the 5 featured photos` (the "Highlights" strip up top)            |
+| **Matterport tour** | `EDIT: Matterport tour` (iframe `src` + fallback)                        |
+| **Phone**           | `EDIT: phone number` (update the `sms:`, `tel:`, and text)               |
+| **Email**           | `EDIT: email` (update the `mailto:` link too)                            |
+| Social image        | `EDIT: 1200x630 social image`                                            |
+| Page title / SEO    | `EDIT: page title` and `EDIT: one-sentence summary`                      |
 
 Everything else (beds/baths/square footage, quick facts, the written
 description, renovation highlights, floor plans, location, and amenities) is
@@ -43,7 +46,10 @@ photo:
    ~1600px for gallery/full views, ~800px for thumbnails).
 2. Point the gallery item's `src` (thumbnail) and `data-full` (full size) at the
    new files and update the `alt` text and `data-caption`. Add or remove `<li>`
-   items freely; the lightbox picks up every `.gallery-item` automatically.
+   items freely; the lightbox picks up every `.gallery-item` automatically. The
+   main photo grid and the amenity grid start collapsed (first 8 and 6 photos)
+   with a JS-added "Show all" toggle, so adding photos doesn't lengthen the
+   first scroll.
 3. The hero is `/images/hero.jpg` and the social card is `/images/og-cover.jpg`
    (1200×630).
 
@@ -96,7 +102,7 @@ public/              The site itself (served as-is by the Worker)
   index.html         The single listing page (edit this)
   404.html           Not-found page
   css/styles.css     All styles (design tokens at the top)
-  js/main.js         Mobile nav + accessible photo lightbox
+  js/main.js         Mobile nav, lightbox, back-to-top, collapsible galleries
   images/            Optimized photos, floor plans, logo, hero, og-cover
   robots.txt, sitemap.xml, favicon.svg, apple-touch-icon.png
   _headers           Cache-Control TTLs for /css, /js, /images

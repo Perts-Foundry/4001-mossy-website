@@ -58,7 +58,7 @@
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     <!-- Bump ?v= when editing styles.css so cached copies refresh (see _headers). -->
-    <link rel="stylesheet" href="/css/styles.css?v=2" />
+    <link rel="stylesheet" href="/css/styles.css?v=3" />
 
     <!-- Structured data for search engines. -->
     <script type="application/ld+json">
@@ -92,10 +92,77 @@
         }
       }
     </script>
+
+    <!-- EDIT: open house event(s). Keep the dates/times in sync with the
+         "Open House" section in the body and the top announcement bar.
+         Times are US Eastern (-04:00 during summer DST). -->
+    <script type="application/ld+json">
+      [
+        {
+          "@context": "https://schema.org",
+          "@type": "Event",
+          "name": "Open House: 4001 Mossy Bank Lane",
+          "description": "Open house at 4001 Mossy Bank Lane, Fredericksburg, VA 22408. For sale by owner; no appointment needed.",
+          "startDate": "2026-07-11T11:00:00-04:00",
+          "endDate": "2026-07-11T16:00:00-04:00",
+          "eventStatus": "https://schema.org/EventScheduled",
+          "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+          "url": "https://4001mossy.com/#openhouse",
+          "location": {
+            "@type": "Place",
+            "name": "4001 Mossy Bank Lane",
+            "address": {
+              "@type": "PostalAddress",
+              "streetAddress": "4001 Mossy Bank Lane",
+              "addressLocality": "Fredericksburg",
+              "addressRegion": "VA",
+              "postalCode": "22408",
+              "addressCountry": "US"
+            }
+          }
+        },
+        {
+          "@context": "https://schema.org",
+          "@type": "Event",
+          "name": "Open House: 4001 Mossy Bank Lane",
+          "description": "Open house at 4001 Mossy Bank Lane, Fredericksburg, VA 22408. For sale by owner; no appointment needed.",
+          "startDate": "2026-07-12T11:00:00-04:00",
+          "endDate": "2026-07-12T16:00:00-04:00",
+          "eventStatus": "https://schema.org/EventScheduled",
+          "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+          "url": "https://4001mossy.com/#openhouse",
+          "location": {
+            "@type": "Place",
+            "name": "4001 Mossy Bank Lane",
+            "address": {
+              "@type": "PostalAddress",
+              "streetAddress": "4001 Mossy Bank Lane",
+              "addressLocality": "Fredericksburg",
+              "addressRegion": "VA",
+              "postalCode": "22408",
+              "addressCountry": "US"
+            }
+          }
+        }
+      ]
+    </script>
   </head>
 
   <body>
     <a class="skip-link" href="#main">Skip to content</a>
+
+    <!-- EDIT: For-Sale-by-Owner banner + open house teaser (shows at the very top). -->
+    <div class="announce-bar">
+      <div class="container announce-inner">
+        <span class="announce-fsbo">For Sale by Owner</span>
+        <a class="announce-event" href="#openhouse">
+          <span class="announce-event-tag">Open House</span>
+          <span class="announce-event-detail"
+            >Sat &amp; Sun, July 11&ndash;12 &middot; 11 AM&ndash;4 PM</span
+          >
+        </a>
+      </div>
+    </div>
 
     <header class="site-header" id="top">
       <div class="container header-inner">
@@ -143,8 +210,8 @@
 
         <div class="hero-content container">
           <p class="hero-status">
-            <!-- EDIT: status, e.g. For Sale / Coming Soon / Under Contract -->
-            For Sale
+            <!-- EDIT: status, e.g. For Sale by Owner / Coming Soon / Under Contract -->
+            For Sale by Owner
           </p>
           <h1 id="hero-heading" class="hero-address">
             4001 Mossy Bank Lane
@@ -171,40 +238,182 @@
       </section>
 
       <!-- ===================== QUICK FACTS ===================== -->
+      <!-- Compact single-line spec bar (label + value per item). -->
       <section class="facts" aria-label="Property facts">
-        <div class="container facts-grid">
-          <div class="fact">
+        <ul class="container facts-bar">
+          <li>
             <span class="fact-label">Type</span
             ><span class="fact-value">Colonial (Single-Family)</span>
-          </div>
-          <div class="fact">
+          </li>
+          <li>
             <span class="fact-label">Year Built</span
             ><span class="fact-value">1999</span>
-          </div>
-          <div class="fact">
+          </li>
+          <li>
             <span class="fact-label">Lot Size</span
             ><span class="fact-value">0.36 acres (corner)</span>
-          </div>
-          <div class="fact">
+          </li>
+          <li>
             <span class="fact-label">Garage</span
             ><span class="fact-value">2-car attached</span>
-          </div>
-          <div class="fact">
+          </li>
+          <li>
             <span class="fact-label">Basement</span
-            ><span class="fact-value">Unfinished (~1,176 sq ft)</span>
-          </div>
-          <div class="fact">
+            ><span class="fact-value">Unfinished &middot; ~1,176 sq ft</span>
+          </li>
+          <li>
             <span class="fact-label">Heating / Cooling</span
             ><span class="fact-value">Heat pump &middot; Central A/C</span>
-          </div>
-          <div class="fact">
+          </li>
+          <li>
             <span class="fact-label">Water / Sewer</span
             ><span class="fact-value">Public</span>
-          </div>
-          <div class="fact">
+          </li>
+          <li>
             <span class="fact-label">County</span
             ><span class="fact-value">Spotsylvania</span>
+          </li>
+        </ul>
+      </section>
+
+      <!-- ===================== OPEN HOUSE ===================== -->
+      <!-- EDIT: open house date/time. Keep in sync with the JSON-LD Event in
+           <head> and the top announcement bar. -->
+      <section
+        class="openhouse"
+        id="openhouse"
+        aria-labelledby="openhouse-heading"
+      >
+        <div class="container openhouse-inner">
+          <div class="openhouse-cal" aria-hidden="true">
+            <span class="openhouse-cal-month">Jul</span>
+            <span class="openhouse-cal-day">11&ndash;12</span>
           </div>
+          <div class="openhouse-body">
+            <p class="openhouse-kicker">Open House</p>
+            <h2 id="openhouse-heading" class="openhouse-title">
+              Saturday &amp; Sunday, July 11&ndash;12 &middot; 11 AM&ndash;4 PM
+            </h2>
+            <p class="openhouse-sub">
+              Stop by 4001 Mossy Bank Lane; no appointment needed. We'll be on
+              site to answer questions and walk you through the home.
+            </p>
+          </div>
+          <div class="openhouse-actions">
+            <a
+              class="btn btn-primary"
+              href="https://www.google.com/maps/search/?api=1&query=4001+Mossy+Bank+Lane+Fredericksburg+VA+22408"
+              rel="noopener"
+              target="_blank"
+              >Get Directions</a
+            >
+            <a class="btn btn-ghost" href="#contact">Ask a Question</a>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===================== FEATURED HIGHLIGHTS ===================== -->
+      <!-- EDIT: the 5 featured photos shown up top. Each is a .gallery-item, so
+           it opens in the lightbox; swap data-full/src/alt/label to feature
+           different rooms. -->
+      <section
+        class="section featured"
+        id="highlights"
+        aria-labelledby="featured-heading"
+      >
+        <div class="container">
+          <h2 id="featured-heading" class="section-heading">Highlights</h2>
+          <p class="section-intro">
+            Five favorites from the tour. Select any photo to view it larger, or
+            browse the full gallery below.
+          </p>
+          <ul class="featured-grid">
+            <li>
+              <button
+                class="gallery-item featured-item"
+                type="button"
+                data-full="/images/photo-006.jpg"
+                data-caption="Front exterior: white Colonial with red shutters and two-car garage"
+              >
+                <img
+                  src="/images/photo-006-sm.jpg"
+                  alt="Front view of a two-story white vinyl Colonial home with red shutters, attached two-car garage, covered entry, and sloping green front lawn under a blue sky"
+                  loading="lazy"
+                  width="800"
+                  height="533"
+                />
+                <span class="featured-label">Front Exterior</span>
+              </button>
+            </li>
+            <li>
+              <button
+                class="gallery-item featured-item"
+                type="button"
+                data-full="/images/photo-042.jpg"
+                data-caption="Renovated kitchen with island and quartz counters"
+              >
+                <img
+                  src="/images/photo-042-sm.jpg"
+                  alt="Renovated kitchen with gray shaker cabinetry, white quartz counters, herringbone tile backsplash, center island, stainless range with vent hood and refrigerator"
+                  loading="lazy"
+                  width="800"
+                  height="533"
+                />
+                <span class="featured-label">Chef's Kitchen</span>
+              </button>
+            </li>
+            <li>
+              <button
+                class="gallery-item featured-item"
+                type="button"
+                data-full="/images/photo-069.jpg"
+                data-caption="Light-filled family room with gas fireplace"
+              >
+                <img
+                  src="/images/photo-069-sm.jpg"
+                  alt="Empty family room with dark LVP flooring, a white-mantel gas fireplace flanked by windows, a ceiling fan, and a large window overlooking the fenced backyard"
+                  loading="lazy"
+                  width="800"
+                  height="533"
+                />
+                <span class="featured-label">Family Room</span>
+              </button>
+            </li>
+            <li>
+              <button
+                class="gallery-item featured-item"
+                type="button"
+                data-full="/images/photo-105.jpg"
+                data-caption="Primary bedroom with vaulted ceiling and walk-in closet"
+              >
+                <img
+                  src="/images/photo-105-sm.jpg"
+                  alt="Spacious carpeted primary bedroom with blue-gray walls, vaulted ceiling, ceiling fan, two windows, and an open doorway to a walk-in closet"
+                  loading="lazy"
+                  width="800"
+                  height="533"
+                />
+                <span class="featured-label">Primary Suite</span>
+              </button>
+            </li>
+            <li>
+              <button
+                class="gallery-item featured-item"
+                type="button"
+                data-full="/images/photo-120.jpg"
+                data-caption="Spa bath with freestanding tub and glass shower"
+              >
+                <img
+                  src="/images/photo-120-sm.jpg"
+                  alt="Renovated primary bathroom with a freestanding soaking tub by a window, white quartz vanity, marble-look tile, glass walk-in shower, and wood-look tile floor"
+                  loading="lazy"
+                  width="800"
+                  height="533"
+                />
+                <span class="featured-label">Primary Bath</span>
+              </button>
+            </li>
+          </ul>
         </div>
       </section>
 
@@ -1438,7 +1647,7 @@
             <li>Lee's Hill Golfers' Club (additional fees)</li>
           </ul>
 
-          <ul class="gallery-grid amenity-gallery">
+          <ul class="gallery-grid amenity-gallery" id="amenity-grid">
             <li>
               <button
                 class="gallery-item"
@@ -1744,7 +1953,8 @@
             </h2>
             <p>
               Interested in 4001 Mossy Bank Lane? Reach out to arrange a private
-              showing or ask any questions about the property.
+              showing, or stop by the open house on July 11&ndash;12. A text is
+              the fastest way to reach us.
             </p>
           </div>
 
@@ -1752,12 +1962,15 @@
             <p class="contact-name">Seth Perts &amp; Sean Perts</p>
             <p class="contact-role">For Sale by Owner</p>
 
+            <p class="contact-pref">
+              <span class="contact-pref-badge">Text preferred</span>
+              <span
+                >Texting gets the fastest reply; email or a call works
+                too.</span
+              >
+            </p>
+
             <div class="contact-methods">
-              <!-- EDIT: phone number (update BOTH the tel: link and the text) -->
-              <a class="contact-method" href="tel:+15403001108">
-                <span class="contact-method-label">Call or Text</span>
-                <span class="contact-method-value">(540) 300-1108</span>
-              </a>
               <!-- EDIT: email (update BOTH the mailto: link and the text) -->
               <a
                 class="contact-method"
@@ -1768,10 +1981,24 @@
                   >4001mossybanklane@gmail.com</span
                 >
               </a>
+              <!-- EDIT: phone number (update the sms:, tel:, and the text) -->
+              <a
+                class="contact-method contact-method-pref"
+                href="sms:+15403001108"
+              >
+                <span class="contact-method-label"
+                  >Text <span class="contact-tag">Preferred</span></span
+                >
+                <span class="contact-method-value">(540) 300-1108</span>
+              </a>
+              <a class="contact-method" href="tel:+15403001108">
+                <span class="contact-method-label">Call</span>
+                <span class="contact-method-value">(540) 300-1108</span>
+              </a>
             </div>
 
-            <a class="btn btn-primary btn-block" href="tel:+15403001108"
-              >Request a Showing</a
+            <a class="btn btn-primary btn-block" href="sms:+15403001108"
+              >Text Us to Schedule</a
             >
           </div>
         </div>
@@ -1837,6 +2064,19 @@
         </p>
       </div>
     </footer>
+
+    <!-- Floating back-to-top button (revealed by JS after scrolling down). -->
+    <button class="back-to-top" type="button" aria-label="Back to top">
+      <svg viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false">
+        <path
+          d="M12 19V5M6 11l6-6 6 6"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+      </svg>
+    </button>
 
     <script src="/js/main.js" defer></script>
   </body>
