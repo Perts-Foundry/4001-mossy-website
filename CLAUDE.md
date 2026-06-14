@@ -27,12 +27,17 @@ repo (Terraform).
 
 ## Content conventions
 
-- Placeholder photos are labeled SVGs in `public/images/`. Replace them with real
-  photos (JPG/WebP) and update `src`/`data-full`/`alt` in `index.html`.
+- Real photos live in `public/images/` as optimized JPGs (EXIF/GPS stripped).
+  Each gallery photo has two sizes: a `*-sm.jpg` thumbnail (the grid `src`) and a
+  full-size `*.jpg` (the lightbox `data-full`). The lightbox auto-collects every
+  `.gallery-item` in the document, so the photo, floor-plan, and amenity grids
+  share one viewer.
 - The Matterport tour URL goes in **both** the `#tour` `<iframe src>` and the
-  fallback `<a href>`. Format: `https://my.matterport.com/show/?m=<id>`.
-- Keep the JSON-LD block's address accurate; extend it with beds/baths/floorSize
-  and an `offers` price block when known.
+  fallback `<a href>`. Format: `https://my.matterport.com/show/?m=<id>` (live id:
+  `fTqNmKh5YzR`).
+- Keep the JSON-LD block's address accurate. It already carries
+  beds/baths/floorSize/yearBuilt; add an `offers` price block once an asking
+  price is set (the hero currently shows "Price Upon Request").
 - Contact is **display-only** (tel:/mailto:) — there is no form and no backend
   secret. Keep it that way unless a contact form is explicitly requested.
 

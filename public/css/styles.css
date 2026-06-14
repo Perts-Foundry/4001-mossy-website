@@ -539,6 +539,110 @@ h3 {
   background: var(--accent);
 }
 
+/* ------------------------ About & feature cards ----------------------- */
+.about-intro {
+  max-width: 72ch;
+}
+
+.about-intro p {
+  font-size: 1.08rem;
+  margin: 0 0 1.2rem;
+}
+
+.subsection-heading {
+  font-size: clamp(1.4rem, 3.4vw, 1.9rem);
+  margin: 2.75rem 0 1.3rem;
+}
+
+.feature-cards {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1.1rem;
+}
+
+.feature-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 1.4rem 1.5rem;
+  box-shadow: var(--shadow-sm);
+}
+
+.feature-card h3 {
+  font-size: 1.2rem;
+  margin: 0 0 0.9rem;
+  color: var(--green-700);
+}
+
+.feature-card ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 0.6rem;
+}
+
+.feature-card li {
+  position: relative;
+  padding-left: 1.5rem;
+  font-size: 0.98rem;
+}
+
+.feature-card li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.5em;
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 50%;
+  background: var(--accent);
+}
+
+/* --------------------------- Floor plans ------------------------------ */
+.floorplan-grid {
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+}
+
+.floorplan-grid .gallery-item {
+  background: #fff;
+}
+
+.floorplan-grid .gallery-item img {
+  object-fit: contain;
+  padding: 0.5rem;
+}
+
+.floorplan-grid .gallery-item:hover img {
+  transform: none;
+}
+
+/* ---------------------------- Amenities ------------------------------- */
+.amenity-list {
+  list-style: none;
+  margin: 0 0 2rem;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+}
+
+.amenity-list li {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  padding: 0.45rem 1.05rem;
+  font-size: 0.95rem;
+  font-weight: 500;
+}
+
+.amenity-gallery {
+  margin-top: 0.5rem;
+}
+
 /* ----------------------------- Location ------------------------------- */
 .location-actions {
   margin-bottom: 2rem;
@@ -660,6 +764,27 @@ h3 {
   background: var(--accent-dark);
 }
 
+.contact-brand {
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+  margin-top: 1.6rem;
+}
+
+.contact-brand img {
+  width: 84px;
+  height: auto;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 4px;
+}
+
+.contact-brand span {
+  font-weight: 600;
+  color: var(--green-900);
+}
+
 /* ------------------------------ Footer -------------------------------- */
 .site-footer {
   background: var(--green-900);
@@ -679,6 +804,12 @@ h3 {
   font-size: 1.15rem;
   color: #fff;
   margin: 0;
+}
+
+.footer-marketed {
+  margin: 0;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.9);
 }
 
 .footer-disclaimer {

@@ -6,8 +6,8 @@
 
     <!-- ===================================================================
          EDIT YOUR LISTING DETAILS BELOW.
-         Search this file for "EDIT:" to find every place that holds real
-         content. Everything else is layout you can usually leave alone.
+         Search this file for "EDIT:" to find the spots most likely to change
+         (price, status, Matterport tour, phone, email, social image).
          Full guide: README.md ("Editing your listing").
          =================================================================== -->
 
@@ -17,7 +17,7 @@
     <!-- EDIT: one-sentence summary for search engines and link previews -->
     <meta
       name="description"
-      content="4001 Mossy Bank Lane, Fredericksburg, VA 22408. A home for sale. Browse photos, take the interactive 3D tour, and get in touch to schedule a showing."
+      content="Fully renovated 4-bed, 2.5-bath Colonial on a 0.36-acre corner lot in the Lee's Hill community of Fredericksburg, VA. New kitchen, spa primary suite, and a huge unfinished basement. Browse photos, take the 3D tour, and schedule a showing."
     />
 
     <link rel="canonical" href="https://4001mossy.com/" />
@@ -33,13 +33,13 @@
     />
     <meta
       property="og:description"
-      content="A home for sale in Fredericksburg, VA. Photos, an interactive 3D tour, and contact details."
+      content="Fully renovated 4-bed, 2.5-bath Colonial in Lee's Hill, Fredericksburg, VA. Photos, an interactive 3D tour, floor plans, and contact details."
     />
     <meta property="og:url" content="https://4001mossy.com/" />
-    <!-- EDIT: replace with a real 1200x630 JPG/PNG when you have one -->
+    <!-- EDIT: 1200x630 social image -->
     <meta
       property="og:image"
-      content="https://4001mossy.com/images/og-cover.svg"
+      content="https://4001mossy.com/images/og-cover.jpg"
     />
     <meta name="twitter:card" content="summary_large_image" />
     <meta
@@ -48,26 +48,38 @@
     />
     <meta
       name="twitter:description"
-      content="A home for sale in Fredericksburg, VA. Photos, an interactive 3D tour, and contact details."
+      content="Fully renovated 4-bed, 2.5-bath Colonial in Lee's Hill, Fredericksburg, VA. Photos, an interactive 3D tour, floor plans, and contact details."
     />
     <meta
       name="twitter:image"
-      content="https://4001mossy.com/images/og-cover.svg"
+      content="https://4001mossy.com/images/og-cover.jpg"
     />
 
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <link rel="stylesheet" href="/css/styles.css" />
 
-    <!-- Structured data for search engines. Address and URL are filled in.
-         EDIT: add numberOfBedrooms, numberOfBathroomsTotal, floorSize, and an
-         "offers" block with price once you are ready (see README). -->
+    <!-- Structured data for search engines. -->
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
         "@type": "SingleFamilyResidence",
         "name": "4001 Mossy Bank Lane",
+        "description": "Fully renovated 4-bedroom, 2.5-bath Colonial in the Lee's Hill community of Fredericksburg, VA, on a 0.36-acre corner lot.",
         "url": "https://4001mossy.com/",
-        "image": "https://4001mossy.com/images/hero.svg",
+        "image": [
+          "https://4001mossy.com/images/hero.jpg",
+          "https://4001mossy.com/images/kitchen.jpg",
+          "https://4001mossy.com/images/primary-bath.jpg"
+        ],
+        "numberOfBedrooms": 4,
+        "numberOfFullBathrooms": 2,
+        "numberOfPartialBathrooms": 1,
+        "yearBuilt": "1999",
+        "floorSize": {
+          "@type": "QuantitativeValue",
+          "value": 2296,
+          "unitCode": "FTK"
+        },
         "address": {
           "@type": "PostalAddress",
           "streetAddress": "4001 Mossy Bank Lane",
@@ -104,6 +116,7 @@
             <li><a href="#gallery">Gallery</a></li>
             <li><a href="#tour">3D Tour</a></li>
             <li><a href="#details">Details</a></li>
+            <li><a href="#floorplan">Floor Plans</a></li>
             <li><a href="#location">Location</a></li>
             <li><a class="nav-cta" href="#contact">Contact</a></li>
           </ul>
@@ -115,14 +128,13 @@
       <!-- ===================== HERO ===================== -->
       <section class="hero" aria-labelledby="hero-heading">
         <div class="hero-media">
-          <!-- EDIT: replace /images/hero.svg with your best exterior photo -->
           <img
-            src="/images/hero.svg"
-            alt="Front exterior of 4001 Mossy Bank Lane"
+            src="/images/hero.jpg"
+            alt="Front exterior of 4001 Mossy Bank Lane at dusk under a pink sky"
             class="hero-img"
             fetchpriority="high"
-            width="1600"
-            height="900"
+            width="2000"
+            height="1333"
           />
           <div class="hero-overlay"></div>
         </div>
@@ -138,16 +150,15 @@
           </h1>
 
           <p class="hero-price">
-            <!-- EDIT: list price, e.g. $525,000 -->
+            <!-- EDIT: list price, e.g. $575,000 -->
             <span class="price-amount">Price Upon Request</span>
           </p>
 
           <ul class="hero-stats" aria-label="Key facts">
-            <!-- EDIT: beds / baths / square footage -->
-            <li><strong>-</strong><span>Beds</span></li>
-            <li><strong>-</strong><span>Baths</span></li>
-            <li><strong>-</strong><span>Sq Ft</span></li>
-            <li><strong>-</strong><span>Acres</span></li>
+            <li><strong>4</strong><span>Beds</span></li>
+            <li><strong>2.5</strong><span>Baths</span></li>
+            <li><strong>2,296</strong><span>Finished Sq Ft</span></li>
+            <li><strong>0.36</strong><span>Acres</span></li>
           </ul>
 
           <div class="hero-actions">
@@ -160,26 +171,33 @@
       <!-- ===================== QUICK FACTS ===================== -->
       <section class="facts" aria-label="Property facts">
         <div class="container facts-grid">
-          <!-- EDIT: fill in each value -->
           <div class="fact">
             <span class="fact-label">Type</span
-            ><span class="fact-value">Single-Family Home</span>
+            ><span class="fact-value">Colonial (Single-Family)</span>
           </div>
           <div class="fact">
             <span class="fact-label">Year Built</span
-            ><span class="fact-value">-</span>
+            ><span class="fact-value">1999</span>
           </div>
           <div class="fact">
             <span class="fact-label">Lot Size</span
-            ><span class="fact-value">- acres</span>
+            ><span class="fact-value">0.36 acres (corner)</span>
           </div>
           <div class="fact">
             <span class="fact-label">Garage</span
-            ><span class="fact-value">-</span>
+            ><span class="fact-value">2-car attached</span>
+          </div>
+          <div class="fact">
+            <span class="fact-label">Basement</span
+            ><span class="fact-value">Unfinished (~1,176 sq ft)</span>
           </div>
           <div class="fact">
             <span class="fact-label">Heating / Cooling</span
-            ><span class="fact-value">-</span>
+            ><span class="fact-value">Heat pump &middot; Central A/C</span>
+          </div>
+          <div class="fact">
+            <span class="fact-label">Water / Sewer</span
+            ><span class="fact-value">Public</span>
           </div>
           <div class="fact">
             <span class="fact-label">County</span
@@ -193,124 +211,24 @@
         <div class="container">
           <h2 id="gallery-heading" class="section-heading">Photo Gallery</h2>
           <p class="section-intro">
-            <!-- EDIT: optional intro line for the gallery -->
-            Take a look inside and around the property.
+            Take a look inside and around the fully renovated home. Select any
+            photo to view it larger.
           </p>
 
-          <!-- EDIT: add/remove gallery items. Each <button> opens the lightbox.
-               Replace the /images/photo-XX.svg files with your photos and
-               update the alt text + data-caption. Keep data-full pointing at
-               the full-size image. -->
           <ul class="gallery-grid" id="gallery-grid">
             <li>
               <button
                 class="gallery-item"
                 type="button"
-                data-full="/images/photo-01.svg"
-                data-caption="Living room"
-              >
-                <img
-                  src="/images/photo-01.svg"
-                  alt="Living room"
-                  loading="lazy"
-                  width="800"
-                  height="600"
-                />
-              </button>
-            </li>
-            <li>
-              <button
-                class="gallery-item"
-                type="button"
-                data-full="/images/photo-02.svg"
-                data-caption="Kitchen"
-              >
-                <img
-                  src="/images/photo-02.svg"
-                  alt="Kitchen"
-                  loading="lazy"
-                  width="800"
-                  height="600"
-                />
-              </button>
-            </li>
-            <li>
-              <button
-                class="gallery-item"
-                type="button"
-                data-full="/images/photo-03.svg"
-                data-caption="Primary bedroom"
-              >
-                <img
-                  src="/images/photo-03.svg"
-                  alt="Primary bedroom"
-                  loading="lazy"
-                  width="800"
-                  height="600"
-                />
-              </button>
-            </li>
-            <li>
-              <button
-                class="gallery-item"
-                type="button"
-                data-full="/images/photo-04.svg"
-                data-caption="Bathroom"
-              >
-                <img
-                  src="/images/photo-04.svg"
-                  alt="Bathroom"
-                  loading="lazy"
-                  width="800"
-                  height="600"
-                />
-              </button>
-            </li>
-            <li>
-              <button
-                class="gallery-item"
-                type="button"
-                data-full="/images/photo-05.svg"
-                data-caption="Dining area"
-              >
-                <img
-                  src="/images/photo-05.svg"
-                  alt="Dining area"
-                  loading="lazy"
-                  width="800"
-                  height="600"
-                />
-              </button>
-            </li>
-            <li>
-              <button
-                class="gallery-item"
-                type="button"
-                data-full="/images/photo-06.svg"
-                data-caption="Backyard"
-              >
-                <img
-                  src="/images/photo-06.svg"
-                  alt="Backyard"
-                  loading="lazy"
-                  width="800"
-                  height="600"
-                />
-              </button>
-            </li>
-            <li>
-              <button
-                class="gallery-item"
-                type="button"
-                data-full="/images/photo-07.svg"
+                data-full="/images/front-exterior.jpg"
                 data-caption="Front exterior"
               >
                 <img
-                  src="/images/photo-07.svg"
-                  alt="Front exterior"
+                  src="/images/front-exterior-sm.jpg"
+                  alt="Two-story white vinyl Colonial home with red shutters, an attached two-car garage, covered entry, and a sloping front lawn"
                   loading="lazy"
                   width="800"
-                  height="600"
+                  height="533"
                 />
               </button>
             </li>
@@ -318,15 +236,399 @@
               <button
                 class="gallery-item"
                 type="button"
-                data-full="/images/photo-08.svg"
-                data-caption="Aerial view"
+                data-full="/images/rear-deck.jpg"
+                data-caption="Rear of the home and deck"
               >
                 <img
-                  src="/images/photo-08.svg"
-                  alt="Aerial view"
+                  src="/images/rear-deck-sm.jpg"
+                  alt="Rear of the home with a raised wood deck and stairs behind a large fully fenced backyard"
                   loading="lazy"
                   width="800"
-                  height="600"
+                  height="533"
+                />
+              </button>
+            </li>
+            <li>
+              <button
+                class="gallery-item"
+                type="button"
+                data-full="/images/living-room.jpg"
+                data-caption="Living room"
+              >
+                <img
+                  src="/images/living-room-sm.jpg"
+                  alt="Living room with new wood-look plank flooring, a ceiling fan, and two large front-facing windows"
+                  loading="lazy"
+                  width="800"
+                  height="533"
+                />
+              </button>
+            </li>
+            <li>
+              <button
+                class="gallery-item"
+                type="button"
+                data-full="/images/foyer.jpg"
+                data-caption="Two-story foyer"
+              >
+                <img
+                  src="/images/foyer-sm.jpg"
+                  alt="Two-story entry foyer with wood-look flooring and a carpeted staircase with white railings"
+                  loading="lazy"
+                  width="800"
+                  height="533"
+                />
+              </button>
+            </li>
+            <li>
+              <button
+                class="gallery-item"
+                type="button"
+                data-full="/images/kitchen.jpg"
+                data-caption="Renovated kitchen"
+              >
+                <img
+                  src="/images/kitchen-sm.jpg"
+                  alt="Renovated kitchen with gray shaker cabinetry, white quartz counters, herringbone tile backsplash, and a center island"
+                  loading="lazy"
+                  width="800"
+                  height="533"
+                />
+              </button>
+            </li>
+            <li>
+              <button
+                class="gallery-item"
+                type="button"
+                data-full="/images/kitchen-island.jpg"
+                data-caption="Island and coffee bar"
+              >
+                <img
+                  src="/images/kitchen-island-sm.jpg"
+                  alt="Open kitchen with a quartz island, stainless appliances, and a built-in coffee bar with open shelving"
+                  loading="lazy"
+                  width="800"
+                  height="533"
+                />
+              </button>
+            </li>
+            <li>
+              <button
+                class="gallery-item"
+                type="button"
+                data-full="/images/kitchen-family-room.jpg"
+                data-caption="Open-concept kitchen and family room"
+              >
+                <img
+                  src="/images/kitchen-family-room-sm.jpg"
+                  alt="Kitchen island opening to the family room with a gas fireplace and large windows"
+                  loading="lazy"
+                  width="800"
+                  height="533"
+                />
+              </button>
+            </li>
+            <li>
+              <button
+                class="gallery-item"
+                type="button"
+                data-full="/images/kitchen-range.jpg"
+                data-caption="Range and backsplash"
+              >
+                <img
+                  src="/images/kitchen-range-sm.jpg"
+                  alt="Stainless double-oven range and vent hood against a white herringbone tile backsplash with under-cabinet lighting"
+                  loading="lazy"
+                  width="800"
+                  height="533"
+                />
+              </button>
+            </li>
+            <li>
+              <button
+                class="gallery-item"
+                type="button"
+                data-full="/images/kitchen-pantry.jpg"
+                data-caption="Custom pantry cabinetry"
+              >
+                <img
+                  src="/images/kitchen-pantry-sm.jpg"
+                  alt="Floor-to-ceiling gray cabinetry with pull-out wood pantry shelves beside a stainless French-door refrigerator"
+                  loading="lazy"
+                  width="800"
+                  height="533"
+                />
+              </button>
+            </li>
+            <li>
+              <button
+                class="gallery-item"
+                type="button"
+                data-full="/images/family-room.jpg"
+                data-caption="Family room with gas fireplace"
+              >
+                <img
+                  src="/images/family-room-sm.jpg"
+                  alt="Family room with wood-look flooring, a white-mantel gas fireplace flanked by windows, and a ceiling fan"
+                  loading="lazy"
+                  width="800"
+                  height="533"
+                />
+              </button>
+            </li>
+            <li>
+              <button
+                class="gallery-item"
+                type="button"
+                data-full="/images/dining-room.jpg"
+                data-caption="Dining room"
+              >
+                <img
+                  src="/images/dining-room-sm.jpg"
+                  alt="Dining room with a chandelier and wood-look flooring, open to the kitchen"
+                  loading="lazy"
+                  width="800"
+                  height="533"
+                />
+              </button>
+            </li>
+            <li>
+              <button
+                class="gallery-item"
+                type="button"
+                data-full="/images/half-bath.jpg"
+                data-caption="Powder room"
+              >
+                <img
+                  src="/images/half-bath-sm.jpg"
+                  alt="Renovated half bath with a white quartz-top vanity, framed mirror, and brushed-nickel fixtures"
+                  loading="lazy"
+                  width="800"
+                  height="533"
+                />
+              </button>
+            </li>
+            <li>
+              <button
+                class="gallery-item"
+                type="button"
+                data-full="/images/laundry.jpg"
+                data-caption="Main-level laundry"
+              >
+                <img
+                  src="/images/laundry-sm.jpg"
+                  alt="Laundry room with a full-size washer and dryer and an overhead shelf"
+                  loading="lazy"
+                  width="800"
+                  height="533"
+                />
+              </button>
+            </li>
+            <li>
+              <button
+                class="gallery-item"
+                type="button"
+                data-full="/images/upstairs-landing.jpg"
+                data-caption="Upstairs landing"
+              >
+                <img
+                  src="/images/upstairs-landing-sm.jpg"
+                  alt="Bright carpeted upstairs landing with an open white stair railing and a window above the stairwell"
+                  loading="lazy"
+                  width="800"
+                  height="533"
+                />
+              </button>
+            </li>
+            <li>
+              <button
+                class="gallery-item"
+                type="button"
+                data-full="/images/primary-bedroom.jpg"
+                data-caption="Primary suite"
+              >
+                <img
+                  src="/images/primary-bedroom-sm.jpg"
+                  alt="Carpeted primary bedroom with a vaulted ceiling and ceiling fan, with doorways to the walk-in closet and en-suite bath"
+                  loading="lazy"
+                  width="800"
+                  height="533"
+                />
+              </button>
+            </li>
+            <li>
+              <button
+                class="gallery-item"
+                type="button"
+                data-full="/images/walk-in-closet.jpg"
+                data-caption="Walk-in closet"
+              >
+                <img
+                  src="/images/walk-in-closet-sm.jpg"
+                  alt="Walk-in closet with wraparound shelves and hanging rods"
+                  loading="lazy"
+                  width="800"
+                  height="533"
+                />
+              </button>
+            </li>
+            <li>
+              <button
+                class="gallery-item"
+                type="button"
+                data-full="/images/primary-bath.jpg"
+                data-caption="Spa primary bath"
+              >
+                <img
+                  src="/images/primary-bath-sm.jpg"
+                  alt="Primary bathroom with a freestanding slipper tub beneath a window and a glass walk-in shower clad in marble-look tile"
+                  loading="lazy"
+                  width="800"
+                  height="533"
+                />
+              </button>
+            </li>
+            <li>
+              <button
+                class="gallery-item"
+                type="button"
+                data-full="/images/primary-bath-shower.jpg"
+                data-caption="Walk-in shower and vanity"
+              >
+                <img
+                  src="/images/primary-bath-shower-sm.jpg"
+                  alt="Primary bath with a glass walk-in shower in marble-look tile and a white quartz-top vanity with a large mirror"
+                  loading="lazy"
+                  width="800"
+                  height="533"
+                />
+              </button>
+            </li>
+            <li>
+              <button
+                class="gallery-item"
+                type="button"
+                data-full="/images/hall-bath.jpg"
+                data-caption="Hall bath"
+              >
+                <img
+                  src="/images/hall-bath-sm.jpg"
+                  alt="Hall bathroom with a dual-sink quartz vanity, a large mirror, and a tub-shower in marble-look tile"
+                  loading="lazy"
+                  width="800"
+                  height="533"
+                />
+              </button>
+            </li>
+            <li>
+              <button
+                class="gallery-item"
+                type="button"
+                data-full="/images/bedroom-2.jpg"
+                data-caption="Bedroom"
+              >
+                <img
+                  src="/images/bedroom-2-sm.jpg"
+                  alt="Carpeted bedroom with a lighted ceiling fan, a reach-in closet, and a large window"
+                  loading="lazy"
+                  width="800"
+                  height="533"
+                />
+              </button>
+            </li>
+            <li>
+              <button
+                class="gallery-item"
+                type="button"
+                data-full="/images/bedroom-3.jpg"
+                data-caption="Bedroom"
+              >
+                <img
+                  src="/images/bedroom-3-sm.jpg"
+                  alt="Carpeted bedroom with a lighted ceiling fan, two windows, and a reach-in closet"
+                  loading="lazy"
+                  width="800"
+                  height="533"
+                />
+              </button>
+            </li>
+            <li>
+              <button
+                class="gallery-item"
+                type="button"
+                data-full="/images/bedroom-4.jpg"
+                data-caption="Bedroom"
+              >
+                <img
+                  src="/images/bedroom-4-sm.jpg"
+                  alt="Carpeted bedroom with soft blue-gray walls, a ceiling fan, and a reach-in closet"
+                  loading="lazy"
+                  width="800"
+                  height="533"
+                />
+              </button>
+            </li>
+            <li>
+              <button
+                class="gallery-item"
+                type="button"
+                data-full="/images/basement.jpg"
+                data-caption="Unfinished basement"
+              >
+                <img
+                  src="/images/basement-sm.jpg"
+                  alt="Spacious unfinished basement with a concrete floor and exposed joists, ready to finish"
+                  loading="lazy"
+                  width="800"
+                  height="533"
+                />
+              </button>
+            </li>
+            <li>
+              <button
+                class="gallery-item"
+                type="button"
+                data-full="/images/basement-water-system.jpg"
+                data-caption="Whole-house water filtration"
+              >
+                <img
+                  src="/images/basement-water-system-sm.jpg"
+                  alt="Basement utility area with a whole-house water filtration and softening system"
+                  loading="lazy"
+                  width="800"
+                  height="533"
+                />
+              </button>
+            </li>
+            <li>
+              <button
+                class="gallery-item"
+                type="button"
+                data-full="/images/garage.jpg"
+                data-caption="Two-car garage"
+              >
+                <img
+                  src="/images/garage-sm.jpg"
+                  alt="Two-car garage interior with two sectional doors and automatic openers"
+                  loading="lazy"
+                  width="800"
+                  height="533"
+                />
+              </button>
+            </li>
+            <li>
+              <button
+                class="gallery-item"
+                type="button"
+                data-full="/images/garage-ev-outlet.jpg"
+                data-caption="EV-charging ready"
+              >
+                <img
+                  src="/images/garage-ev-outlet-sm.jpg"
+                  alt="A 240-volt outlet in the garage wired for EV charging"
+                  loading="lazy"
+                  width="800"
+                  height="533"
                 />
               </button>
             </li>
@@ -346,14 +648,13 @@
             Walk through the entire home in 3D, at your own pace.
           </p>
 
-          <!-- EDIT: paste your Matterport "embed" URL into BOTH the iframe src
-               and the fallback link below. It looks like:
-               https://my.matterport.com/show/?m=XXXXXXXXXXX
-               (Matterport: Share -> Embed. Use the show/?m= URL.) -->
+          <!-- EDIT: Matterport tour. Paste your URL into BOTH the iframe src
+               and the fallback link below. Format:
+               https://my.matterport.com/show/?m=XXXXXXXXXXX -->
           <div class="tour-frame">
             <iframe
               title="3D virtual tour of 4001 Mossy Bank Lane"
-              src="https://my.matterport.com/show/?m=REPLACE_WITH_MODEL_ID"
+              src="https://my.matterport.com/show/?m=fTqNmKh5YzR"
               allow="fullscreen; xr-spatial-tracking"
               allowfullscreen
               loading="lazy"
@@ -361,9 +662,8 @@
           </div>
           <p class="tour-fallback">
             Trouble viewing the tour?
-            <!-- EDIT: same Matterport URL as above -->
             <a
-              href="https://my.matterport.com/show/?m=REPLACE_WITH_MODEL_ID"
+              href="https://my.matterport.com/show/?m=fTqNmKh5YzR"
               rel="noopener"
               target="_blank"
             >
@@ -375,51 +675,224 @@
 
       <!-- ===================== DETAILS ===================== -->
       <section class="section" id="details" aria-labelledby="details-heading">
-        <div class="container details-layout">
-          <div class="details-main">
-            <h2 id="details-heading" class="section-heading">About the Home</h2>
-            <!-- EDIT: write a few paragraphs describing the property. -->
+        <div class="container">
+          <h2 id="details-heading" class="section-heading">About the Home</h2>
+          <div class="about-intro">
             <p>
-              Welcome to 4001 Mossy Bank Lane, a home in the heart of
-              Fredericksburg, Virginia. <em>Add your description here</em>:
-              describe the layout, recent updates, the kitchen and baths,
-              outdoor space, and what makes the home special.
+              This beautifully, fully renovated 4-bedroom, 2.5-bath Colonial
+              offers more than 3,300 square feet of living space, including a
+              spacious unfinished basement, a two-car attached garage, and a
+              fenced backyard. Set on a corner lot in the sought-after Lee's
+              Hill community, residents enjoy access to two clubhouses with
+              multiple pools, tennis courts, playgrounds, and trails.
             </p>
             <p>
-              <em>Second paragraph</em>: talk about the neighborhood feel,
-              natural light, storage, the lot, and any standout features buyers
-              should know about.
+              Inside, you'll find brand-new LVP flooring downstairs, plush
+              carpet upstairs, fresh paint throughout, and a new HVAC system
+              with dual-zone touchscreen control. The fully updated kitchen is
+              the heart of the home: new stainless steel appliances, quartz
+              countertops, an extended island, custom cabinetry, under-cabinet
+              lighting, a separate coffee bar, and built-in pantries. The
+              luxurious primary suite boasts vaulted ceilings, a massive closet,
+              and a spa-style bath with a freestanding tub, glass walk-in
+              shower, and separate vanities.
+            </p>
+            <p>
+              Additional highlights include a new roof, whole-home surge
+              protection, EV-charging readiness, a fresh-air ERV system, and
+              exterior motion-activated security lights. Move-in ready and full
+              of thoughtful upgrades, this home is perfect for families or
+              professionals seeking comfort and style.
             </p>
           </div>
 
-          <aside class="details-features">
-            <h3 class="features-heading">Features &amp; Amenities</h3>
-            <!-- EDIT: list the property's notable features -->
-            <ul class="features-list">
-              <li>Feature one (e.g., updated kitchen)</li>
-              <li>Feature two (e.g., hardwood floors)</li>
-              <li>Feature three (e.g., fenced backyard)</li>
-              <li>Feature four (e.g., two-car garage)</li>
-              <li>Feature five (e.g., new HVAC)</li>
-              <li>Feature six (e.g., walk-in closets)</li>
-            </ul>
-          </aside>
+          <h3 class="subsection-heading">Renovation Highlights</h3>
+          <ul class="feature-cards">
+            <li class="feature-card">
+              <h3>Kitchen</h3>
+              <ul>
+                <li>New stainless appliances and a dedicated vent hood</li>
+                <li>Quartz countertops and tiled backsplash</li>
+                <li>Extended center island</li>
+                <li>Custom soft-close cabinetry with pull-out drawers</li>
+                <li>Built-in pantries with pull-out shelving</li>
+                <li>Under-cabinet and recessed lighting</li>
+                <li>
+                  Extra-large deep sink with cup rinser and flexible spray
+                  faucet
+                </li>
+              </ul>
+            </li>
+            <li class="feature-card">
+              <h3>Coffee &amp; Drink Bar</h3>
+              <ul>
+                <li>Built-in shelves and custom cabinetry</li>
+                <li>Quartz counters and tiled backsplash</li>
+                <li>USB-C charging</li>
+                <li>Room for an impromptu bistro table</li>
+              </ul>
+            </li>
+            <li class="feature-card">
+              <h3>Primary Suite</h3>
+              <ul>
+                <li>Vaulted ceilings with a ceiling fan</li>
+                <li>Massive walk-in closet</li>
+                <li>Freestanding slipper tub with modern filler</li>
+                <li>Oversized glass shower with niche and linear drain</li>
+                <li>Dual quartz vanities with framed mirrors</li>
+                <li>Tile-plank flooring and a linen closet</li>
+              </ul>
+            </li>
+            <li class="feature-card">
+              <h3>Bedrooms &amp; Hall Bath</h3>
+              <ul>
+                <li>Three additional spacious bedrooms with closets</li>
+                <li>Ceiling fans with speed control and dimmers</li>
+                <li>Hall bath with a dual-sink quartz vanity</li>
+                <li>Tiled tub-shower with dual temperature controls</li>
+                <li>Soft-close cabinetry and a comfort-height toilet</li>
+              </ul>
+            </li>
+            <li class="feature-card">
+              <h3>Systems &amp; Interior</h3>
+              <ul>
+                <li>
+                  New HVAC heat pump with dual-zone touchscreen thermostats
+                </li>
+                <li>Fresh-air ERV system</li>
+                <li>Whole-home surge protection</li>
+                <li>Upgraded electrical with GFCI / arc-fault protection</li>
+                <li>Whole-house water filtration and softening system</li>
+                <li>New aluminum stair railings, modern trim and lighting</li>
+                <li>Fresh paint, new LVP downstairs and carpet upstairs</li>
+              </ul>
+            </li>
+            <li class="feature-card">
+              <h3>Garage</h3>
+              <ul>
+                <li>Two-car attached with new insulated doors</li>
+                <li>50-amp 14-50 outlet, ready for an EV charger</li>
+                <li>Quiet belt-driven opener</li>
+                <li>Dual remote and app control</li>
+              </ul>
+            </li>
+            <li class="feature-card">
+              <h3>Basement</h3>
+              <ul>
+                <li>Roughly 1,176 sq ft of unfinished space</li>
+                <li>Ample room for storage, a gym, or a play area</li>
+                <li>Interior and rear/outside entrances</li>
+              </ul>
+            </li>
+            <li class="feature-card">
+              <h3>Exterior</h3>
+              <ul>
+                <li>New roof and new rear deck</li>
+                <li>Fenced backyard on a 0.36-acre corner lot</li>
+                <li>New front and back exterior doors</li>
+                <li>Nonslip-coated front steps and sealcoated driveway</li>
+                <li>Motion-activated security lights</li>
+                <li>Front and rear hose bibs; freshly painted foundation</li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- ===================== FLOOR PLANS ===================== -->
+      <section
+        class="section section-alt"
+        id="floorplan"
+        aria-labelledby="floorplan-heading"
+      >
+        <div class="container">
+          <h2 id="floorplan-heading" class="section-heading">Floor Plans</h2>
+          <p class="section-intro">
+            Three levels with roughly 2,296 finished square feet above grade,
+            plus a 1,176 sq ft unfinished basement. Select a plan to view the
+            room dimensions. Measurements are approximate.
+          </p>
+
+          <ul class="gallery-grid floorplan-grid">
+            <li>
+              <button
+                class="gallery-item"
+                type="button"
+                data-full="/images/floorplan-main.jpg"
+                data-caption="Main level: foyer, living room, family room, dining room, kitchen, breakfast nook, half bath, laundry, and two-car garage"
+              >
+                <img
+                  src="/images/floorplan-main-sm.jpg"
+                  alt="Main-level floor plan with the foyer, living room, family room with fireplace, dining room, kitchen, breakfast nook, laundry, half bath, and two-car garage, with room dimensions"
+                  loading="lazy"
+                  width="800"
+                  height="600"
+                />
+              </button>
+            </li>
+            <li>
+              <button
+                class="gallery-item"
+                type="button"
+                data-full="/images/floorplan-upper.jpg"
+                data-caption="Upper level: primary suite with walk-in closet and bath, three bedrooms, and a hall bath"
+              >
+                <img
+                  src="/images/floorplan-upper-sm.jpg"
+                  alt="Upper-level floor plan with the primary bedroom, walk-in closet, primary bath, three additional bedrooms, hall bath, and central hall, with room dimensions"
+                  loading="lazy"
+                  width="800"
+                  height="600"
+                />
+              </button>
+            </li>
+            <li>
+              <button
+                class="gallery-item"
+                type="button"
+                data-full="/images/floorplan-basement.jpg"
+                data-caption="Unfinished basement"
+              >
+                <img
+                  src="/images/floorplan-basement-sm.jpg"
+                  alt="Unfinished basement floor plan, an open space measuring about 50 by 27 feet with a staircase and utility area"
+                  loading="lazy"
+                  width="800"
+                  height="600"
+                />
+              </button>
+            </li>
+            <li>
+              <button
+                class="gallery-item"
+                type="button"
+                data-full="/images/floorplan-all.jpg"
+                data-caption="All three levels together"
+              >
+                <img
+                  src="/images/floorplan-all-sm.jpg"
+                  alt="Combined floor plan showing all three levels: the unfinished basement, the main living level with garage, and the upper bedroom level, with room labels and dimensions"
+                  loading="lazy"
+                  width="800"
+                  height="600"
+                />
+              </button>
+            </li>
+          </ul>
         </div>
       </section>
 
       <!-- ===================== LOCATION ===================== -->
-      <section
-        class="section section-alt"
-        id="location"
-        aria-labelledby="location-heading"
-      >
+      <section class="section" id="location" aria-labelledby="location-heading">
         <div class="container">
           <h2 id="location-heading" class="section-heading">Location</h2>
           <p class="section-intro">
-            <!-- EDIT: a sentence or two about the area, commute, and what's nearby -->
-            Conveniently located in Fredericksburg, VA, close to schools,
-            shopping, dining, and I-95.
-            <em>Add neighborhood highlights here.</em>
+            4001 Mossy Bank Lane sits on a corner lot in the Dunbarton Village
+            section of Lee's Hill, one of Fredericksburg's most amenity-rich
+            communities. You're minutes from I-95, the Fredericksburg VRE
+            station, and US-1, with shopping, dining, and medical centers around
+            Massaponax and Cosner's Corner, plus Germanna Community College
+            nearby.
           </p>
 
           <div class="location-actions">
@@ -433,23 +906,228 @@
           </div>
 
           <ul class="location-highlights">
-            <!-- EDIT: nearby points of interest -->
-            <li><strong>Schools</strong><span>Add nearby schools</span></li>
-            <li><strong>Commute</strong><span>Add commute notes</span></li>
             <li>
-              <strong>Shopping &amp; Dining</strong
-              ><span>Add nearby spots</span>
+              <strong>Schools</strong
+              ><span>Spotsylvania County Public Schools</span>
             </li>
             <li>
-              <strong>Parks &amp; Recreation</strong
-              ><span>Add nearby parks</span>
+              <strong>Commute</strong
+              ><span>I-95, US-1, and the Fredericksburg VRE station</span>
+            </li>
+            <li>
+              <strong>Shopping &amp; Dining</strong
+              ><span>Massaponax, Cosner's Corner &amp; Southpoint</span>
+            </li>
+            <li>
+              <strong>Recreation</strong
+              ><span>Lee's Hill amenities &amp; golfers' club</span>
+            </li>
+          </ul>
+
+          <h3 class="subsection-heading">Lee's Hill Community Amenities</h3>
+          <p class="section-intro">
+            A community HOA (covering the pools, trash, snow removal, and
+            common-area management) gives residents access to a full slate of
+            amenities:
+          </p>
+          <ul class="amenity-list">
+            <li>2 clubhouses (North &amp; South)</li>
+            <li>2 outdoor pools</li>
+            <li>Tennis courts</li>
+            <li>Basketball courts</li>
+            <li>Playgrounds</li>
+            <li>Covered grill &amp; picnic area</li>
+            <li>Walking &amp; biking trails</li>
+            <li>Lee's Hill Golfers' Club (additional fees)</li>
+          </ul>
+
+          <ul class="gallery-grid amenity-gallery">
+            <li>
+              <button
+                class="gallery-item"
+                type="button"
+                data-full="/images/amenity-clubhouse.jpg"
+                data-caption="Lee's Hill clubhouse"
+              >
+                <img
+                  src="/images/amenity-clubhouse-sm.jpg"
+                  alt="Two-story Lee's Hill clubhouse with green awnings and manicured landscaping"
+                  loading="lazy"
+                  width="700"
+                  height="467"
+                />
+              </button>
+            </li>
+            <li>
+              <button
+                class="gallery-item"
+                type="button"
+                data-full="/images/amenity-clubhouse-interior.jpg"
+                data-caption="Clubhouse community room"
+              >
+                <img
+                  src="/images/amenity-clubhouse-interior-sm.jpg"
+                  alt="Clubhouse community room with a high vaulted ceiling, chandeliers, and folding tables and chairs"
+                  loading="lazy"
+                  width="700"
+                  height="467"
+                />
+              </button>
+            </li>
+            <li>
+              <button
+                class="gallery-item"
+                type="button"
+                data-full="/images/amenity-pool.jpg"
+                data-caption="Community outdoor pool"
+              >
+                <img
+                  src="/images/amenity-pool-sm.jpg"
+                  alt="Large outdoor community swimming pool with a sunny lounge deck and umbrellas framed by trees"
+                  loading="lazy"
+                  width="700"
+                  height="467"
+                />
+              </button>
+            </li>
+            <li>
+              <button
+                class="gallery-item"
+                type="button"
+                data-full="/images/amenity-tennis.jpg"
+                data-caption="Community tennis courts"
+              >
+                <img
+                  src="/images/amenity-tennis-sm.jpg"
+                  alt="Fenced community tennis courts with green and blue playing surfaces beside a paved path"
+                  loading="lazy"
+                  width="700"
+                  height="467"
+                />
+              </button>
+            </li>
+            <li>
+              <button
+                class="gallery-item"
+                type="button"
+                data-full="/images/amenity-basketball.jpg"
+                data-caption="Community basketball court"
+              >
+                <img
+                  src="/images/amenity-basketball-sm.jpg"
+                  alt="Outdoor basketball court with freshly painted lines backed by a manicured lawn and evergreens"
+                  loading="lazy"
+                  width="700"
+                  height="467"
+                />
+              </button>
+            </li>
+            <li>
+              <button
+                class="gallery-item"
+                type="button"
+                data-full="/images/amenity-playground.jpg"
+                data-caption="Community playground"
+              >
+                <img
+                  src="/images/amenity-playground-sm.jpg"
+                  alt="Community playground with a climbing structure, slide, and swing set surrounded by grass and trees"
+                  loading="lazy"
+                  width="700"
+                  height="467"
+                />
+              </button>
+            </li>
+            <li>
+              <button
+                class="gallery-item"
+                type="button"
+                data-full="/images/amenity-grill-pavilion.jpg"
+                data-caption="Covered grill and picnic pavilion"
+              >
+                <img
+                  src="/images/amenity-grill-pavilion-sm.jpg"
+                  alt="Open-sided wooden pavilion with picnic tables and a grill set among trees near the tennis courts"
+                  loading="lazy"
+                  width="700"
+                  height="467"
+                />
+              </button>
+            </li>
+            <li>
+              <button
+                class="gallery-item"
+                type="button"
+                data-full="/images/amenity-pond.jpg"
+                data-caption="Community pond"
+              >
+                <img
+                  src="/images/amenity-pond-sm.jpg"
+                  alt="Calm wooded community pond reflecting the surrounding green forest"
+                  loading="lazy"
+                  width="700"
+                  height="467"
+                />
+              </button>
+            </li>
+            <li>
+              <button
+                class="gallery-item"
+                type="button"
+                data-full="/images/amenity-trail.jpg"
+                data-caption="Walking trail"
+              >
+                <img
+                  src="/images/amenity-trail-sm.jpg"
+                  alt="Paved walking trail entrance leading into shaded woods with white split-rail fencing"
+                  loading="lazy"
+                  width="700"
+                  height="467"
+                />
+              </button>
+            </li>
+            <li>
+              <button
+                class="gallery-item"
+                type="button"
+                data-full="/images/amenity-golf.jpg"
+                data-caption="Lee's Hill Golfers' Club"
+              >
+                <img
+                  src="/images/amenity-golf-sm.jpg"
+                  alt="Carved welcome sign for the Lee's Hill Golf Club set in a mulched bed with wildflowers"
+                  loading="lazy"
+                  width="700"
+                  height="467"
+                />
+              </button>
+            </li>
+            <li>
+              <button
+                class="gallery-item"
+                type="button"
+                data-full="/images/amenity-community-map.jpg"
+                data-caption="Lee's Hill community amenities map"
+              >
+                <img
+                  src="/images/amenity-community-map-sm.jpg"
+                  alt="Printed Lee's Hill amenities map showing the North and South complexes, clubhouses, pools, tennis courts, trails, and golf course"
+                  loading="lazy"
+                  width="700"
+                  height="467"
+                />
+              </button>
             </li>
           </ul>
         </div>
       </section>
 
       <!-- ===================== CONTACT ===================== -->
-      <section class="section" id="contact" aria-labelledby="contact-heading">
+      <section
+        class="section section-alt"
+        id="contact"
+        aria-labelledby="contact-heading"
+      >
         <div class="container contact-layout">
           <div class="contact-copy">
             <h2 id="contact-heading" class="section-heading">
@@ -459,31 +1137,40 @@
               Interested in 4001 Mossy Bank Lane? Reach out to arrange a private
               showing or ask any questions about the property.
             </p>
+            <div class="contact-brand">
+              <img
+                src="/images/perts-bros-logo.png"
+                alt="Perts Bros LLC logo"
+                width="84"
+                height="84"
+              />
+              <span>Marketed by Perts Bros LLC</span>
+            </div>
           </div>
 
           <div class="contact-card">
-            <!-- EDIT: your name (or your agent's) -->
-            <p class="contact-name">Property Owner</p>
-            <!-- EDIT: optional subtitle, e.g. "Listed by Owner" or brokerage -->
+            <p class="contact-name">Perts Bros LLC</p>
             <p class="contact-role">For Sale by Owner</p>
 
             <div class="contact-methods">
               <!-- EDIT: phone number (update BOTH the tel: link and the text) -->
-              <a class="contact-method" href="tel:+10000000000">
+              <a class="contact-method" href="tel:+15403001108">
                 <span class="contact-method-label">Call or Text</span>
-                <span class="contact-method-value">(000) 000-0000</span>
+                <span class="contact-method-value">(540) 300-1108</span>
               </a>
               <!-- EDIT: email (update BOTH the mailto: link and the text) -->
               <a
                 class="contact-method"
-                href="mailto:hello@4001mossy.com?subject=4001%20Mossy%20Bank%20Lane%20-%20Showing%20Request"
+                href="mailto:4001mossybanklane@gmail.com?subject=4001%20Mossy%20Bank%20Lane%20-%20Showing%20Request"
               >
                 <span class="contact-method-label">Email</span>
-                <span class="contact-method-value">hello@4001mossy.com</span>
+                <span class="contact-method-value"
+                  >4001mossybanklane@gmail.com</span
+                >
               </a>
             </div>
 
-            <a class="btn btn-primary btn-block" href="tel:+10000000000"
+            <a class="btn btn-primary btn-block" href="tel:+15403001108"
               >Request a Showing</a
             >
           </div>
@@ -512,7 +1199,7 @@
             <img
               class="lightbox-img"
               id="lightbox-img"
-              src="/images/photo-01.svg"
+              src="/images/front-exterior.jpg"
               alt=""
             />
             <figcaption
@@ -533,10 +1220,12 @@
         <p class="footer-address">
           4001 Mossy Bank Lane, Fredericksburg, VA 22408
         </p>
+        <p class="footer-marketed">Marketed by Perts Bros LLC</p>
         <p class="footer-disclaimer">
           All information is deemed reliable but not guaranteed and should be
-          independently verified. Square footage and lot size are approximate.
-          This is not an offer to sell or a solicitation where prohibited.
+          independently verified. Square footage and lot size are approximate;
+          school boundaries should be confirmed with the district. This is not
+          an offer to sell or a solicitation where prohibited.
         </p>
         <p class="footer-fairhousing">
           <span class="eho" aria-hidden="true">&#8962;</span>
