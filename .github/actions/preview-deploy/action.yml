@@ -6,6 +6,15 @@ description: |
   `https://pr-<N>-<worker-name>.<subdomain>.workers.dev`. The alias is reused on
   every push to the same PR, so the URL in the PR comment never goes stale.
 
+  Because the Worker runs with `workers_dev = false`, Cloudflare's one-time
+  opt-in change left Preview URLs disabled on the live Worker, and a `versions
+  upload` does not flip that Worker-level setting (only a deploy/dashboard/API
+  call does). So this action first ensures Preview URLs are enabled via the
+  Workers Script Subdomain API (`previews_enabled: true`, `enabled: false` so the
+  production workers.dev route stays off). This is idempotent and does not deploy
+  code or change production routing; production is served via a custom-domain
+  Worker route, which is independent of the workers.dev subdomain toggle.
+
 inputs:
   cloudflare-api-token:
     description: Cloudflare API token (needs Workers Scripts:Edit; the same token used for production deploys).
@@ -31,6 +40,45 @@ outputs:
 runs:
   using: composite
   steps:
+    - name: Ensure Preview URLs are enabled
+      shell: bash
+      env:
+        CF_API_TOKEN: ${{ inputs.cloudflare-api-token }}
+        CF_ACCOUNT_ID: ${{ inputs.cloudflare-account-id }}
+      run: |
+        set -euo pipefail
+
+        # Worker/script name comes from wrangler.toml (single source of truth)
+        # so this never drifts from the production worker name.
+        script="$(grep -E '^name[[:space:]]*=' wrangler.toml | head -n1 \
+          | sed -E 's/.*=[[:space:]]*"([^"]+)".*/\1/')"
+        if [ -z "$script" ]; then
+          echo "::error::Could not read worker name from wrangler.toml"
+          exit 1
+        fi
+
+        # Enable Preview URLs without enabling the production workers.dev route:
+        #   previews_enabled=true  -> version preview URLs are served
+        #   enabled=false          -> no production *.workers.dev route (we use a
+        #                             custom-domain Worker route instead)
+        # Idempotent: re-POSTing the same settings is a no-op.
+        url="https://api.cloudflare.com/client/v4/accounts/${CF_ACCOUNT_ID}/workers/scripts/${script}/subdomain"
+        resp="$(curl -sS -X POST "$url" \
+          -H "Authorization: Bearer ${CF_API_TOKEN}" \
+          -H "Content-Type: application/json" \
+          --data '{"enabled":false,"previews_enabled":true}')"
+
+        if printf '%s' "$resp" | jq -e '.success == true' >/dev/null 2>&1; then
+          echo "Preview URLs enabled for '$script' (production workers.dev route left disabled)."
+        else
+          # Most likely cause: the account has no registered workers.dev
+          # subdomain (an account-level, one-time setup). Surface it loudly but
+          # don't hard-fail: the upload still runs and the URL-parse step will
+          # post a no-URL warning comment, so the PR shows actionable signal.
+          errs="$(printf '%s' "$resp" | jq -r '.errors // [] | map("\(.code): \(.message)") | join("; ")' 2>/dev/null || true)"
+          echo "::warning::Could not enable Preview URLs for '$script': ${errs:-$resp}. If this is a 'workers.dev subdomain' error, register one for the account (account-level, one time) and re-run."
+        fi
+
     - name: Upload preview version
       id: wrangler
       uses: cloudflare/wrangler-action@da0e0dfe58b7a431659754fdf3f186c529afbe65 # v3
@@ -69,7 +117,7 @@ runs:
           | head -n1 || true)"
 
         if [ -z "$url" ]; then
-          echo "::warning::Could not parse a pr-${PR_NUMBER} preview URL from wrangler output. Is 'preview_urls' enabled and does the account have a workers.dev subdomain?"
+          echo "::warning::Could not parse a pr-${PR_NUMBER} preview URL from wrangler output. Preview URLs are auto-enabled by the prior step, so the likely cause is the account having no registered workers.dev subdomain (account-level, one-time setup)."
         else
           echo "Preview URL: $url"
         fi
