@@ -47,8 +47,8 @@ photo:
 3. The hero is `/images/hero.jpg` and the social card is `/images/og-cover.jpg`
    (1200×630).
 
-The favicon and Apple touch icon are the Perts Bros LLC logo
-(`public/favicon.png`, `public/apple-touch-icon.png`).
+The favicon is a simple house mark (`public/favicon.svg`), with
+`public/apple-touch-icon.png` for iOS.
 
 ### Matterport 3D tour
 
@@ -98,7 +98,7 @@ public/              The site itself (served as-is by the Worker)
   css/styles.css     All styles (design tokens at the top)
   js/main.js         Mobile nav + accessible photo lightbox
   images/            Optimized photos, floor plans, logo, hero, og-cover
-  robots.txt, sitemap.xml, favicon.png, apple-touch-icon.png
+  robots.txt, sitemap.xml, favicon.svg, apple-touch-icon.png
   _headers           Cache-Control TTLs for /css, /js, /images
 src/worker.js        Minimal Worker that serves the static assets
 wrangler.toml        Cloudflare Workers deploy config
