@@ -58,7 +58,7 @@
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     <!-- Bump ?v= when editing styles.css so cached copies refresh (see _headers). -->
-    <link rel="stylesheet" href="/css/styles.css?v=4" />
+    <link rel="stylesheet" href="/css/styles.css?v=5" />
 
     <!-- Structured data for search engines. -->
     <script type="application/ld+json">
@@ -210,14 +210,43 @@
       <!-- ===================== HERO ===================== -->
       <section class="hero" aria-labelledby="hero-heading">
         <div class="hero-media">
-          <img
-            src="/images/hero.jpg"
-            alt="Front exterior of 4001 Mossy Bank Lane at dusk under a pink sky"
-            class="hero-img"
-            fetchpriority="high"
-            width="2000"
-            height="1333"
-          />
+          <!-- EDIT: hero slideshow images. Auto-rotates (crossfade); the first
+               slide loads eagerly, the rest lazily. Decorative background (the
+               heading carries the info), so each alt is empty. -->
+          <div class="hero-carousel" aria-hidden="true">
+            <img
+              class="hero-slide is-active"
+              src="/images/hero.jpg"
+              alt=""
+              fetchpriority="high"
+              width="2000"
+              height="1333"
+            />
+            <img
+              class="hero-slide"
+              src="/images/photo-042.jpg"
+              alt=""
+              loading="lazy"
+            />
+            <img
+              class="hero-slide"
+              src="/images/photo-069.jpg"
+              alt=""
+              loading="lazy"
+            />
+            <img
+              class="hero-slide"
+              src="/images/photo-105.jpg"
+              alt=""
+              loading="lazy"
+            />
+            <img
+              class="hero-slide"
+              src="/images/photo-120.jpg"
+              alt=""
+              loading="lazy"
+            />
+          </div>
           <div class="hero-overlay"></div>
         </div>
 
@@ -248,6 +277,46 @@
             <a class="btn btn-ghost" href="#contact">Schedule a Showing</a>
           </div>
         </div>
+
+        <!-- Slideshow pause/play (revealed by JS; the carousel is decorative). -->
+        <button
+          class="hero-toggle"
+          type="button"
+          aria-label="Pause photo slideshow"
+          hidden
+        >
+          <svg
+            class="hero-toggle-pause"
+            viewBox="0 0 24 24"
+            aria-hidden="true"
+            focusable="false"
+          >
+            <rect
+              x="6"
+              y="5"
+              width="4"
+              height="14"
+              rx="1"
+              fill="currentColor"
+            />
+            <rect
+              x="14"
+              y="5"
+              width="4"
+              height="14"
+              rx="1"
+              fill="currentColor"
+            />
+          </svg>
+          <svg
+            class="hero-toggle-play"
+            viewBox="0 0 24 24"
+            aria-hidden="true"
+            focusable="false"
+          >
+            <path d="M8 5v14l11-7z" fill="currentColor" />
+          </svg>
+        </button>
       </section>
 
       <!-- ===================== QUICK FACTS ===================== -->
@@ -322,111 +391,6 @@
             >
             <a class="btn btn-ghost" href="#contact">Ask a Question</a>
           </div>
-        </div>
-      </section>
-
-      <!-- ===================== FEATURED HIGHLIGHTS ===================== -->
-      <!-- EDIT: the 5 featured photos shown up top. Each is a .gallery-item, so
-           it opens in the lightbox; swap data-full/src/alt/label to feature
-           different rooms. -->
-      <section
-        class="section featured"
-        id="highlights"
-        aria-labelledby="featured-heading"
-      >
-        <div class="container">
-          <h2 id="featured-heading" class="section-heading">Highlights</h2>
-          <p class="section-intro">
-            Five favorites from the tour. Select any photo to view it larger, or
-            browse the full gallery below.
-          </p>
-          <ul class="featured-grid">
-            <li>
-              <button
-                class="gallery-item featured-item"
-                type="button"
-                data-full="/images/photo-006.jpg"
-                data-caption="Front exterior: white Colonial with red shutters and two-car garage"
-              >
-                <img
-                  src="/images/photo-006-sm.jpg"
-                  alt="Front view of a two-story white vinyl Colonial home with red shutters, attached two-car garage, covered entry, and sloping green front lawn under a blue sky"
-                  loading="lazy"
-                  width="800"
-                  height="533"
-                />
-                <span class="featured-label">Front Exterior</span>
-              </button>
-            </li>
-            <li>
-              <button
-                class="gallery-item featured-item"
-                type="button"
-                data-full="/images/photo-042.jpg"
-                data-caption="Renovated kitchen with island and quartz counters"
-              >
-                <img
-                  src="/images/photo-042-sm.jpg"
-                  alt="Renovated kitchen with gray shaker cabinetry, white quartz counters, herringbone tile backsplash, center island, stainless range with vent hood and refrigerator"
-                  loading="lazy"
-                  width="800"
-                  height="533"
-                />
-                <span class="featured-label">Chef's Kitchen</span>
-              </button>
-            </li>
-            <li>
-              <button
-                class="gallery-item featured-item"
-                type="button"
-                data-full="/images/photo-069.jpg"
-                data-caption="Light-filled family room with gas fireplace"
-              >
-                <img
-                  src="/images/photo-069-sm.jpg"
-                  alt="Empty family room with dark LVP flooring, a white-mantel gas fireplace flanked by windows, a ceiling fan, and a large window overlooking the fenced backyard"
-                  loading="lazy"
-                  width="800"
-                  height="533"
-                />
-                <span class="featured-label">Family Room</span>
-              </button>
-            </li>
-            <li>
-              <button
-                class="gallery-item featured-item"
-                type="button"
-                data-full="/images/photo-105.jpg"
-                data-caption="Primary bedroom with vaulted ceiling and walk-in closet"
-              >
-                <img
-                  src="/images/photo-105-sm.jpg"
-                  alt="Spacious carpeted primary bedroom with blue-gray walls, vaulted ceiling, ceiling fan, two windows, and an open doorway to a walk-in closet"
-                  loading="lazy"
-                  width="800"
-                  height="533"
-                />
-                <span class="featured-label">Primary Suite</span>
-              </button>
-            </li>
-            <li>
-              <button
-                class="gallery-item featured-item"
-                type="button"
-                data-full="/images/photo-120.jpg"
-                data-caption="Spa bath with freestanding tub and glass shower"
-              >
-                <img
-                  src="/images/photo-120-sm.jpg"
-                  alt="Renovated primary bathroom with a freestanding soaking tub by a window, white quartz vanity, marble-look tile, glass walk-in shower, and wood-look tile floor"
-                  loading="lazy"
-                  width="800"
-                  height="533"
-                />
-                <span class="featured-label">Primary Bath</span>
-              </button>
-            </li>
-          </ul>
         </div>
       </section>
 

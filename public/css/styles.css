@@ -303,10 +303,64 @@ h3 {
   overflow: hidden;
 }
 
-.hero-img {
+.hero-carousel {
+  position: absolute;
+  inset: 0;
+}
+
+.hero-slide {
+  position: absolute;
+  inset: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
+  opacity: 0;
+  transition: opacity 1.2s ease;
+}
+
+.hero-slide.is-active {
+  opacity: 1;
+}
+
+/* Slideshow pause/play, bottom-right of the hero. */
+.hero-toggle {
+  position: absolute;
+  right: clamp(0.8rem, 3vw, 1.4rem);
+  bottom: clamp(0.8rem, 3vw, 1.4rem);
+  z-index: 3;
+  width: 40px;
+  height: 40px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  border-radius: 50%;
+  background: rgba(9, 18, 32, 0.55);
+  color: #fff;
+  cursor: pointer;
+  transition: background 0.18s ease;
+}
+
+.hero-toggle:hover {
+  background: rgba(9, 18, 32, 0.82);
+}
+
+.hero-toggle svg {
+  width: 18px;
+  height: 18px;
+}
+
+.hero-toggle-play {
+  display: none;
+  margin-left: 2px;
+}
+
+.hero-toggle[data-state="paused"] .hero-toggle-pause {
+  display: none;
+}
+
+.hero-toggle[data-state="paused"] .hero-toggle-play {
+  display: block;
 }
 
 .hero-overlay {
@@ -1071,38 +1125,6 @@ h3 {
   flex-wrap: wrap;
   gap: 0.7rem;
   flex: 0 0 auto;
-}
-
-/* --------------------------- Featured grid ---------------------------- */
-.featured-grid {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
-  gap: 0.9rem;
-}
-
-.featured-item {
-  position: relative;
-}
-
-.featured-label {
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  padding: 1.5rem 0.85rem 0.7rem;
-  font-size: 0.92rem;
-  font-weight: 600;
-  color: #fff;
-  text-align: left;
-  background: linear-gradient(
-    to top,
-    rgba(7, 14, 24, 0.85),
-    rgba(7, 14, 24, 0)
-  );
-  pointer-events: none;
 }
 
 /* --------------------- Show more / collapse --------------------------- */

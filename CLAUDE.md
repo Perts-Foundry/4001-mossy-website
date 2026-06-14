@@ -22,11 +22,13 @@ repo (Terraform).
 - `public/css/styles.css` holds all styles; design tokens (colors, spacing) are
   CSS custom properties in `:root` at the top.
 - `public/js/main.js` is vanilla JS: mobile nav toggle, an accessible photo
-  lightbox (keyboard nav, focus trap, scroll lock), a floating back-to-top
-  button (revealed past 600px of scroll), and collapsible photo/amenity grids
-  (a JS-added "Show all" toggle hides all but the first 8 photos / 6 amenities
-  to keep the first scroll short). Progressive enhancement — with JS disabled
-  the page still works (all photos show, no toggle).
+  lightbox (keyboard nav, focus trap, scroll lock), an auto-rotating hero
+  carousel (crossfade, pause/play control, starts paused under reduced-motion),
+  a floating back-to-top button (revealed past 600px of scroll), and collapsible
+  photo/amenity grids (a JS-added "Show all" toggle hides all but the first 8
+  photos / 6 amenities to keep the first scroll short). Progressive enhancement
+  — with JS disabled the page still works (hero shows its first slide, all
+  photos show, no toggles).
 
 ## Content conventions
 
@@ -43,11 +45,12 @@ repo (Terraform).
   price is set (the hero currently shows "Price Upon Request"). A second JSON-LD
   block holds the open house `Event`s.
 - The top of the page carries a For-Sale-by-Owner **announcement bar**, an
-  **open house** band (`#openhouse`, gradient surface + calendar chip), and a
-  5-photo **Highlights** strip (`#highlights`, reusing `.gallery-item` so it
-  feeds the lightbox) — all tagged with `EDIT:` comments. The open house
-  date/time lives in **three** places (announcement bar, `#openhouse` band, and
-  the JSON-LD `Event`s); update all three together.
+  **open house** band (`#openhouse`, gradient surface + calendar chip), and an
+  auto-rotating **hero carousel** (`.hero-carousel`: the highlight rooms
+  crossfading behind the hero text, decorative `alt=""`, with a pause/play
+  control) — all tagged with `EDIT:` comments. The open house date/time lives in
+  **three** places (announcement bar, `#openhouse` band, and the JSON-LD
+  `Event`s); update all three together.
 - Contact is **display-only** (sms:/tel:/mailto:) — there is no form and no
   backend secret. Email is listed first, text is flagged as strongly preferred,
   and the primary button is an `sms:` link. Keep it form-free unless a contact

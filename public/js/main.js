@@ -236,4 +236,84 @@
 
   setupCollapsible(document.getElementById("gallery-grid"), 8);
   setupCollapsible(document.getElementById("amenity-grid"), 6);
+
+  // --------------------------- Hero carousel ----------------------------
+  // Auto-rotating crossfade behind the hero text. The images are decorative
+  // (the heading carries the info). Respects reduced-motion (starts paused) and
+  // exposes a pause/play control so it can be stopped (WCAG 2.2.2). Without JS,
+  // the first slide simply stays put.
+  var heroCarousel = document.querySelector(".hero-carousel");
+  if (heroCarousel) {
+    var heroSlides = Array.prototype.slice.call(
+      heroCarousel.querySelectorAll(".hero-slide"),
+    );
+    if (heroSlides.length > 1) {
+      var heroIndex = 0;
+      var heroTimer = null;
+      var heroPlaying = false;
+      var HERO_INTERVAL = 5000;
+      var heroToggle = document.querySelector(".hero-toggle");
+
+      var showSlide = function (next) {
+        heroSlides[heroIndex].classList.remove("is-active");
+        heroIndex = (next + heroSlides.length) % heroSlides.length;
+        heroSlides[heroIndex].classList.add("is-active");
+      };
+      var heroTick = function () {
+        showSlide(heroIndex + 1);
+      };
+
+      var startHero = function () {
+        if (heroPlaying) {
+          return;
+        }
+        heroPlaying = true;
+        heroTimer = window.setInterval(heroTick, HERO_INTERVAL);
+        if (heroToggle) {
+          heroToggle.dataset.state = "playing";
+          heroToggle.setAttribute("aria-label", "Pause photo slideshow");
+        }
+      };
+      var stopHero = function () {
+        heroPlaying = false;
+        if (heroTimer) {
+          window.clearInterval(heroTimer);
+          heroTimer = null;
+        }
+        if (heroToggle) {
+          heroToggle.dataset.state = "paused";
+          heroToggle.setAttribute("aria-label", "Play photo slideshow");
+        }
+      };
+
+      if (heroToggle) {
+        heroToggle.hidden = false;
+        heroToggle.addEventListener("click", function () {
+          if (heroPlaying) {
+            stopHero();
+          } else {
+            startHero();
+          }
+        });
+      }
+
+      if (prefersReducedMotion) {
+        stopHero();
+      } else {
+        startHero();
+        // Don't advance while the tab is in the background; resume on return
+        // unless the visitor explicitly paused.
+        document.addEventListener("visibilitychange", function () {
+          if (document.hidden) {
+            if (heroTimer) {
+              window.clearInterval(heroTimer);
+              heroTimer = null;
+            }
+          } else if (heroPlaying && !heroTimer) {
+            heroTimer = window.setInterval(heroTick, HERO_INTERVAL);
+          }
+        });
+      }
+    }
+  }
 })();

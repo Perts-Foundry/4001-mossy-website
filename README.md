@@ -24,7 +24,7 @@ marked with **`EDIT:`** comments in **`public/index.html`** (search for `EDIT:`)
 | **Price**           | `EDIT: list price` (currently "Price Upon Request")                      |
 | **FSBO banner**     | `EDIT: For-Sale-by-Owner banner` (top announcement bar)                  |
 | **Open house**      | `EDIT: open house` (band + JSON-LD) and `EDIT: For-Sale-by-Owner banner` |
-| **Featured photos** | `EDIT: the 5 featured photos` (the "Highlights" strip up top)            |
+| **Hero photos**     | `EDIT: hero slideshow images` (the auto-rotating hero carousel)          |
 | **Matterport tour** | `EDIT: Matterport tour` (iframe `src` + fallback)                        |
 | **Phone**           | `EDIT: phone number` (update the `sms:`, `tel:`, and text)               |
 | **Email**           | `EDIT: email` (update the `mailto:` link too)                            |
@@ -102,7 +102,7 @@ public/              The site itself (served as-is by the Worker)
   index.html         The single listing page (edit this)
   404.html           Not-found page
   css/styles.css     All styles (design tokens at the top)
-  js/main.js         Mobile nav, lightbox, back-to-top, collapsible galleries
+  js/main.js         Mobile nav, lightbox, hero carousel, back-to-top, collapse
   images/            Optimized photos, floor plans, logo, hero, og-cover
   robots.txt, sitemap.xml, favicon.svg, apple-touch-icon.png
   _headers           Cache-Control TTLs for /css, /js, /images
