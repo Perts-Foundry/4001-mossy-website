@@ -93,6 +93,7 @@ public/              The site itself (served as-is by the Worker)
   js/main.js         Mobile nav + accessible photo lightbox
   images/            Optimized photos, floor plans, logo, hero, og-cover
   robots.txt, sitemap.xml, favicon.svg
+  _headers           Cache-Control TTLs for /css, /js, /images
 src/worker.js        Minimal Worker that serves the static assets
 wrangler.toml        Cloudflare Workers deploy config
 .github/workflows/   validate.yml (PR checks), deploy.yml (comment-driven deploy)
