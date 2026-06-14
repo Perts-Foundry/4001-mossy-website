@@ -47,6 +47,16 @@ layer, pre-create it under **Settings → Environments → New environment** nam
 (comment-triggered deploys run on the `main` ref, so that policy still allows
 them).
 
+The PR preview workflow (`preview.yml`) reuses the same two secrets, but it also
+needs the **pertsfoundry** Cloudflare account to have a registered **workers.dev
+subdomain** (account-level, one time). Without it, `wrangler versions upload
+--preview-alias` uploads the version but mints no preview URL, and the PR comment
+shows a "no preview URL" warning. Set the subdomain once under **Workers &
+Pages → (account) → Subdomain** if it is not already configured for the account.
+The site's `wrangler.toml` keeps `workers_dev = false` (no production
+`*.workers.dev` route) and `preview_urls = true` (per-PR previews); these are
+independent settings.
+
 ## 2. First deploy: create the Worker script
 
 On the **site PR**, once the **Validate** check is green, comment:

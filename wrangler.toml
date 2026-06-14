@@ -1,7 +1,14 @@
 name = "4001-mossy-website"
 main = "src/worker.js"
 compatibility_date = "2026-06-13"
+# Production is served only on the custom domain via a Worker route (managed in
+# the infrastructure repo), so the production *.workers.dev URL stays disabled.
 workers_dev = false
+# Per-PR preview deployments (.github/workflows/preview.yml) need preview URLs
+# enabled so `wrangler versions upload --preview-alias pr-<N>` can mint a
+# clickable pr-<N>-4001-mossy-website.<subdomain>.workers.dev URL. These are
+# non-production and independent of the disabled production workers.dev route.
+preview_urls = true
 
 # The site is the committed contents of ./public (no build step). Wrangler
 # uploads it as static assets; the Worker in src/worker.js serves them.
