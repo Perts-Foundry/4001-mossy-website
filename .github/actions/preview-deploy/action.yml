@@ -1,0 +1,84 @@
+name: Preview deploy to Cloudflare Workers
+description: |
+  Upload a *preview* version of the Worker (does NOT touch production) and
+  expose its preview URL. Uses `wrangler versions upload --preview-alias pr-<N>`,
+  which assigns a stable alias URL of the form
+  `https://pr-<N>-<worker-name>.<subdomain>.workers.dev`. The alias is reused on
+  every push to the same PR, so the URL in the PR comment never goes stale.
+
+inputs:
+  cloudflare-api-token:
+    description: Cloudflare API token (needs Workers Scripts:Edit — the same token used for production deploys).
+    required: true
+  cloudflare-account-id:
+    description: Cloudflare account ID.
+    required: true
+  pr-number:
+    description: PR number, used for the `pr-<N>` preview alias.
+    required: true
+
+outputs:
+  preview-url:
+    description: The preview alias URL (empty if it could not be parsed from wrangler output).
+    value: ${{ steps.parse.outputs.preview-url }}
+  deploy-output:
+    description: Wrangler stdout (ANSI-stripped, last 30 lines).
+    value: ${{ steps.parse.outputs.deploy-output }}
+  deploy-stderr:
+    description: Wrangler stderr.
+    value: ${{ steps.wrangler.outputs.command-stderr }}
+
+runs:
+  using: composite
+  steps:
+    - name: Upload preview version
+      id: wrangler
+      uses: cloudflare/wrangler-action@da0e0dfe58b7a431659754fdf3f186c529afbe65 # v3
+      with:
+        apiToken: ${{ inputs.cloudflare-api-token }}
+        accountId: ${{ inputs.cloudflare-account-id }}
+        # Keep in lockstep with .github/actions/deploy/action.yml so preview and
+        # production run identical Wrangler behaviour.
+        wranglerVersion: "4.100.0"
+        # `versions upload` stages a new version without promoting it to the
+        # production route; `--preview-alias` gives it a stable, PR-scoped URL.
+        command: versions upload --preview-alias pr-${{ inputs.pr-number }}
+
+    - name: Parse preview URL
+      id: parse
+      shell: bash
+      env:
+        STDOUT: ${{ steps.wrangler.outputs.command-output }}
+        STDERR: ${{ steps.wrangler.outputs.command-stderr }}
+        PR_NUMBER: ${{ inputs.pr-number }}
+      run: |
+        set -euo pipefail
+
+        # Combine streams (wrangler prints the URL to stdout, but be tolerant)
+        # and strip ANSI colour codes so the grep/regex below is reliable.
+        combined="$(printf '%s\n%s\n' "$STDOUT" "$STDERR" | sed 's/\x1b\[[0-9;]*m//g')"
+
+        # Prefer the PR-scoped alias URL. Fall back to any version preview URL
+        # (version-prefixed) if the alias line is absent — e.g. an older
+        # wrangler that labels the line differently still emits the hostname.
+        url="$(printf '%s\n' "$combined" \
+          | grep -oE "https://pr-${PR_NUMBER}-[a-z0-9.-]+\.workers\.dev" \
+          | head -n1 || true)"
+        if [ -z "$url" ]; then
+          url="$(printf '%s\n' "$combined" \
+            | grep -oE 'https://[a-z0-9][a-z0-9.-]*\.workers\.dev' \
+            | head -n1 || true)"
+        fi
+
+        if [ -z "$url" ]; then
+          echo "::warning::Could not parse a preview URL from wrangler output. Is 'preview_urls' enabled on the Worker?"
+        else
+          echo "Preview URL: $url"
+        fi
+
+        {
+          echo "preview-url=$url"
+          echo "deploy-output<<GHEOF"
+          printf '%s\n' "$combined" | tail -30
+          echo "GHEOF"
+        } >> "$GITHUB_OUTPUT"
