@@ -464,7 +464,8 @@ h3 {
   background: var(--navy-900);
   color: #fff;
   border-bottom: 1px solid var(--border);
-  padding-block: var(--section-space);
+  /* Deliberately tight: this is a compact spec strip, not a full section. */
+  padding-block: 0.75rem;
 }
 
 .facts-bar {
