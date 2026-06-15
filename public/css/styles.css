@@ -109,6 +109,11 @@ h3 {
   border: 0;
 }
 
+/* Keep a short run of text from breaking mid-phrase (dates, times). */
+.nowrap {
+  white-space: nowrap;
+}
+
 .skip-link {
   position: absolute;
   left: 1rem;
@@ -798,8 +803,6 @@ h3 {
 .contact-lead strong {
   color: var(--text);
   font-weight: 600;
-  /* Keep "open house July 11-12" on one line so the date never splits. */
-  white-space: nowrap;
 }
 
 .contact-byline {
