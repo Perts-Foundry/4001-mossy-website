@@ -785,6 +785,8 @@ h3 {
 .contact-lead strong {
   color: var(--text);
   font-weight: 600;
+  /* Keep "open house July 11-12" on one line so the date never splits. */
+  white-space: nowrap;
 }
 
 .contact-byline {
