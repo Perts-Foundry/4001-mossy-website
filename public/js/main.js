@@ -235,8 +235,9 @@
 
   // ---------------------------- Scroll spy ------------------------------
   // Highlight the nav link whose section is currently in view (and mark it
-  // aria-current="page"). Pure progressive enhancement: with no JS the nav still
-  // works, just without the live highlight.
+  // aria-current="location", the accurate token for the current spot within a
+  // single page). Pure progressive enhancement: with no JS the nav still works,
+  // just without the live highlight.
   if ("IntersectionObserver" in window && menu) {
     var spyLinks = {};
     Array.prototype.slice
@@ -265,7 +266,10 @@
             if (entry.isIntersecting && spyLinks[entry.target.id]) {
               clearSpy();
               spyLinks[entry.target.id].classList.add("is-active");
-              spyLinks[entry.target.id].setAttribute("aria-current", "page");
+              spyLinks[entry.target.id].setAttribute(
+                "aria-current",
+                "location",
+              );
             }
           });
         },

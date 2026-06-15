@@ -26,7 +26,7 @@ marked with **`EDIT:`** comments in **`public/index.html`** (search for `EDIT:`)
 | **Open house**      | `EDIT: open house` (band + JSON-LD) and `EDIT: For-Sale-by-Owner banner` |
 | **Hero photos**     | `EDIT: hero slideshow images` (the auto-rotating hero carousel)          |
 | **Matterport tour** | `EDIT: Matterport tour` (iframe `src` + fallback)                        |
-| **Phone**           | `EDIT: phone number` (update the `sms:`, `tel:`, and text)               |
+| **Phone**           | `EDIT: phone number` (update the `sms:` link and the text)               |
 | **Email**           | `EDIT: email` (update the `mailto:` link too)                            |
 | Social image        | `EDIT: 1200x630 social image`                                            |
 | Page title / SEO    | `EDIT: page title` and `EDIT: one-sentence summary`                      |
@@ -102,7 +102,8 @@ public/              The site itself (served as-is by the Worker)
   index.html         The single listing page (edit this)
   404.html           Not-found page
   css/styles.css     All styles (design tokens at the top)
-  js/main.js         Mobile nav, lightbox, hero carousel, back-to-top, collapse
+  js/main.js         Mobile nav, lightbox, hero carousel (Ken Burns), scroll
+                     reveal/spy, sticky-header state, back-to-top, collapse
   images/            Optimized photos, floor plans, logo, hero, og-cover
   robots.txt, sitemap.xml, favicon.svg, apple-touch-icon.png
   _headers           Cache-Control TTLs for /css, /js, /images
@@ -113,6 +114,13 @@ wrangler.toml        Cloudflare Workers deploy config
 .github/actions/     deploy + preview-deploy composite actions (wrangler)
 docs/runbook.md      Go-live runbook (DNS cutover, secrets, deploy order)
 ```
+
+> **Editing CSS or JS?** `_headers` caches `/css/*` and `/js/*` for an hour, so
+> after changing `css/styles.css` or `js/main.js` bump the `?v=N` version on
+> their `<link>` / `<script>` tags in `index.html` (and the CSS link in
+> `404.html`, which loads no JS). Otherwise returning visitors may be served the
+> stale file for up to an hour. Content edits to `index.html` itself go live
+> immediately (HTML is not cached).
 
 ## Infrastructure
 

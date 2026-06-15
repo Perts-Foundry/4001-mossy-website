@@ -33,7 +33,7 @@ repo (Terraform).
   start state is opt-in via a `.js-reveal` root class that is added only after the
   observer is wired and only when reduced-motion is off, so no-JS shows
   everything), a scroll-spy that marks the current section's nav link
-  (`.is-active` + `aria-current="page"`), a condensed header state on scroll
+  (`.is-active` + `aria-current="location"`), a condensed header state on scroll
   (`.is-scrolled`, toggled by the same rAF-throttled passive scroll handler as
   the back-to-top button — it changes only color/shadow, never height, so the
   `--topbar-h` anchor offset stays valid), a floating back-to-top button

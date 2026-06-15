@@ -730,6 +730,9 @@ h3 {
   -webkit-mask:
     linear-gradient(#fff 0 0) content-box,
     linear-gradient(#fff 0 0);
+  mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
   -webkit-mask-composite: xor;
   mask-composite: exclude;
   opacity: 0;
@@ -1475,7 +1478,8 @@ h3 {
   transform: none;
 }
 
-/* Staggered cascade for the children of a revealed row (capped at 8 steps). */
+/* Staggered cascade for the children of a revealed row (capped at 12 steps;
+   beyond that, extra items simply reveal with no delay). */
 .js-reveal [data-reveal-stagger].is-revealed > *:nth-child(1) {
   transition-delay: 0s;
 }
@@ -1499,6 +1503,18 @@ h3 {
 }
 .js-reveal [data-reveal-stagger].is-revealed > *:nth-child(8) {
   transition-delay: 0.42s;
+}
+.js-reveal [data-reveal-stagger].is-revealed > *:nth-child(9) {
+  transition-delay: 0.48s;
+}
+.js-reveal [data-reveal-stagger].is-revealed > *:nth-child(10) {
+  transition-delay: 0.54s;
+}
+.js-reveal [data-reveal-stagger].is-revealed > *:nth-child(11) {
+  transition-delay: 0.6s;
+}
+.js-reveal [data-reveal-stagger].is-revealed > *:nth-child(12) {
+  transition-delay: 0.66s;
 }
 
 /* --------------------------- Responsive ------------------------------- */
