@@ -548,9 +548,21 @@ h3 {
 /* Gradient-filled hero metrics. Solid white is the base; the gradient clip is
    layered only where supported so the figures never vanish. The hero sits over a
    layered photo + dark overlay (axe color-contrast is ignored here per
-   .pa11yci) and the light sky end keeps the numbers legible against it. */
+   .pa11yci). */
 .price-amount {
   color: #fff;
+}
+
+/* Dark outline so the light numerals stay legible over bright areas of the hero
+   photo (windows, pale walls). Applied via stacked drop-shadow rather than
+   text-shadow, which is unreliably clipped by background-clip:text; the filter
+   runs after the text renders, so it outlines both the gradient fill and the
+   solid-white fallback. */
+.hero-stats strong,
+.price-amount {
+  filter: drop-shadow(0 0 1px rgba(8, 16, 30, 0.95))
+    drop-shadow(0 0 2px rgba(8, 16, 30, 0.7))
+    drop-shadow(0 1px 3px rgba(8, 16, 30, 0.5));
 }
 
 @supports (background-clip: text) or (-webkit-background-clip: text) {
@@ -560,7 +572,6 @@ h3 {
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
-    filter: drop-shadow(0 1px 6px var(--accent-glow));
   }
 }
 
