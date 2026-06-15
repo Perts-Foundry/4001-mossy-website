@@ -20,15 +20,28 @@ repo (Terraform).
 - `public/index.html` is the whole page. All editable content is tagged with
   `EDIT:` comments; the README's "Editing your listing" table maps each one.
 - `public/css/styles.css` holds all styles; design tokens (colors, spacing) are
-  CSS custom properties in `:root` at the top.
+  CSS custom properties in `:root` at the top, including a cool-blue accent ramp
+  (`--accent-steel` -> `--accent-sky`, `--grad-accent`, `--grad-accent-soft`,
+  `--shadow-glow`) used for heading underlines, hero stat numbers, card rims and
+  hover glow, section kickers, and the nav underline. The original solid
+  `--accent` is kept for the focus ring and bullet dots.
 - `public/js/main.js` is vanilla JS: mobile nav toggle, an accessible photo
   lightbox (keyboard nav, focus trap, scroll lock), an auto-rotating hero
-  carousel (crossfade, pause/play control, starts paused under reduced-motion),
-  a floating back-to-top button (revealed past 600px of scroll), and collapsible
-  photo/amenity grids (a JS-added "Show all" toggle hides all but the first 8
-  photos / 6 amenities to keep the first scroll short). Progressive enhancement
-  — with JS disabled the page still works (hero shows its first slide, all
-  photos show, no toggles).
+  carousel (crossfade, pause/play control, plus a slow Ken Burns zoom on the
+  active slide, all starting paused under reduced-motion), a scroll-reveal system
+  (an IntersectionObserver fades sections/cards in as they enter view; the hidden
+  start state is opt-in via a `.js-reveal` root class that is added only after the
+  observer is wired and only when reduced-motion is off, so no-JS shows
+  everything), a scroll-spy that marks the current section's nav link
+  (`.is-active` + `aria-current="location"`), a condensed header state on scroll
+  (`.is-scrolled`, toggled by the same rAF-throttled passive scroll handler as
+  the back-to-top button — it changes only color/shadow, never height, so the
+  `--topbar-h` anchor offset stays valid), a floating back-to-top button
+  (revealed past 600px of scroll), and collapsible photo/amenity grids (a
+  JS-added "Show all" toggle hides all but the first 8 photos / 6 amenities to
+  keep the first scroll short). Progressive enhancement — with JS disabled the
+  page still works (hero shows its first slide, all photos show, no toggles, no
+  reveal animation, everything visible).
 
 ## Content conventions
 
@@ -60,9 +73,11 @@ repo (Terraform).
   toggle. Call-to-action buttons (`.btn-primary`, header `.nav-cta`) are white
   with navy text, inverting to navy on hover.
 - `styles.css` is cache-busted with a `?v=N` query on its `<link>` in
-  `index.html` and `404.html`. Bump `N` whenever you change CSS, because
-  `public/_headers` caches `/css/*` for an hour and same-filename edits would
-  otherwise be served stale.
+  `index.html` and `404.html`, and `main.js` carries the same `?v=N` on its
+  `<script>` in `index.html`. Bump `N` whenever you change CSS or JS, because
+  `public/_headers` caches `/css/*` and `/js/*` for an hour and same-filename
+  edits would otherwise be served stale. (`404.html` loads no JS, so only its
+  CSS link needs bumping.)
 
 ## CI / deploy
 
