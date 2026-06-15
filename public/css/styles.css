@@ -12,6 +12,24 @@
   --accent: #7c8aa0;
   --accent-dark: #94a2b6;
 
+  /* Cool-blue accent ramp (steel -> sky), layered on the navy base. Drives the
+     heading underlines, hero stat numbers, card rims/glow, section kickers, and
+     nav underline. The solid --accent above is kept for the focus ring and the
+     small bullet dots so nothing regresses. */
+  --accent-steel: #4f6f9e;
+  --accent-sky: #8fb4e6;
+  --accent-glow: rgba(120, 160, 224, 0.35);
+  --grad-accent: linear-gradient(
+    135deg,
+    var(--accent-steel),
+    var(--accent-sky)
+  );
+  --grad-accent-soft: linear-gradient(
+    135deg,
+    rgba(79, 111, 158, 0.16),
+    rgba(143, 180, 230, 0.1)
+  );
+
   --bg: #0d1a2b;
   --surface: #1a2c47;
   --surface-alt: #122236;
@@ -27,6 +45,9 @@
   --shadow-sm: 0 1px 3px rgba(15, 28, 46, 0.08);
   --shadow-md: 0 8px 24px rgba(15, 28, 46, 0.12);
   --shadow-lg: 0 18px 48px rgba(15, 28, 46, 0.28);
+  /* Cool-blue-tinted elevation used for hover lifts (cards, tiles, contact). */
+  --shadow-glow:
+    0 16px 40px rgba(8, 16, 30, 0.55), 0 0 0 1px rgba(143, 180, 230, 0.22);
 
   --font-body:
     system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
@@ -151,11 +172,12 @@ h3 {
   transition:
     transform 0.12s ease,
     background 0.18s ease,
-    color 0.18s ease;
+    color 0.18s ease,
+    box-shadow 0.18s ease;
 }
 
 .btn:hover {
-  transform: translateY(-1px);
+  transform: translateY(-2px);
 }
 
 .btn-primary {
@@ -164,9 +186,11 @@ h3 {
   border-color: var(--navy-900);
 }
 
+/* Keep the white-bg / navy-text contract; only layer a cool-blue glow halo. */
 .btn-primary:hover {
   background: var(--navy-900);
   color: #fff;
+  box-shadow: 0 10px 26px var(--accent-glow);
 }
 
 .btn-ghost {
@@ -177,6 +201,7 @@ h3 {
 
 .btn-ghost:hover {
   background: rgba(255, 255, 255, 0.12);
+  box-shadow: 0 8px 22px rgba(120, 160, 224, 0.22);
 }
 
 .btn-block {
@@ -196,6 +221,19 @@ h3 {
   background: rgba(13, 26, 43, 0.85);
   backdrop-filter: saturate(140%) blur(8px);
   border-bottom: 1px solid var(--border);
+  transition:
+    background 0.25s ease,
+    box-shadow 0.25s ease,
+    border-color 0.25s ease;
+}
+
+/* Deepen and lift the header once scrolled past the hero. Only background,
+   border, and shadow change (no height/padding) so --topbar-h stays valid and
+   anchor jumps stay aligned. Toggled by JS at scrollY > 40. */
+.topbar.is-scrolled .site-header {
+  background: rgba(11, 22, 40, 0.96);
+  border-bottom-color: rgba(143, 180, 230, 0.28);
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.38);
 }
 
 .header-inner {
@@ -241,15 +279,34 @@ h3 {
 }
 
 .nav-menu a {
+  position: relative;
   color: var(--text);
   text-decoration: none;
   font-weight: 500;
   padding: 0.4rem 0;
-  border-bottom: 2px solid transparent;
 }
 
-.nav-menu a:hover {
-  border-bottom-color: var(--accent);
+/* Gradient underline that wipes in (left to right) on hover, keyboard focus, or
+   when the link's section is the active one (scroll-spy). Absolutely positioned
+   so it never shifts layout. The white Contact pill (.nav-cta) is excluded. */
+.nav-menu a:not(.nav-cta)::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 2px;
+  border-radius: 999px;
+  background: var(--grad-accent);
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform 0.22s ease;
+}
+
+.nav-menu a:not(.nav-cta):hover::after,
+.nav-menu a:not(.nav-cta):focus-visible::after,
+.nav-menu a:not(.nav-cta).is-active::after {
+  transform: scaleX(1);
 }
 
 .nav-cta {
@@ -338,6 +395,27 @@ h3 {
   opacity: 1;
 }
 
+/* Slow Ken Burns drift on the active slide so the photo feels alive behind the
+   text. Only the active slide animates (inactive slides reset to scale 1, which
+   keeps the crossfade clean). Capped at 1.06 to avoid softening the 2000px hero.
+   Pauses with the carousel's pause/play control and under reduced-motion. */
+@keyframes heroKenBurns {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(1.06);
+  }
+}
+
+.hero-slide.is-active {
+  animation: heroKenBurns 8s ease-out forwards;
+}
+
+.hero-carousel.is-paused .hero-slide {
+  animation-play-state: paused;
+}
+
 /* Slideshow pause/play, bottom-right of the hero. */
 .hero-toggle {
   position: absolute;
@@ -398,10 +476,20 @@ h3 {
 .hero-status {
   display: inline-block;
   margin: 0 0 0.75rem;
-  padding: 0.3rem 0.9rem;
-  background: var(--accent);
+  padding: 0.32rem 0.95rem;
   color: #fff;
+  /* Gradient-bordered glass pill (double-background trick): a translucent navy
+     fill with a cool-blue gradient rim. Falls back to a solid navy pill in
+     engines without background-clip border-box support. */
+  background: rgba(11, 22, 40, 0.55);
+  background-image:
+    linear-gradient(rgba(11, 22, 40, 0.55), rgba(11, 22, 40, 0.55)),
+    var(--grad-accent);
+  background-origin: border-box;
+  background-clip: padding-box, border-box;
+  border: 1px solid transparent;
   border-radius: 999px;
+  box-shadow: 0 2px 14px rgba(8, 16, 30, 0.35);
   font-size: 0.8rem;
   font-weight: 700;
   letter-spacing: 0.08em;
@@ -447,6 +535,7 @@ h3 {
 .hero-stats strong {
   font-size: 1.6rem;
   font-family: var(--font-display);
+  color: #fff;
 }
 
 .hero-stats span {
@@ -454,6 +543,25 @@ h3 {
   text-transform: uppercase;
   letter-spacing: 0.06em;
   opacity: 0.9;
+}
+
+/* Gradient-filled hero metrics. Solid white is the base; the gradient clip is
+   layered only where supported so the figures never vanish. The hero sits over a
+   layered photo + dark overlay (axe color-contrast is ignored here per
+   .pa11yci) and the light sky end keeps the numbers legible against it. */
+.price-amount {
+  color: #fff;
+}
+
+@supports (background-clip: text) or (-webkit-background-clip: text) {
+  .hero-stats strong,
+  .price-amount {
+    background: var(--grad-accent);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    filter: drop-shadow(0 1px 6px var(--accent-glow));
+  }
 }
 
 .hero-actions {
@@ -518,8 +626,42 @@ h3 {
 }
 
 .section-heading {
+  position: relative;
   font-size: clamp(1.7rem, 4vw, 2.4rem);
   margin-bottom: 0.4rem;
+  padding-bottom: 0.55rem;
+}
+
+/* Short gradient rule under each section heading: a small recurring accent that
+   reads as designed. Decorative (empty content), so the heading's white text
+   and its contrast are untouched. */
+.section-heading::after {
+  content: "";
+  display: block;
+  width: 3rem;
+  height: 3px;
+  margin-top: 0.55rem;
+  border-radius: 999px;
+  background: var(--grad-accent);
+  box-shadow: 0 0 12px var(--accent-glow);
+}
+
+/* Center the rule under headings that sit in centered blocks. */
+.contact-stack .section-heading::after,
+.error-page .section-heading::after {
+  margin-inline: auto;
+}
+
+/* Small uppercase eyebrow above a section heading (a guided-tour chapter label).
+   Solid sky-blue, which clears AA on the dark section surfaces. Always a <p>,
+   never a heading, so the document outline is unchanged. */
+.section-kicker {
+  margin: 0 0 0.35rem;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent-sky);
 }
 
 .section-intro {
@@ -540,6 +682,7 @@ h3 {
 }
 
 .gallery-item {
+  position: relative;
   display: block;
   width: 100%;
   padding: 0;
@@ -550,6 +693,9 @@ h3 {
   background: var(--surface);
   box-shadow: var(--shadow-sm);
   aspect-ratio: 4 / 3;
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease;
 }
 
 .gallery-item img {
@@ -561,6 +707,39 @@ h3 {
 
 .gallery-item:hover img {
   transform: scale(1.05);
+}
+
+/* Lift + cool-blue glow on hover/keyboard focus. The box-shadow draws outside
+   the box so overflow:hidden doesn't clip it. The 3px focus-visible outline
+   (the keyboard indicator) is preserved and layered on top of this. */
+.gallery-item:hover,
+.gallery-item:focus-visible {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-glow);
+}
+
+/* Gradient frame revealed on hover/focus, drawn as an inset ring via the
+   mask trick (no extra DOM, not clipped since it sits inside the box). */
+.gallery-item::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 2px;
+  background: var(--grad-accent);
+  -webkit-mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  opacity: 0;
+  transition: opacity 0.25s ease;
+  pointer-events: none;
+}
+
+.gallery-item:hover::after,
+.gallery-item:focus-visible::after {
+  opacity: 1;
 }
 
 /* ------------------------------ Tour ---------------------------------- */
@@ -647,8 +826,21 @@ h3 {
 }
 
 .subsection-heading {
+  position: relative;
   font-size: clamp(1.4rem, 3.4vw, 1.9rem);
   margin: 2.75rem 0 1.3rem;
+  padding-bottom: 0.45rem;
+}
+
+.subsection-heading::after {
+  content: "";
+  display: block;
+  width: 2rem;
+  height: 2px;
+  margin-top: 0.45rem;
+  border-radius: 999px;
+  background: var(--grad-accent);
+  opacity: 0.85;
 }
 
 .feature-cards {
@@ -661,11 +853,32 @@ h3 {
 }
 
 .feature-card {
-  background: var(--surface);
-  border: 1px solid var(--border);
+  /* Gradient rim via the double-background trick: the surface fill sits on top
+     (clipped to padding-box) and a soft gradient shows only in the 1px border
+     (clipped to border-box). Without background-clip support the opaque surface
+     layer simply covers everything, so the fallback is a plain surface card. */
+  border: 1px solid transparent;
   border-radius: var(--radius-lg);
   padding: 1.4rem 1.5rem;
+  background-color: var(--surface);
+  background-image:
+    linear-gradient(var(--surface), var(--surface)), var(--grad-accent-soft);
+  background-origin: border-box;
+  background-clip: padding-box, border-box;
   box-shadow: var(--shadow-sm);
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+/* Lift + brighter gradient rim + glow on hover or when a link inside is focused
+   (keyboard parity). */
+.feature-card:hover,
+.feature-card:focus-within {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-glow);
+  background-image:
+    linear-gradient(var(--surface), var(--surface)), var(--grad-accent);
 }
 
 .feature-card h3 {
@@ -728,12 +941,26 @@ h3 {
 }
 
 .amenity-list li {
-  background: var(--surface);
-  border: 1px solid var(--border);
+  border: 1px solid transparent;
   border-radius: 999px;
   padding: 0.45rem 1.05rem;
   font-size: 0.95rem;
   font-weight: 500;
+  background-color: var(--surface);
+  background-image:
+    linear-gradient(var(--surface), var(--surface)), var(--grad-accent-soft);
+  background-origin: border-box;
+  background-clip: padding-box, border-box;
+  transition:
+    transform 0.18s ease,
+    box-shadow 0.18s ease;
+}
+
+.amenity-list li:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 18px rgba(8, 16, 30, 0.4);
+  background-image:
+    linear-gradient(var(--surface), var(--surface)), var(--grad-accent);
 }
 
 .amenity-gallery {
@@ -758,10 +985,24 @@ h3 {
   display: flex;
   flex-direction: column;
   gap: 0.25rem;
-  background: var(--surface);
-  border: 1px solid var(--border);
+  border: 1px solid transparent;
   border-radius: var(--radius);
   padding: 1.1rem 1.2rem;
+  background-color: var(--surface);
+  background-image:
+    linear-gradient(var(--surface), var(--surface)), var(--grad-accent-soft);
+  background-origin: border-box;
+  background-clip: padding-box, border-box;
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+.location-highlights li:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-glow);
+  background-image:
+    linear-gradient(var(--surface), var(--surface)), var(--grad-accent);
 }
 
 .location-highlights strong {
@@ -811,10 +1052,6 @@ h3 {
   font-size: 0.98rem;
 }
 
-.contact-method-pref {
-  border-color: var(--accent);
-}
-
 .contact-tag {
   font-size: 0.62rem;
   font-weight: 700;
@@ -840,17 +1077,37 @@ h3 {
   flex-direction: column;
   gap: 0.15rem;
   padding: 0.9rem 1rem;
-  background: var(--surface);
-  border: 1px solid var(--border);
+  border: 1px solid transparent;
   border-radius: var(--radius);
   text-decoration: none;
   color: #fff;
-  transition: background 0.18s ease;
   min-width: 0;
+  background-color: var(--surface);
+  background-image:
+    linear-gradient(var(--surface), var(--surface)), var(--grad-accent-soft);
+  background-origin: border-box;
+  background-clip: padding-box, border-box;
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
 }
 
-.contact-method:hover {
-  background: var(--navy-600);
+.contact-method:hover,
+.contact-method:focus-visible {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-glow);
+  background-image:
+    linear-gradient(var(--surface), var(--surface)), var(--grad-accent);
+}
+
+/* The preferred (text/call) method carries the full gradient rim and a resting
+   glow so the path the owner prefers stands out at rest. */
+.contact-method.contact-method-pref {
+  background-image:
+    linear-gradient(var(--surface), var(--surface)), var(--grad-accent);
+  box-shadow:
+    0 0 0 1px rgba(143, 180, 230, 0.18),
+    0 8px 22px rgba(8, 16, 30, 0.4);
 }
 
 .contact-method-label {
@@ -1076,10 +1333,18 @@ h3 {
   justify-content: center;
   width: 88px;
   height: 88px;
-  background: #fff;
   color: var(--navy-900);
+  /* White fill behind the navy date (contrast), with a 2px cool-blue gradient
+     rim and a static glow. The gradient never sits behind the text. */
+  background-color: #fff;
+  background-image: linear-gradient(#fff, #fff), var(--grad-accent);
+  background-origin: border-box;
+  background-clip: padding-box, border-box;
+  border: 2px solid transparent;
   border-radius: var(--radius-lg);
-  box-shadow: var(--shadow-md);
+  box-shadow:
+    0 8px 24px rgba(8, 16, 30, 0.35),
+    0 0 18px var(--accent-glow);
   line-height: 1.05;
 }
 
@@ -1088,7 +1353,7 @@ h3 {
   font-size: 0.8rem;
   font-weight: 700;
   letter-spacing: 0.08em;
-  color: var(--navy-600);
+  color: var(--accent-steel);
 }
 
 .openhouse-cal-day {
@@ -1175,6 +1440,65 @@ h3 {
   opacity: 1;
   visibility: visible;
   transform: translateY(0);
+}
+
+/* --------------------- Scroll reveal (JS opt-in) ---------------------- */
+/* Content fades and rises in as it scrolls into view. The hidden start state is
+   gated entirely behind .js-reveal, which main.js adds to <html> ONLY after the
+   IntersectionObserver is wired and ONLY when reduced-motion is off. So with JS
+   disabled, no IntersectionObserver, or a JS error, the class is never added and
+   every element stays fully visible (progressive enhancement). main.js adds
+   .is-revealed when the element intersects, then stops observing it. */
+.js-reveal [data-reveal] {
+  opacity: 0;
+  transform: translateY(20px);
+  transition:
+    opacity 0.6s ease,
+    transform 0.6s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+.js-reveal [data-reveal].is-revealed {
+  opacity: 1;
+  transform: none;
+}
+
+.js-reveal [data-reveal-stagger] > * {
+  opacity: 0;
+  transform: translateY(16px);
+  transition:
+    opacity 0.55s ease,
+    transform 0.55s ease;
+}
+
+.js-reveal [data-reveal-stagger].is-revealed > * {
+  opacity: 1;
+  transform: none;
+}
+
+/* Staggered cascade for the children of a revealed row (capped at 8 steps). */
+.js-reveal [data-reveal-stagger].is-revealed > *:nth-child(1) {
+  transition-delay: 0s;
+}
+.js-reveal [data-reveal-stagger].is-revealed > *:nth-child(2) {
+  transition-delay: 0.06s;
+}
+.js-reveal [data-reveal-stagger].is-revealed > *:nth-child(3) {
+  transition-delay: 0.12s;
+}
+.js-reveal [data-reveal-stagger].is-revealed > *:nth-child(4) {
+  transition-delay: 0.18s;
+}
+.js-reveal [data-reveal-stagger].is-revealed > *:nth-child(5) {
+  transition-delay: 0.24s;
+}
+.js-reveal [data-reveal-stagger].is-revealed > *:nth-child(6) {
+  transition-delay: 0.3s;
+}
+.js-reveal [data-reveal-stagger].is-revealed > *:nth-child(7) {
+  transition-delay: 0.36s;
+}
+.js-reveal [data-reveal-stagger].is-revealed > *:nth-child(8) {
+  transition-delay: 0.42s;
 }
 
 /* --------------------------- Responsive ------------------------------- */
@@ -1266,8 +1590,30 @@ h3 {
     transition-duration: 0.001ms !important;
   }
 
+  /* Belt-and-suspenders: even if .js-reveal is somehow present (e.g. the OS
+     setting was flipped mid-session), never leave revealed content hidden. */
+  .js-reveal [data-reveal],
+  .js-reveal [data-reveal-stagger] > * {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+
+  /* Stop the hero Ken Burns zoom; slides stay at their natural scale. */
+  .hero-slide.is-active {
+    animation: none !important;
+  }
+
+  /* Drop hover/lift transforms but keep the shadow and rim as a static cue. */
   .gallery-item:hover img,
-  .btn:hover {
+  .gallery-item:hover,
+  .gallery-item:focus-visible,
+  .btn:hover,
+  .feature-card:hover,
+  .feature-card:focus-within,
+  .location-highlights li:hover,
+  .amenity-list li:hover,
+  .contact-method:hover,
+  .contact-method:focus-visible {
     transform: none;
   }
 }

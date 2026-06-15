@@ -58,7 +58,7 @@
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     <!-- Bump ?v= when editing styles.css so cached copies refresh (see _headers). -->
-    <link rel="stylesheet" href="/css/styles.css?v=12" />
+    <link rel="stylesheet" href="/css/styles.css?v=13" />
 
     <!-- Structured data for search engines. -->
     <script type="application/ld+json">
@@ -397,7 +397,7 @@
         id="openhouse"
         aria-labelledby="openhouse-heading"
       >
-        <div class="container openhouse-inner">
+        <div class="container openhouse-inner" data-reveal>
           <div class="openhouse-cal" aria-hidden="true">
             <span class="openhouse-cal-month">Jul</span>
             <span class="openhouse-cal-day">11&ndash;12</span>
@@ -428,8 +428,11 @@
       <!-- ===================== GALLERY ===================== -->
       <section class="section" id="gallery" aria-labelledby="gallery-heading">
         <div class="container">
-          <h2 id="gallery-heading" class="section-heading">Photo Gallery</h2>
-          <p class="section-intro">
+          <p class="section-kicker" data-reveal>Step Inside</p>
+          <h2 id="gallery-heading" class="section-heading" data-reveal>
+            Photo Gallery
+          </h2>
+          <p class="section-intro" data-reveal>
             Take a look inside and around the fully renovated home. Select any
             photo to view it larger.
           </p>
@@ -1358,15 +1361,18 @@
         aria-labelledby="tour-heading"
       >
         <div class="container">
-          <h2 id="tour-heading" class="section-heading">Interactive 3D Tour</h2>
-          <p class="section-intro">
+          <p class="section-kicker" data-reveal>Virtual Walkthrough</p>
+          <h2 id="tour-heading" class="section-heading" data-reveal>
+            Interactive 3D Tour
+          </h2>
+          <p class="section-intro" data-reveal>
             Walk through the entire home in 3D, at your own pace.
           </p>
 
           <!-- EDIT: Matterport tour. Paste your URL into BOTH the iframe src
                and the fallback link below. Format:
                https://my.matterport.com/show/?m=XXXXXXXXXXX -->
-          <div class="tour-frame">
+          <div class="tour-frame" data-reveal>
             <iframe
               title="3D virtual tour of 4001 Mossy Bank Lane"
               src="https://my.matterport.com/show/?m=fTqNmKh5YzR"
@@ -1391,8 +1397,11 @@
       <!-- ===================== DETAILS ===================== -->
       <section class="section" id="details" aria-labelledby="details-heading">
         <div class="container">
-          <h2 id="details-heading" class="section-heading">About the Home</h2>
-          <div class="about-intro">
+          <p class="section-kicker" data-reveal>The Residence</p>
+          <h2 id="details-heading" class="section-heading" data-reveal>
+            About the Home
+          </h2>
+          <div class="about-intro" data-reveal>
             <p>
               This beautifully, fully renovated 4-bedroom, 2.5-bath Colonial
               offers more than 3,300 total square feet, including a spacious
@@ -1420,8 +1429,8 @@
             </p>
           </div>
 
-          <h3 class="subsection-heading">Renovation Highlights</h3>
-          <ul class="feature-cards">
+          <h3 class="subsection-heading" data-reveal>Renovation Highlights</h3>
+          <ul class="feature-cards" data-reveal-stagger>
             <li class="feature-card">
               <h3>Kitchen</h3>
               <ul>
@@ -1520,14 +1529,17 @@
         aria-labelledby="floorplan-heading"
       >
         <div class="container">
-          <h2 id="floorplan-heading" class="section-heading">Floor Plans</h2>
-          <p class="section-intro">
+          <p class="section-kicker" data-reveal>Layout &amp; Dimensions</p>
+          <h2 id="floorplan-heading" class="section-heading" data-reveal>
+            Floor Plans
+          </h2>
+          <p class="section-intro" data-reveal>
             Three levels with roughly 2,296 finished square feet above grade,
             plus a 1,176 sq ft unfinished basement. Select a plan to view the
             room dimensions. Measurements are approximate.
           </p>
 
-          <ul class="gallery-grid floorplan-grid">
+          <ul class="gallery-grid floorplan-grid" data-reveal-stagger>
             <li>
               <button
                 class="gallery-item"
@@ -1599,8 +1611,11 @@
       <!-- ===================== LOCATION ===================== -->
       <section class="section" id="location" aria-labelledby="location-heading">
         <div class="container">
-          <h2 id="location-heading" class="section-heading">Location</h2>
-          <p class="section-intro">
+          <p class="section-kicker" data-reveal>The Neighborhood</p>
+          <h2 id="location-heading" class="section-heading" data-reveal>
+            Location
+          </h2>
+          <p class="section-intro" data-reveal>
             4001 Mossy Bank Lane sits on a corner lot in the Dunbarton Village
             section of Lee's Hill, one of Fredericksburg's most amenity-rich
             communities. You're minutes from I-95, the Fredericksburg VRE
@@ -1619,7 +1634,7 @@
             >
           </div>
 
-          <ul class="location-highlights">
+          <ul class="location-highlights" data-reveal-stagger>
             <li>
               <strong>Schools</strong
               ><span>Spotsylvania County Public Schools</span>
@@ -1638,13 +1653,15 @@
             </li>
           </ul>
 
-          <h3 class="subsection-heading">Lee's Hill Community Amenities</h3>
-          <p class="section-intro">
+          <h3 class="subsection-heading" data-reveal>
+            Lee's Hill Community Amenities
+          </h3>
+          <p class="section-intro" data-reveal>
             A community HOA (covering the pools, trash, snow removal, and
             common-area management) gives residents access to a full slate of
             amenities:
           </p>
-          <ul class="amenity-list">
+          <ul class="amenity-list" data-reveal-stagger>
             <li>2 clubhouses (North &amp; South)</li>
             <li>2 outdoor pools</li>
             <li>Tennis courts</li>
@@ -1955,10 +1972,11 @@
         aria-labelledby="contact-heading"
       >
         <div class="container contact-stack">
-          <h2 id="contact-heading" class="section-heading">
+          <p class="section-kicker" data-reveal>Get in Touch</p>
+          <h2 id="contact-heading" class="section-heading" data-reveal>
             Schedule a Showing
           </h2>
-          <p class="contact-lead">
+          <p class="contact-lead" data-reveal>
             Reach out for a private showing, or catch the
             <strong
               >open house <span class="nowrap">July 11&ndash;12</span> &middot;
@@ -1966,7 +1984,7 @@
             >.
           </p>
 
-          <div class="contact-methods">
+          <div class="contact-methods" data-reveal-stagger>
             <!-- EDIT: email (update BOTH the mailto: link and the text) -->
             <a
               class="contact-method"
@@ -2073,6 +2091,7 @@
       </svg>
     </button>
 
-    <script src="/js/main.js" defer></script>
+    <!-- Bump ?v= when editing main.js so cached copies refresh (see _headers). -->
+    <script src="/js/main.js?v=13" defer></script>
   </body>
 </html>
