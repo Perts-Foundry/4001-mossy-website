@@ -768,63 +768,33 @@ h3 {
 }
 
 /* ----------------------------- Contact -------------------------------- */
-.contact-layout {
-  display: grid;
-  grid-template-columns: 1.1fr 0.9fr;
-  gap: clamp(1.5rem, 5vw, 3.5rem);
-  align-items: center;
+/* Single centered column; the three methods sit in a horizontal row. */
+.contact-stack {
+  max-width: 820px;
+  margin-inline: auto;
+  text-align: center;
 }
 
-.contact-copy p {
+.contact-lead {
   font-size: 1.1rem;
   color: var(--text-muted);
-  max-width: 48ch;
+  max-width: 54ch;
+  margin: 0 auto 2rem;
 }
 
-.contact-card {
-  background: var(--navy-700);
-  color: #fff;
-  border: 1px solid var(--border);
-  border-radius: var(--radius-lg);
-  padding: clamp(1.6rem, 4vw, 2.4rem);
-  box-shadow: var(--shadow-md);
+.contact-lead strong {
+  color: var(--text);
+  font-weight: 600;
 }
 
-.contact-name {
-  font-family: var(--font-display);
-  font-size: 1.5rem;
-  margin: 0;
-}
-
-.contact-role {
-  margin: 0.1rem 0 1.1rem;
-  color: rgba(255, 255, 255, 0.8);
-}
-
-.contact-pref {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: baseline;
-  gap: 0.5rem;
-  margin: 0 0 1.3rem;
-  font-size: 0.95rem;
-  color: rgba(255, 255, 255, 0.9);
-}
-
-.contact-pref-badge {
-  font-size: 0.72rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
-  color: var(--navy-900);
-  background: #fff;
-  padding: 0.2rem 0.6rem;
-  border-radius: 999px;
-  white-space: nowrap;
+.contact-byline {
+  margin: 1.3rem 0 0;
+  color: var(--text-muted);
+  font-size: 0.98rem;
 }
 
 .contact-method-pref {
-  border-color: rgba(255, 255, 255, 0.42);
+  border-color: var(--accent);
 }
 
 .contact-tag {
@@ -842,25 +812,27 @@ h3 {
 
 .contact-methods {
   display: grid;
+  grid-template-columns: 1.8fr 1fr 1fr;
   gap: 0.8rem;
-  margin-bottom: 1.4rem;
+  text-align: left;
 }
 
 .contact-method {
   display: flex;
   flex-direction: column;
-  gap: 0.1rem;
-  padding: 0.9rem 1.1rem;
-  background: rgba(255, 255, 255, 0.08);
-  border: 1px solid rgba(255, 255, 255, 0.18);
+  gap: 0.15rem;
+  padding: 0.9rem 1rem;
+  background: var(--surface);
+  border: 1px solid var(--border);
   border-radius: var(--radius);
   text-decoration: none;
   color: #fff;
   transition: background 0.18s ease;
+  min-width: 0;
 }
 
 .contact-method:hover {
-  background: rgba(255, 255, 255, 0.16);
+  background: var(--navy-600);
 }
 
 .contact-method-label {
@@ -871,8 +843,14 @@ h3 {
 }
 
 .contact-method-value {
-  font-size: 1.15rem;
+  font-size: 1rem;
   font-weight: 600;
+  overflow-wrap: anywhere;
+}
+
+.contact-cta {
+  margin-top: 1.7rem;
+  min-width: 240px;
 }
 
 /* ------------------------------ Footer -------------------------------- */
@@ -1227,7 +1205,7 @@ h3 {
   }
 
   .details-layout,
-  .contact-layout {
+  .contact-methods {
     grid-template-columns: 1fr;
   }
 

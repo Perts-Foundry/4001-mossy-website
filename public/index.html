@@ -58,7 +58,7 @@
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     <!-- Bump ?v= when editing styles.css so cached copies refresh (see _headers). -->
-    <link rel="stylesheet" href="/css/styles.css?v=6" />
+    <link rel="stylesheet" href="/css/styles.css?v=7" />
 
     <!-- Structured data for search engines. -->
     <script type="application/ld+json">
@@ -1950,61 +1950,49 @@
         id="contact"
         aria-labelledby="contact-heading"
       >
-        <div class="container contact-layout">
-          <div class="contact-copy">
-            <h2 id="contact-heading" class="section-heading">
-              Schedule a Showing
-            </h2>
-            <p>
-              Interested in 4001 Mossy Bank Lane? Reach out to arrange a private
-              showing, or stop by the open house on July 11&ndash;12. A text is
-              the fastest way to reach us.
-            </p>
-          </div>
+        <div class="container contact-stack">
+          <h2 id="contact-heading" class="section-heading">
+            Schedule a Showing
+          </h2>
+          <p class="contact-lead">
+            Reach out for a private showing, or catch the open house July
+            11&ndash;12. <strong>A text is fastest.</strong>
+          </p>
 
-          <div class="contact-card">
-            <p class="contact-name">Seth Perts &amp; Sean Perts</p>
-            <p class="contact-role">For Sale by Owner</p>
-
-            <p class="contact-pref">
-              <span class="contact-pref-badge">Text preferred</span>
-              <span
-                >Texting gets the fastest reply; email or a call works
-                too.</span
-              >
-            </p>
-
-            <div class="contact-methods">
-              <!-- EDIT: email (update BOTH the mailto: link and the text) -->
-              <a
-                class="contact-method"
-                href="mailto:4001mossybanklane@gmail.com?subject=4001%20Mossy%20Bank%20Lane%20-%20Showing%20Request"
-              >
-                <span class="contact-method-label">Email</span>
-                <span class="contact-method-value"
-                  >4001mossybanklane@gmail.com</span
-                >
-              </a>
-              <!-- EDIT: phone number (update the sms:, tel:, and the text) -->
-              <a
-                class="contact-method contact-method-pref"
-                href="sms:+15403001108"
-              >
-                <span class="contact-method-label"
-                  >Text <span class="contact-tag">Preferred</span></span
-                >
-                <span class="contact-method-value">(540) 300-1108</span>
-              </a>
-              <a class="contact-method" href="tel:+15403001108">
-                <span class="contact-method-label">Call</span>
-                <span class="contact-method-value">(540) 300-1108</span>
-              </a>
-            </div>
-
-            <a class="btn btn-primary btn-block" href="sms:+15403001108"
-              >Text Us to Schedule</a
+          <div class="contact-methods">
+            <!-- EDIT: email (update BOTH the mailto: link and the text) -->
+            <a
+              class="contact-method"
+              href="mailto:4001mossybanklane@gmail.com?subject=4001%20Mossy%20Bank%20Lane%20-%20Showing%20Request"
             >
+              <span class="contact-method-label">Email</span>
+              <span class="contact-method-value"
+                >4001mossybanklane@gmail.com</span
+              >
+            </a>
+            <!-- EDIT: phone number (update the sms:, tel:, and the text) -->
+            <a
+              class="contact-method contact-method-pref"
+              href="sms:+15403001108"
+            >
+              <span class="contact-method-label"
+                >Text <span class="contact-tag">Preferred</span></span
+              >
+              <span class="contact-method-value">(540) 300-1108</span>
+            </a>
+            <a class="contact-method" href="tel:+15403001108">
+              <span class="contact-method-label">Call</span>
+              <span class="contact-method-value">(540) 300-1108</span>
+            </a>
           </div>
+
+          <p class="contact-byline">
+            Seth Perts &amp; Sean Perts &middot; For Sale by Owner
+          </p>
+
+          <a class="btn btn-primary contact-cta" href="sms:+15403001108"
+            >Text Us to Schedule</a
+          >
         </div>
       </section>
 
