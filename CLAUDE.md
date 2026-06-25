@@ -59,7 +59,7 @@ repo (Terraform).
   block holds the open house `Event`s.
 - The top of the page carries a For-Sale-by-Owner **announcement bar**, an
   **open house** band (`#openhouse`, gradient surface + calendar chip), and an
-  auto-rotating **hero carousel** (`.hero-carousel`: the highlight rooms
+  auto-rotating **hero carousel** (`.hero-carousel`: highlight photos
   crossfading behind the hero text, decorative `alt=""`, with a pause/play
   control) — all tagged with `EDIT:` comments. The open house date/time lives in
   **three** places (announcement bar, `#openhouse` band, and the JSON-LD
