@@ -18,18 +18,19 @@ repo.
 The listing content is populated. The handful of spots most likely to change are
 marked with **`EDIT:`** comments in **`public/index.html`** (search for `EDIT:`):
 
-| What                | Where (search `public/index.html` for…)                                  |
-| ------------------- | ------------------------------------------------------------------------ |
-| **Status**          | `EDIT: status` (For Sale by Owner, Coming Soon, etc.)                    |
-| **Price**           | `EDIT: list price` (currently "Price Upon Request")                      |
-| **FSBO banner**     | `EDIT: For-Sale-by-Owner banner` (top announcement bar)                  |
-| **Open house**      | `EDIT: open house` (band + JSON-LD) and `EDIT: For-Sale-by-Owner banner` |
-| **Hero photos**     | `EDIT: hero slideshow images` (the auto-rotating hero carousel)          |
-| **Matterport tour** | `EDIT: Matterport tour` (iframe `src` + fallback)                        |
-| **Phone**           | `EDIT: phone number` (update the `sms:` link and the text)               |
-| **Email**           | `EDIT: email` (update the `mailto:` link too)                            |
-| Social image        | `EDIT: 1200x630 social image`                                            |
-| Page title / SEO    | `EDIT: page title` and `EDIT: one-sentence summary`                      |
+| What                | Where (search `public/index.html` for…)                                                        |
+| ------------------- | ---------------------------------------------------------------------------------------------- |
+| **Status**          | `EDIT: status` (For Sale by Owner, Coming Soon, etc.)                                          |
+| **Price**           | `EDIT: list price` (currently "$359,900"; also update the JSON-LD `offers`)                    |
+| **FSBO banner**     | `EDIT: For-Sale-by-Owner banner` (top announcement bar)                                        |
+| **Open house**      | `EDIT: open house` (band + JSON-LD), `EDIT: For-Sale-by-Owner banner`, and the `#contact` lead |
+| **Seller notes**    | `EDIT: seller notes` (availability, offer deadline, title company)                             |
+| **Hero photos**     | `EDIT: hero slideshow images` (the auto-rotating hero carousel)                                |
+| **Matterport tour** | `EDIT: Matterport tour` (iframe `src` + fallback)                                              |
+| **Phone**           | `EDIT: phone number` (update the `sms:` link and the text)                                     |
+| **Email**           | `EDIT: email` (update the `mailto:` link too)                                                  |
+| Social image        | `EDIT: 1200x630 social image`                                                                  |
+| Page title / SEO    | `EDIT: page title` and `EDIT: one-sentence summary`                                            |
 
 Everything else (beds/baths/square footage, quick facts, the written
 description, renovation highlights, floor plans, location, and amenities) is

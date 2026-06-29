@@ -53,17 +53,28 @@ repo (Terraform).
 - The Matterport tour URL goes in **both** the `#tour` `<iframe src>` and the
   fallback `<a href>`. Format: `https://my.matterport.com/show/?m=<id>` (live id:
   `fTqNmKh5YzR`).
-- Keep the JSON-LD block's address accurate. It already carries
-  beds/baths/floorSize/yearBuilt; add an `offers` price block once an asking
-  price is set (the hero currently shows "Price Upon Request"). A second JSON-LD
+- Keep the JSON-LD block's address accurate. It carries
+  beds/baths/floorSize/yearBuilt and an `offers` block (price, `priceCurrency`,
+  `availability: PreOrder`, `availabilityStarts`) that mirrors the hero price
+  ($359,900) and "Coming Soon · Available July 9" status; keep them in sync. (Note:
+  `offers` lives on the `SingleFamilyResidence` node, which strict schema.org
+  validators may flag since `offers` is formally a `Product`/`Offer` property;
+  this placement is intentional and search engines tolerate it.) A second JSON-LD
   block holds the open house `Event`s.
 - The top of the page carries a For-Sale-by-Owner **announcement bar**, an
   **open house** band (`#openhouse`, gradient surface + calendar chip), and an
   auto-rotating **hero carousel** (`.hero-carousel`: highlight photos
   crossfading behind the hero text, decorative `alt=""`, with a pause/play
   control) — all tagged with `EDIT:` comments. The open house date/time lives in
-  **three** places (announcement bar, `#openhouse` band, and the JSON-LD
-  `Event`s); update all three together.
+  **four** places (announcement bar, `#openhouse` band, the JSON-LD `Event`s, and
+  the `#contact` lead); update all four together. Hours can differ per day (e.g.
+  Sat 11 AM–3 PM, Sun 1–4 PM), so each `Event`'s `startDate`/`endDate` and each
+  visible time string must match its own day.
+- A **Seller Notes** band (`#sellernotes`, before `#contact`, with its own nav
+  link) carries time-sensitive logistics (availability date, offer-review
+  deadline, title company) as `.feature-card`s, tagged with an `EDIT:` comment.
+  Keep its availability date in sync with the hero status and the JSON-LD
+  `offers.availabilityStarts`.
 - Contact is **display-only** (sms:/tel:/mailto:) — there is no form and no
   backend secret. Email is listed first, text is flagged as strongly preferred,
   and the primary button is an `sms:` link. Keep it form-free unless a contact
