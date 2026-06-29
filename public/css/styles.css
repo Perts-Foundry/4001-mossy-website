@@ -1592,9 +1592,15 @@ h3 {
   }
 
   /* A wide hero photo covered into a tall portrait box crops the sides hard and
-     reads as "zoomed in." A shorter hero on mobile shows more of each photo. */
+     reads as "zoomed in." A shorter, wider hero on mobile shows more of each
+     photo; biasing the framing toward the top keeps the house (not the sky) in
+     view after the remaining crop. */
   .hero {
-    min-height: clamp(360px, 56vh, 520px);
+    min-height: clamp(280px, 42vh, 400px);
+  }
+
+  .hero-slide {
+    object-position: center 35%;
   }
 
   /* The status pill and announcement bar dominate on small screens; scale their
