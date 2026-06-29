@@ -1596,7 +1596,7 @@ h3 {
      photo; biasing the framing toward the top keeps the house (not the sky) in
      view after the remaining crop. */
   .hero {
-    min-height: clamp(305px, 46vh, 435px);
+    min-height: clamp(320px, 49vh, 460px);
   }
 
   .hero-slide {
