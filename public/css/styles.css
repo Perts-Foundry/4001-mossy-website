@@ -1591,6 +1591,23 @@ h3 {
     flex: 1 1 auto;
   }
 
+  /* The status pill and announcement bar dominate on small screens; scale their
+     text (and pill padding) down so they read as accents, not headlines. */
+  .hero-status {
+    font-size: 0.62rem;
+    letter-spacing: 0.06em;
+    padding: 0.28rem 0.7rem;
+  }
+
+  .announce-fsbo {
+    font-size: 0.6rem;
+    padding: 0.2rem 0.55rem;
+  }
+
+  .announce-event {
+    font-size: 0.72rem;
+  }
+
   .back-to-top {
     width: 44px;
     height: 44px;
