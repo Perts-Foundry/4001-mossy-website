@@ -1596,11 +1596,11 @@ h3 {
      photo; biasing the framing toward the top keeps the house (not the sky) in
      view after the remaining crop. */
   .hero {
-    min-height: clamp(280px, 42vh, 400px);
+    min-height: clamp(320px, 49vh, 460px);
   }
 
   .hero-slide {
-    object-position: center 35%;
+    object-position: center 42%;
   }
 
   /* The status pill and announcement bar dominate on small screens; scale their
