@@ -518,12 +518,16 @@ h3 {
 .hero-panel {
   display: inline-block;
   margin: 0.6rem 0 1.4rem;
-  padding: 1rem 1.4rem;
-  background: rgba(8, 16, 30, 0.62);
-  border: 1px solid rgba(143, 180, 230, 0.22);
+  padding: 1.1rem 1.5rem;
+  /* Near-opaque so the plate stands out even over the already-dark lower hero,
+     with a visible cool-blue edge and a soft glow to lift it off the photo. */
+  background: rgba(6, 12, 24, 0.82);
+  border: 1px solid rgba(143, 180, 230, 0.5);
   border-radius: var(--radius-lg);
-  box-shadow: 0 12px 32px rgba(8, 16, 30, 0.45);
-  backdrop-filter: blur(2px);
+  box-shadow:
+    0 16px 38px rgba(0, 0, 0, 0.55),
+    inset 0 1px 0 rgba(255, 255, 255, 0.06);
+  backdrop-filter: blur(3px);
 }
 
 .hero-price {
