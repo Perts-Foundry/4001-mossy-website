@@ -1591,6 +1591,12 @@ h3 {
     flex: 1 1 auto;
   }
 
+  /* A wide hero photo covered into a tall portrait box crops the sides hard and
+     reads as "zoomed in." A shorter hero on mobile shows more of each photo. */
+  .hero {
+    min-height: clamp(360px, 56vh, 520px);
+  }
+
   /* The status pill and announcement bar dominate on small screens; scale their
      text (and pill padding) down so they read as accents, not headlines. */
   .hero-status {
