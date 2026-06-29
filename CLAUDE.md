@@ -56,7 +56,7 @@ repo (Terraform).
 - Keep the JSON-LD block's address accurate. It carries
   beds/baths/floorSize/yearBuilt and an `offers` block (price, `priceCurrency`,
   `availability: PreOrder`, `availabilityStarts`) that mirrors the hero price
-  ($359,900) and "Coming Soon · Available July 9" status; keep them in sync. (Note:
+  ($559,900) and "Coming Soon · Available July 9" status; keep them in sync. (Note:
   `offers` lives on the `SingleFamilyResidence` node, which strict schema.org
   validators may flag since `offers` is formally a `Product`/`Offer` property;
   this placement is intentional and search engines tolerate it.) A second JSON-LD
