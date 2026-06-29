@@ -511,27 +511,8 @@ h3 {
   margin-top: 0.3rem;
 }
 
-/* Dark, slightly-blurred plate behind the price + stats so the cool-blue
-   gradient numerals read against a consistent dark backdrop instead of whatever
-   bright spot of the photo sits behind them. Hugs its content (inline-block) and
-   floats over the slideshow. */
-.hero-panel {
-  display: inline-block;
-  margin: 0.6rem 0 1.4rem;
-  padding: 1.1rem 1.5rem;
-  /* Near-opaque so the plate stands out even over the already-dark lower hero,
-     with a visible cool-blue edge and a soft glow to lift it off the photo. */
-  background: rgba(6, 12, 24, 0.82);
-  border: 1px solid rgba(143, 180, 230, 0.5);
-  border-radius: var(--radius-lg);
-  box-shadow:
-    0 16px 38px rgba(0, 0, 0, 0.55),
-    inset 0 1px 0 rgba(255, 255, 255, 0.06);
-  backdrop-filter: blur(3px);
-}
-
 .hero-price {
-  margin: 0 0 0.75rem;
+  margin: 0.6rem 0 1.2rem;
   font-size: clamp(1.4rem, 3.4vw, 2rem);
   font-weight: 700;
 }
@@ -541,8 +522,8 @@ h3 {
   flex-wrap: wrap;
   gap: clamp(1.2rem, 5vw, 2.6rem);
   list-style: none;
-  margin: 0;
-  padding: 0.85rem 0 0;
+  margin: 0 0 1.6rem;
+  padding: 1rem 0 0;
   border-top: 1px solid rgba(255, 255, 255, 0.25);
 }
 
@@ -564,34 +545,21 @@ h3 {
   opacity: 0.9;
 }
 
-/* Gradient-filled hero metrics. Solid white is the base; the gradient clip is
-   layered only where supported so the figures never vanish. The hero sits over a
+/* Hero metrics are solid white for maximum legibility over the photo slideshow
+   (the cool-blue gradient washed out over bright areas). The hero sits over a
    layered photo + dark overlay (axe color-contrast is ignored here per
    .pa11yci). */
 .price-amount {
   color: #fff;
 }
 
-/* Dark outline so the light numerals stay legible over bright areas of the hero
-   photo (windows, pale walls). Applied via stacked drop-shadow rather than
-   text-shadow, which is unreliably clipped by background-clip:text; the filter
-   runs after the text renders, so it outlines both the gradient fill and the
-   solid-white fallback. */
+/* Dark outline so the white numerals stay legible over bright areas of the hero
+   photo (windows, pale walls), applied as a stacked drop-shadow filter. */
 .hero-stats strong,
 .price-amount {
   filter: drop-shadow(0 0 1px rgba(8, 16, 30, 0.95))
     drop-shadow(0 0 2px rgba(8, 16, 30, 0.7))
     drop-shadow(0 1px 3px rgba(8, 16, 30, 0.5));
-}
-
-@supports (background-clip: text) or (-webkit-background-clip: text) {
-  .hero-stats strong,
-  .price-amount {
-    background: var(--grad-accent);
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
-  }
 }
 
 .hero-actions {
