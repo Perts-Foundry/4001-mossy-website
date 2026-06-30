@@ -545,34 +545,21 @@ h3 {
   opacity: 0.9;
 }
 
-/* Gradient-filled hero metrics. Solid white is the base; the gradient clip is
-   layered only where supported so the figures never vanish. The hero sits over a
+/* Hero metrics are solid white for maximum legibility over the photo slideshow
+   (the cool-blue gradient washed out over bright areas). The hero sits over a
    layered photo + dark overlay (axe color-contrast is ignored here per
    .pa11yci). */
 .price-amount {
   color: #fff;
 }
 
-/* Dark outline so the light numerals stay legible over bright areas of the hero
-   photo (windows, pale walls). Applied via stacked drop-shadow rather than
-   text-shadow, which is unreliably clipped by background-clip:text; the filter
-   runs after the text renders, so it outlines both the gradient fill and the
-   solid-white fallback. */
+/* Dark outline so the white numerals stay legible over bright areas of the hero
+   photo (windows, pale walls), applied as a stacked drop-shadow filter. */
 .hero-stats strong,
 .price-amount {
   filter: drop-shadow(0 0 1px rgba(8, 16, 30, 0.95))
     drop-shadow(0 0 2px rgba(8, 16, 30, 0.7))
     drop-shadow(0 1px 3px rgba(8, 16, 30, 0.5));
-}
-
-@supports (background-clip: text) or (-webkit-background-clip: text) {
-  .hero-stats strong,
-  .price-amount {
-    background: var(--grad-accent);
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
-  }
 }
 
 .hero-actions {
@@ -1467,8 +1454,8 @@ h3 {
   opacity: 0;
   transform: translateY(20px);
   transition:
-    opacity 0.6s ease,
-    transform 0.6s cubic-bezier(0.2, 0.7, 0.2, 1);
+    opacity 0.35s ease,
+    transform 0.35s cubic-bezier(0.2, 0.7, 0.2, 1);
 }
 
 .js-reveal [data-reveal].is-revealed {
@@ -1480,8 +1467,8 @@ h3 {
   opacity: 0;
   transform: translateY(16px);
   transition:
-    opacity 0.55s ease,
-    transform 0.55s ease;
+    opacity 0.32s ease,
+    transform 0.32s ease;
 }
 
 .js-reveal [data-reveal-stagger].is-revealed > * {
@@ -1495,37 +1482,37 @@ h3 {
   transition-delay: 0s;
 }
 .js-reveal [data-reveal-stagger].is-revealed > *:nth-child(2) {
-  transition-delay: 0.06s;
+  transition-delay: 0.03s;
 }
 .js-reveal [data-reveal-stagger].is-revealed > *:nth-child(3) {
-  transition-delay: 0.12s;
+  transition-delay: 0.06s;
 }
 .js-reveal [data-reveal-stagger].is-revealed > *:nth-child(4) {
-  transition-delay: 0.18s;
+  transition-delay: 0.09s;
 }
 .js-reveal [data-reveal-stagger].is-revealed > *:nth-child(5) {
-  transition-delay: 0.24s;
+  transition-delay: 0.12s;
 }
 .js-reveal [data-reveal-stagger].is-revealed > *:nth-child(6) {
-  transition-delay: 0.3s;
+  transition-delay: 0.15s;
 }
 .js-reveal [data-reveal-stagger].is-revealed > *:nth-child(7) {
-  transition-delay: 0.36s;
+  transition-delay: 0.18s;
 }
 .js-reveal [data-reveal-stagger].is-revealed > *:nth-child(8) {
-  transition-delay: 0.42s;
+  transition-delay: 0.21s;
 }
 .js-reveal [data-reveal-stagger].is-revealed > *:nth-child(9) {
-  transition-delay: 0.48s;
+  transition-delay: 0.24s;
 }
 .js-reveal [data-reveal-stagger].is-revealed > *:nth-child(10) {
-  transition-delay: 0.54s;
+  transition-delay: 0.27s;
 }
 .js-reveal [data-reveal-stagger].is-revealed > *:nth-child(11) {
-  transition-delay: 0.6s;
+  transition-delay: 0.3s;
 }
 .js-reveal [data-reveal-stagger].is-revealed > *:nth-child(12) {
-  transition-delay: 0.66s;
+  transition-delay: 0.33s;
 }
 
 /* --------------------------- Responsive ------------------------------- */
@@ -1589,6 +1576,35 @@ h3 {
 
   .openhouse-actions .btn {
     flex: 1 1 auto;
+  }
+
+  /* A wide hero photo covered into a tall portrait box crops the sides hard and
+     reads as "zoomed in." A shorter, wider hero on mobile shows more of each
+     photo; biasing the framing toward the top keeps the house (not the sky) in
+     view after the remaining crop. */
+  .hero {
+    min-height: clamp(320px, 49vh, 460px);
+  }
+
+  .hero-slide {
+    object-position: center 42%;
+  }
+
+  /* The status pill and announcement bar dominate on small screens; scale their
+     text (and pill padding) down so they read as accents, not headlines. */
+  .hero-status {
+    font-size: 0.62rem;
+    letter-spacing: 0.06em;
+    padding: 0.28rem 0.7rem;
+  }
+
+  .announce-fsbo {
+    font-size: 0.6rem;
+    padding: 0.2rem 0.55rem;
+  }
+
+  .announce-event {
+    font-size: 0.72rem;
   }
 
   .back-to-top {

@@ -58,7 +58,7 @@
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     <!-- Bump ?v= when editing styles.css so cached copies refresh (see _headers). -->
-    <link rel="stylesheet" href="/css/styles.css?v=14" />
+    <link rel="stylesheet" href="/css/styles.css?v=22" />
 
     <!-- Structured data for search engines. -->
     <script type="application/ld+json">
@@ -82,6 +82,13 @@
           "value": 2296,
           "unitCode": "FTK"
         },
+        "offers": {
+          "@type": "Offer",
+          "price": "559900",
+          "priceCurrency": "USD",
+          "availability": "https://schema.org/PreOrder",
+          "availabilityStarts": "2026-07-09"
+        },
         "address": {
           "@type": "PostalAddress",
           "streetAddress": "4001 Mossy Bank Lane",
@@ -104,7 +111,7 @@
           "name": "Open House: 4001 Mossy Bank Lane",
           "description": "Open house at 4001 Mossy Bank Lane, Fredericksburg, VA 22408. For sale by owner; no appointment needed.",
           "startDate": "2026-07-11T11:00:00-04:00",
-          "endDate": "2026-07-11T16:00:00-04:00",
+          "endDate": "2026-07-11T15:00:00-04:00",
           "eventStatus": "https://schema.org/EventScheduled",
           "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
           "url": "https://4001mossy.com/#openhouse",
@@ -126,7 +133,7 @@
           "@type": "Event",
           "name": "Open House: 4001 Mossy Bank Lane",
           "description": "Open house at 4001 Mossy Bank Lane, Fredericksburg, VA 22408. For sale by owner; no appointment needed.",
-          "startDate": "2026-07-12T11:00:00-04:00",
+          "startDate": "2026-07-12T13:00:00-04:00",
           "endDate": "2026-07-12T16:00:00-04:00",
           "eventStatus": "https://schema.org/EventScheduled",
           "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
@@ -156,11 +163,15 @@
       <!-- EDIT: For-Sale-by-Owner banner + open house teaser (shows at the very top). -->
       <div class="announce-bar">
         <div class="container announce-inner">
-          <span class="announce-fsbo">For Sale by Owner</span>
+          <span class="announce-fsbo"
+            >For Sale by Owner &middot; Coming Soon &middot; Available July
+            9</span
+          >
           <a class="announce-event" href="#openhouse">
             <span class="announce-event-tag">Open House</span>
             <span class="announce-event-detail"
-              >Sat &amp; Sun, July 11&ndash;12 &middot; 11 AM&ndash;4 PM</span
+              >Sat Jul 11, 11 AM&ndash;3 PM &middot; Sun Jul 12, 1&ndash;4
+              PM</span
             >
           </a>
         </div>
@@ -202,6 +213,7 @@
               <li><a href="#details">Details</a></li>
               <li><a href="#floorplan">Floor Plans</a></li>
               <li><a href="#location">Location</a></li>
+              <li><a href="#sellernotes">Seller Notes</a></li>
               <li><a class="nav-cta" href="#contact">Contact</a></li>
             </ul>
           </nav>
@@ -280,7 +292,7 @@
         <div class="hero-content container">
           <p class="hero-status">
             <!-- EDIT: status, e.g. For Sale by Owner / Coming Soon / Under Contract -->
-            For Sale by Owner
+            For Sale by Owner &middot; Coming Soon &middot; Available July 9
           </p>
           <h1 id="hero-heading" class="hero-address">
             4001 Mossy Bank Lane
@@ -289,14 +301,13 @@
 
           <p class="hero-price">
             <!-- EDIT: list price, e.g. $575,000 -->
-            <span class="price-amount">Price Upon Request</span>
+            <span class="price-amount">$559,900</span>
           </p>
 
           <ul class="hero-stats" aria-label="Key facts">
             <li><strong>4</strong><span>Beds</span></li>
             <li><strong>2.5</strong><span>Baths</span></li>
             <li><strong>2,296</strong><span>Finished Sq Ft</span></li>
-            <li><strong>0.36</strong><span>Acres</span></li>
           </ul>
 
           <div class="hero-actions">
@@ -405,11 +416,12 @@
           <div class="openhouse-body">
             <p class="openhouse-kicker">Open House</p>
             <h2 id="openhouse-heading" class="openhouse-title">
-              Saturday &amp; Sunday, July 11&ndash;12 &middot; 11 AM&ndash;4 PM
+              Saturday &amp; Sunday, July 11&ndash;12
             </h2>
             <p class="openhouse-sub">
-              Stop by 4001 Mossy Bank Lane; no appointment needed. We'll be on
-              site to answer questions and walk you through the home.
+              Saturday 11 AM&ndash;3 PM and Sunday 1&ndash;4 PM. Stop by 4001
+              Mossy Bank Lane; no appointment needed. We'll be on site to answer
+              questions and walk you through the home.
             </p>
           </div>
           <div class="openhouse-actions">
@@ -1295,7 +1307,7 @@
               >
                 <img
                   src="/images/photo-162-sm.jpg"
-                  alt="Basement utility area showing a SpringWell whole-house water filtration and softening system with plumbing manifold mounted on a plywood backing"
+                  alt="Basement utility area showing a SpringWell whole-house water filtration system with plumbing manifold mounted on a plywood backing"
                   loading="lazy"
                   width="800"
                   height="533"
@@ -1434,7 +1446,10 @@
             <li class="feature-card">
               <h3>Kitchen</h3>
               <ul>
-                <li>New stainless appliances and a dedicated vent hood</li>
+                <li>Fully renovated (2024)</li>
+                <li>
+                  New stainless appliances and a dedicated vent hood (2021)
+                </li>
                 <li>Quartz countertops and tiled backsplash</li>
                 <li>Extended center island</li>
                 <li>Custom soft-close cabinetry with pull-out drawers</li>
@@ -1458,6 +1473,7 @@
             <li class="feature-card">
               <h3>Primary Suite</h3>
               <ul>
+                <li>Fully renovated (2024)</li>
                 <li>Vaulted ceilings with a ceiling fan</li>
                 <li>Massive walk-in closet</li>
                 <li>Freestanding slipper tub with modern filler</li>
@@ -1469,6 +1485,7 @@
             <li class="feature-card">
               <h3>Bedrooms &amp; Hall Bath</h3>
               <ul>
+                <li>Hall and guest baths fully renovated (2024)</li>
                 <li>Three additional spacious bedrooms with closets</li>
                 <li>Ceiling fans with speed control and dimmers</li>
                 <li>Hall bath with a dual-sink quartz vanity</li>
@@ -1480,21 +1497,42 @@
               <h3>Systems &amp; Interior</h3>
               <ul>
                 <li>
-                  New HVAC heat pump with dual-zone touchscreen thermostats
+                  New HVAC heat pump (backup resistive heat) with dual-zone
+                  touchscreen thermostats (2022)
                 </li>
-                <li>Fresh-air ERV system</li>
-                <li>Whole-home surge protection</li>
-                <li>Upgraded electrical with GFCI / arc-fault protection</li>
-                <li>Whole-house water filtration and softening system</li>
-                <li>New aluminum stair railings, modern trim and lighting</li>
-                <li>Fresh paint, new LVP downstairs and carpet upstairs</li>
+                <li>Fresh-air ERV system (2022)</li>
+                <li>Whole-home surge protection (2022)</li>
+                <li>
+                  Upgraded electrical with dual-function AFCI breakers (2022)
+                </li>
+                <li>Whole-house water filtration system (2022)</li>
+                <li>
+                  Updated plumbing: pressure-reducing valve, expansion tank, and
+                  smart flow meter (2022)
+                </li>
+                <li>
+                  New aluminum stair railings, modern trim and lighting (2025)
+                </li>
+                <li>Front-door smart lock (2025)</li>
+                <li>Fresh interior paint (2022)</li>
+                <li>
+                  Luxury vinyl plank downstairs, Mohawk SolidTech Franklin
+                  (2023)
+                </li>
+                <li>
+                  Stain-resistant carpet upstairs, SmartStrand Homefront II
+                  (2021)
+                </li>
+                <li>Gas water heater (2020)</li>
               </ul>
             </li>
             <li class="feature-card">
               <h3>Garage</h3>
               <ul>
-                <li>Two-car attached with new insulated doors</li>
-                <li>50-amp 14-50 outlet, ready for an EV charger</li>
+                <li>
+                  Two-car attached with new insulated doors and motors (2024)
+                </li>
+                <li>50-amp 14-50 outlet, ready for an EV charger (2025)</li>
                 <li>Quiet belt-driven opener</li>
                 <li>Dual remote and app control</li>
               </ul>
@@ -1503,19 +1541,26 @@
               <h3>Basement</h3>
               <ul>
                 <li>Roughly 1,176 sq ft of unfinished space</li>
+                <li>Roughed-in plumbing for a future full bathroom</li>
                 <li>Ample room for storage, a gym, or a play area</li>
-                <li>Interior and rear/outside entrances</li>
+                <li>Radon mitigation system (2021)</li>
               </ul>
             </li>
             <li class="feature-card">
               <h3>Exterior</h3>
               <ul>
-                <li>New roof and new rear deck</li>
+                <li>
+                  New architectural-shingle roof (2021) and new rear deck (2024)
+                </li>
                 <li>Fenced backyard on a 0.36-acre corner lot</li>
-                <li>New front and back exterior doors</li>
-                <li>Nonslip-coated front steps and sealcoated driveway</li>
-                <li>Motion-activated security lights</li>
-                <li>Front and rear hose bibs; freshly painted foundation</li>
+                <li>New front and back exterior doors (2024)</li>
+                <li>
+                  Epoxy-coated nonslip front steps (2024); sealcoated driveway
+                  (2026)
+                </li>
+                <li>Motion-activated security lights (2025)</li>
+                <li>Exterior siding and brick repainted (2026)</li>
+                <li>Front and rear hose bibs</li>
               </ul>
             </li>
           </ul>
@@ -1965,12 +2010,56 @@
         </div>
       </section>
 
-      <!-- ===================== CONTACT ===================== -->
+      <!-- ===================== SELLER NOTES ===================== -->
+      <!-- EDIT: seller notes (timing, offer deadline, title company). -->
       <section
         class="section section-alt"
-        id="contact"
-        aria-labelledby="contact-heading"
+        id="sellernotes"
+        aria-labelledby="sellernotes-heading"
       >
+        <div class="container">
+          <p class="section-kicker" data-reveal>Good to Know</p>
+          <h2 id="sellernotes-heading" class="section-heading" data-reveal>
+            Seller Notes
+          </h2>
+          <p class="section-intro" data-reveal>
+            A few details on timing and closing for this for-sale-by-owner
+            listing.
+          </p>
+          <ul class="feature-cards" data-reveal-stagger>
+            <li class="feature-card">
+              <h3>Availability</h3>
+              <ul>
+                <li>Coming soon; available for showings starting July 9</li>
+              </ul>
+            </li>
+            <li class="feature-card">
+              <h3>Offer Review Deadline</h3>
+              <ul>
+                <li>Offers reviewed end of day Monday, July 13</li>
+              </ul>
+            </li>
+            <li class="feature-card">
+              <h3>Title Company</h3>
+              <ul>
+                <li>Ekko Title</li>
+                <li>1931 Plank Rd #208, Fredericksburg, VA 22401</li>
+              </ul>
+            </li>
+            <li class="feature-card">
+              <h3>Utilities</h3>
+              <ul>
+                <li>Electric: Dominion Energy</li>
+                <li>Gas: Columbia Gas</li>
+                <li>Water: Spotsylvania Water</li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- ===================== CONTACT ===================== -->
+      <section class="section" id="contact" aria-labelledby="contact-heading">
         <div class="container contact-stack">
           <p class="section-kicker" data-reveal>Get in Touch</p>
           <h2 id="contact-heading" class="section-heading" data-reveal>
@@ -1979,9 +2068,10 @@
           <p class="contact-lead" data-reveal>
             Reach out for a private showing, or catch the
             <strong
-              >open house <span class="nowrap">July 11&ndash;12</span> &middot;
-              <span class="nowrap">11 AM&ndash;4 PM</span></strong
-            >.
+              >open house <span class="nowrap">July 11&ndash;12</span></strong
+            >
+            (<span class="nowrap">Sat 11 AM&ndash;3 PM</span>,
+            <span class="nowrap">Sun 1&ndash;4 PM</span>).
           </p>
 
           <div class="contact-methods" data-reveal-stagger>
