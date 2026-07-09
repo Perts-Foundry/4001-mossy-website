@@ -73,7 +73,7 @@ repo (Terraform).
   Sat 11 AM–3 PM, Sun 1–4 PM), so each `Event`'s `startDate`/`endDate` and each
   visible time string must match its own day.
 - A **Seller Notes** band (`#sellernotes`, before `#contact`, with its own nav
-  link) carries time-sensitive logistics (availability date, offer-review
+  link) carries time-sensitive logistics (availability status, offer-review
   deadline, title company) as `.feature-card`s, tagged with an `EDIT:` comment.
   Keep its availability status in sync with the hero status and the JSON-LD
   `offers.availability`.
