@@ -55,8 +55,10 @@ repo (Terraform).
   `fTqNmKh5YzR`).
 - Keep the JSON-LD block's address accurate. It carries
   beds/baths/floorSize/yearBuilt and an `offers` block (price, `priceCurrency`,
-  `availability: PreOrder`, `availabilityStarts`) that mirrors the hero price
-  ($559,900) and "Coming Soon · Available July 9" status; keep them in sync. (Note:
+  `availability: InStock`) that mirrors the hero price ($559,900) and
+  "Available Now" status; keep them in sync. (If the home returns to a future
+  availability date, switch `availability` back to `PreOrder` and re-add an
+  `availabilityStarts` date.) (Note:
   `offers` lives on the `SingleFamilyResidence` node, which strict schema.org
   validators may flag since `offers` is formally a `Product`/`Offer` property;
   this placement is intentional and search engines tolerate it.) A second JSON-LD
@@ -71,10 +73,10 @@ repo (Terraform).
   Sat 11 AM–3 PM, Sun 1–4 PM), so each `Event`'s `startDate`/`endDate` and each
   visible time string must match its own day.
 - A **Seller Notes** band (`#sellernotes`, before `#contact`, with its own nav
-  link) carries time-sensitive logistics (availability date, offer-review
+  link) carries time-sensitive logistics (availability status, offer-review
   deadline, title company) as `.feature-card`s, tagged with an `EDIT:` comment.
-  Keep its availability date in sync with the hero status and the JSON-LD
-  `offers.availabilityStarts`.
+  Keep its availability status in sync with the hero status and the JSON-LD
+  `offers.availability`.
 - Contact is **display-only** (sms:/tel:/mailto:) — there is no form and no
   backend secret. Email is listed first, text is flagged as strongly preferred,
   and the primary button is an `sms:` link. Keep it form-free unless a contact
