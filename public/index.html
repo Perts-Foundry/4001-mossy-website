@@ -58,7 +58,7 @@
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     <!-- Bump ?v= when editing styles.css so cached copies refresh (see _headers). -->
-    <link rel="stylesheet" href="/css/styles.css?v=22" />
+    <link rel="stylesheet" href="/css/styles.css?v=23" />
 
     <!-- Structured data for search engines. -->
     <script type="application/ld+json">
@@ -98,60 +98,6 @@
         }
       }
     </script>
-
-    <!-- EDIT: open house event(s). Keep the dates/times in sync with the
-         "Open House" section in the body and the top announcement bar.
-         Times are US Eastern (-04:00 during summer DST). -->
-    <script type="application/ld+json">
-      [
-        {
-          "@context": "https://schema.org",
-          "@type": "Event",
-          "name": "Open House: 4001 Mossy Bank Lane",
-          "description": "Open house at 4001 Mossy Bank Lane, Fredericksburg, VA 22408. For sale by owner; no appointment needed.",
-          "startDate": "2026-07-11T11:00:00-04:00",
-          "endDate": "2026-07-11T15:00:00-04:00",
-          "eventStatus": "https://schema.org/EventScheduled",
-          "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
-          "url": "https://4001mossy.com/#openhouse",
-          "location": {
-            "@type": "Place",
-            "name": "4001 Mossy Bank Lane",
-            "address": {
-              "@type": "PostalAddress",
-              "streetAddress": "4001 Mossy Bank Lane",
-              "addressLocality": "Fredericksburg",
-              "addressRegion": "VA",
-              "postalCode": "22408",
-              "addressCountry": "US"
-            }
-          }
-        },
-        {
-          "@context": "https://schema.org",
-          "@type": "Event",
-          "name": "Open House: 4001 Mossy Bank Lane",
-          "description": "Open house at 4001 Mossy Bank Lane, Fredericksburg, VA 22408. For sale by owner; no appointment needed.",
-          "startDate": "2026-07-12T13:00:00-04:00",
-          "endDate": "2026-07-12T16:00:00-04:00",
-          "eventStatus": "https://schema.org/EventScheduled",
-          "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
-          "url": "https://4001mossy.com/#openhouse",
-          "location": {
-            "@type": "Place",
-            "name": "4001 Mossy Bank Lane",
-            "address": {
-              "@type": "PostalAddress",
-              "streetAddress": "4001 Mossy Bank Lane",
-              "addressLocality": "Fredericksburg",
-              "addressRegion": "VA",
-              "postalCode": "22408",
-              "addressCountry": "US"
-            }
-          }
-        }
-      ]
-    </script>
   </head>
 
   <body>
@@ -159,19 +105,12 @@
 
     <!-- Banner + nav stay pinned together at the top while scrolling. -->
     <div class="topbar">
-      <!-- EDIT: For-Sale-by-Owner banner + open house teaser (shows at the very top). -->
+      <!-- EDIT: For-Sale-by-Owner banner (shows at the very top). -->
       <div class="announce-bar">
         <div class="container announce-inner">
           <span class="announce-fsbo"
             >For Sale by Owner &middot; Available Now</span
           >
-          <a class="announce-event" href="#openhouse">
-            <span class="announce-event-tag">Open House</span>
-            <span class="announce-event-detail"
-              >Sat Jul 11, 11 AM&ndash;3 PM &middot; Sun Jul 12, 1&ndash;4
-              PM</span
-            >
-          </a>
         </div>
       </div>
 
@@ -396,43 +335,6 @@
             ><span class="fact-value">Spotsylvania</span>
           </li>
         </ul>
-      </section>
-
-      <!-- ===================== OPEN HOUSE ===================== -->
-      <!-- EDIT: open house date/time. Keep in sync with the JSON-LD Event in
-           <head> and the top announcement bar. -->
-      <section
-        class="openhouse"
-        id="openhouse"
-        aria-labelledby="openhouse-heading"
-      >
-        <div class="container openhouse-inner" data-reveal>
-          <div class="openhouse-cal" aria-hidden="true">
-            <span class="openhouse-cal-month">Jul</span>
-            <span class="openhouse-cal-day">11&ndash;12</span>
-          </div>
-          <div class="openhouse-body">
-            <p class="openhouse-kicker">Open House</p>
-            <h2 id="openhouse-heading" class="openhouse-title">
-              Saturday &amp; Sunday, July 11&ndash;12
-            </h2>
-            <p class="openhouse-sub">
-              Saturday 11 AM&ndash;3 PM and Sunday 1&ndash;4 PM. Stop by 4001
-              Mossy Bank Lane; no appointment needed. We'll be on site to answer
-              questions and walk you through the home.
-            </p>
-          </div>
-          <div class="openhouse-actions">
-            <a
-              class="btn btn-primary"
-              href="https://www.google.com/maps/search/?api=1&query=4001+Mossy+Bank+Lane+Fredericksburg+VA+22408"
-              rel="noopener"
-              target="_blank"
-              >Get Directions</a
-            >
-            <a class="btn btn-ghost" href="#contact">Ask a Question</a>
-          </div>
-        </div>
       </section>
 
       <!-- ===================== GALLERY ===================== -->
@@ -2062,12 +1964,6 @@
               </ul>
             </li>
             <li class="feature-card">
-              <h3>Offer Review Deadline</h3>
-              <ul>
-                <li>Offers reviewed end of day Monday, July 13</li>
-              </ul>
-            </li>
-            <li class="feature-card">
               <h3>Title Company</h3>
               <ul>
                 <li>Ekko Title</li>
@@ -2094,12 +1990,8 @@
             Schedule a Showing
           </h2>
           <p class="contact-lead" data-reveal>
-            Reach out for a private showing, or catch the
-            <strong
-              >open house <span class="nowrap">July 11&ndash;12</span></strong
-            >
-            (<span class="nowrap">Sat 11 AM&ndash;3 PM</span>,
-            <span class="nowrap">Sun 1&ndash;4 PM</span>).
+            Reach out any time to schedule a private showing of 4001 Mossy Bank
+            Lane. Text is preferred for the quickest reply.
           </p>
 
           <div class="contact-methods" data-reveal-stagger>
