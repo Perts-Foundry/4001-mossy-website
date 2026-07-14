@@ -55,7 +55,7 @@ repo (Terraform).
   `fTqNmKh5YzR`).
 - Keep the JSON-LD block's address accurate. It carries
   beds/baths/floorSize/yearBuilt and an `offers` block (price, `priceCurrency`,
-  `availability: InStock`) that mirrors the hero price ($559,900) and
+  `availability: InStock`) that mirrors the hero price ($549,900) and
   "Available Now" status; keep them in sync. (If the home returns to a future
   availability date, switch `availability` back to `PreOrder` and re-add an
   `availabilityStarts` date.) (Note:
