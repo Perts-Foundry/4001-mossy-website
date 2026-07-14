@@ -21,7 +21,7 @@ marked with **`EDIT:`** comments in **`public/index.html`** (search for `EDIT:`)
 | What                | Where (search `public/index.html` for…)                                     |
 | ------------------- | --------------------------------------------------------------------------- |
 | **Status**          | `EDIT: status` (For Sale by Owner, Coming Soon, etc.)                       |
-| **Price**           | `EDIT: list price` (currently "$559,900"; also update the JSON-LD `offers`) |
+| **Price**           | `EDIT: list price` (currently "$549,900"; also update the JSON-LD `offers`) |
 | **FSBO banner**     | `EDIT: For-Sale-by-Owner banner` (top announcement bar)                     |
 | **Seller notes**    | `EDIT: seller notes` (availability, title company)                          |
 | **Hero photos**     | `EDIT: hero slideshow images` (the auto-rotating hero carousel)             |
