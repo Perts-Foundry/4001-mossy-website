@@ -55,7 +55,7 @@ repo (Terraform).
   `fTqNmKh5YzR`).
 - Keep the JSON-LD block's address accurate. It carries
   beds/baths/floorSize/yearBuilt and an `offers` block (price, `priceCurrency`,
-  `availability: InStock`) that mirrors the hero price ($539,900) and
+  `availability: InStock`) that mirrors the hero price ($499,900) and
   "Available Now" status; keep them in sync. (If the home returns to a future
   availability date, switch `availability` back to `PreOrder` and re-add an
   `availabilityStarts` date.) (Note:
@@ -70,8 +70,8 @@ repo (Terraform).
   announcement-bar teaser, and the `#contact` lead mention, and keep their
   dates/times in sync.)
 - A **Seller Notes** band (`#sellernotes`, before `#contact`, with its own nav
-  link) carries time-sensitive logistics (availability status, seller
-  concession, title company) as
+  link) carries time-sensitive logistics (availability status, title company,
+  utilities) as
   `.feature-card`s, tagged with an `EDIT:` comment. Keep its availability status
   in sync with the hero status and the JSON-LD `offers.availability`.
 - Contact is **display-only** (sms:/tel:/mailto:) — there is no form and no
