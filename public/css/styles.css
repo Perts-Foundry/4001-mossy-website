@@ -10,6 +10,8 @@
   --navy-700: #16263d;
   --navy-600: #2f4d7a;
   --accent: #7c8aa0;
+  /* Attention red for the for-sale-by-owner badge. */
+  --accent-red: #c62828;
   --accent-dark: #94a2b6;
 
   /* Cool-blue accent ramp (steel -> sky), layered on the navy base. Drives the
@@ -1284,9 +1286,10 @@ h3 {
   text-transform: uppercase;
   font-size: 0.76rem;
   color: #fff;
-  background: var(--accent);
+  background: var(--accent-red);
   padding: 0.22rem 0.75rem;
   border-radius: 999px;
+  box-shadow: 0 0 14px rgba(198, 40, 40, 0.45);
   white-space: nowrap;
 }
 
