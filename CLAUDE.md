@@ -2,8 +2,10 @@
 
 ## Project overview
 
-A single-page, for-sale property website for 4001 Mossy Bank Lane,
-Fredericksburg, VA 22408 (live at https://4001mossy.com). Plain static site —
+A single-page Perts Foundry **showcase** for 4001 Mossy Bank Lane,
+Fredericksburg, VA 22408 (live at https://4001mossy.com). The home has sold; the
+site was its for-sale listing and is kept as a portfolio piece ("the website that
+sold this home", built by Perts Foundry). Plain static site —
 **no build step** — served by a minimal Cloudflare Worker. DNS, the Worker
 route, and this repo are managed in the
 [Perts-Foundry/infrastructure](https://github.com/Perts-Foundry/infrastructure)
@@ -18,7 +20,7 @@ repo (Terraform).
   with `not_found_handling = "404-page"`. Add dynamic routes (e.g. a contact API)
   by branching on `url.pathname` in the Worker before the assets fallthrough.
 - `public/index.html` is the whole page. All editable content is tagged with
-  `EDIT:` comments; the README's "Editing your listing" table maps each one.
+  `EDIT:` comments; the README's "Editing the showcase" table maps each one.
 - `public/css/styles.css` holds all styles; design tokens (colors, spacing) are
   CSS custom properties in `:root` at the top, including a cool-blue accent ramp
   (`--accent-steel` -> `--accent-sky`, `--grad-accent`, `--grad-accent-soft`,
@@ -37,52 +39,49 @@ repo (Terraform).
   (`.is-scrolled`, toggled by the same rAF-throttled passive scroll handler as
   the back-to-top button — it changes only color/shadow, never height, so the
   `--topbar-h` anchor offset stays valid), a floating back-to-top button
-  (revealed past 600px of scroll), and collapsible photo/amenity grids (a
-  JS-added "Show all" toggle hides all but the first 8 photos / 6 amenities to
-  keep the first scroll short). Progressive enhancement — with JS disabled the
-  page still works (hero shows its first slide, all photos show, no toggles, no
-  reveal animation, everything visible).
+  (revealed past 600px of scroll), and nothing else: the gallery shows
+  every photo with no collapse toggle. Progressive enhancement — with JS disabled
+  the page still works (hero shows its first slide, all photos show, no reveal
+  animation, everything visible).
 
 ## Content conventions
 
 - Real photos live in `public/images/` as optimized JPGs (EXIF/GPS stripped).
   Each gallery photo has two sizes: a `*-sm.jpg` thumbnail (the grid `src`) and a
   full-size `*.jpg` (the lightbox `data-full`). The lightbox auto-collects every
-  `.gallery-item` in the document, so the photo, floor-plan, and amenity grids
-  share one viewer.
-- The Matterport tour URL goes in **both** the `#tour` `<iframe src>` and the
-  fallback `<a href>`. Format: `https://my.matterport.com/show/?m=<id>` (live id:
-  `fTqNmKh5YzR`).
-- Keep the JSON-LD block's address accurate. It carries
-  beds/baths/floorSize/yearBuilt and an `offers` block (price, `priceCurrency`,
-  `availability: LimitedAvailability`) that mirrors the hero price ($499,900)
-  and "Under Contract" status; keep them in sync. (If the listing returns to
-  active, switch `availability` back to `InStock`. If the home returns to a future
-  availability date, switch `availability` back to `PreOrder` and re-add an
-  `availabilityStarts` date.) (Note:
-  `offers` lives on the `SingleFamilyResidence` node, which strict schema.org
-  validators may flag since `offers` is formally a `Product`/`Offer` property;
-  this placement is intentional and search engines tolerate it.)
-- The top of the page carries a For-Sale-by-Owner **announcement bar** and an
-  auto-rotating **hero carousel** (`.hero-carousel`: highlight photos
-  crossfading behind the hero text, decorative `alt=""`, with a pause/play
-  control) — both tagged with `EDIT:` comments. (There is no open house band; if
-  one returns, re-add the `#openhouse` section, its JSON-LD `Event`s, the
-  announcement-bar teaser, and the `#contact` lead mention, and keep their
-  dates/times in sync.)
-- A **Seller Notes** band (`#sellernotes`, before `#contact`, with its own nav
-  link) carries time-sensitive logistics (availability status, title company,
-  utilities) as
-  `.feature-card`s, tagged with an `EDIT:` comment. Keep its availability status
-  in sync with the hero status and the JSON-LD `offers.availability`.
-- Contact is **display-only** (sms:/tel:/mailto:) — there is no form and no
-  backend secret. Email is listed first, text is flagged as strongly preferred,
-  and the primary button is an `sms:` link. Keep it form-free unless a contact
-  form is explicitly requested.
+  `.gallery-item` in the document.
+- **Image keep-list:** only exterior photos of the house stay in `public/images/`
+  (no interior rooms, floor plans or community amenity photos). Today that is
+  `photo-003/006/009/012/015/018/021/024/027/030` (each plus its `-sm.jpg`),
+  `hero.jpg` and `og-cover.jpg`. Add a new photo only if it is an exterior shot
+  that shows no interior through a window.
+- **No listing:** the home has sold. No price, floor plans, seller notes,
+  real-estate disclaimers, Equal Housing logo, byline names or JSON-LD `offers`.
+  The JSON-LD is a `WebSite` whose `creator` is the Perts Foundry `Organization`.
+- **No Matterport:** the `#tour` section is a static placeholder (an exterior
+  photo with a "3D tour" overlay and a caption saying the listing's interactive
+  tour was deactivated after the sale). No iframe and no third-party embed; the
+  CSP in the infra repo should not allow framing.
+- **Confirmed facts only:** copy may state only what the owner confirmed: sold
+  by owner; listed on the MLS in July 2026 and sold in under three months; a
+  homeowner selling by owner; the design and platform features; automated WCAG
+  2.1 AA checks on every change; a preview link for every proposed change. Do
+  not add claims about price, traffic, showings, inquiries, build speed or cost.
+- **CTA and UTM:** the main call to action links to
+  `https://pertsfoundry.com/small-business/website-design/` and the contact
+  button to `https://pertsfoundry.com/contact/`, both with
+  `?utm_source=4001mossy.com&utm_medium=referral&utm_campaign=showcase`.
+- **Branding:** the design stays navy. The header carries an inline copy of the
+  Perts Foundry horizontal dark logo (never draw a new one) and the page says
+  "Built by Perts Foundry". Forge Blue (`--pf-blue`) is a fill behind white text
+  or a border/underline only: it fails contrast as body text on navy.
+- **No contact details:** no email address, phone number, `mailto:`, `tel:`,
+  `sms:` or booking link anywhere under `public/`. The only contact path is the
+  single link to the Perts Foundry contact page. Keep it form-free unless a
+  contact form is explicitly requested.
 - The site is **dark-mode only**: one dark `:root` palette in `styles.css`
   (deep navy + mid-gray surfaces, light text). There is no light theme or
-  toggle. Call-to-action buttons (`.btn-primary`, header `.nav-cta`) are white
-  with navy text, inverting to navy on hover.
+  toggle.
 - `styles.css` is cache-busted with a `?v=N` query on its `<link>` in
   `index.html` and `404.html`, and `main.js` carries the same `?v=N` on its
   `<script>` in `index.html`. Bump `N` whenever you change CSS or JS, because
@@ -95,11 +94,14 @@ repo (Terraform).
 - `.github/workflows/validate.yml` is a single job named **`validate`** (the
   required status check — renaming it breaks branch protection and the deploy
   gate). It runs: prettier, htmltest, pa11y-ci (WCAG 2.1 AA), a content smoke
-  test, gitleaks, actionlint, and posts one consolidated PR comment. `.pa11yci`
-  ignores the axe `color-contrast`, `region`, and `frame-tested` rules: axe
+  test, gitleaks, actionlint, and posts one consolidated PR comment. The smoke
+  test requires the address, the ids `hero-heading gallery tour built contact`,
+  a pertsfoundry.com link, the `pertsfoundry.com/contact/` link, JSON-LD and
+  `gallery-item`; it fails if `public/` contains a Matterport embed, an email
+  address, a `mailto:`/`tel:`/`sms:` link or a cal.com link. `.pa11yci`
+  ignores the axe `color-contrast` and `region` rules: axe
   can't composite the hero's layered photo + overlay (it mis-measures the white
-  hero text against the page background) and can't introspect the cross-origin
-  Matterport iframe. Hero contrast is handled in CSS with a dark fallback +
+  hero text against the page background). Hero contrast is handled in CSS with a dark fallback +
   overlay; verify contrast by design when changing the palette.
 - `.github/workflows/preview.yml` runs **draft (preview) deployments** on every
   push to a PR. It uploads a non-production Worker _version_ via
@@ -139,9 +141,9 @@ npx wrangler dev                    # run as a Worker locally
 - The Worker script name (`4001-mossy-website` in `wrangler.toml`) must match the
   `cloudflare_workers_route` `script` value in the infrastructure repo. Don't
   rename one without the other.
-- The Content-Security-Policy (security-headers ruleset in the infra repo) allows
-  framing `https://my.matterport.com`. If the tour host changes, update the CSP
-  `frame-src` there.
+- The Content-Security-Policy (security-headers ruleset in the infra repo) should
+  use `frame-src 'none'`: the page embeds nothing. If an embed ever returns,
+  update the CSP `frame-src` there first.
 - Preview deployments require the Cloudflare account to have a registered
   workers.dev subdomain (an account-level resource). Without it, the preview
   `versions upload` still succeeds but mints no URL, and the PR comment shows a
@@ -157,8 +159,9 @@ npx wrangler dev                    # run as a Worker locally
 
 ## Sensitive content
 
-This repo is **public**. The address, photos, and contact details shown on the
-site are public by design (it's a for-sale listing). Do **not** add anything that
-isn't meant to be on a public listing: financial details beyond the asking price,
-showing schedules, alarm/lockbox codes, or any secret/token. Cloudflare API
+This repo is **public**. The address and exterior photos shown on the site are
+public by design. Do **not** add contact details, interior photos, financial
+details, showing schedules, alarm/lockbox codes, or any secret/token. Old
+commits still hold the former listing's interior photos and contact details;
+history is not rewritten. Cloudflare API
 tokens live only in repo Actions secrets, never in source.

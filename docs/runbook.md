@@ -102,8 +102,8 @@ curl -sI https://4001mossy.com    # 200, with HSTS + security headers
 ```
 
 Then open https://4001mossy.com and check: the hero, the photo gallery lightbox,
-the Matterport tour, the mobile menu, and the contact links (tap-to-call /
-email). `https://www.4001mossy.com` should 301 to the apex.
+the 3D tour placeholder, the mobile menu, and the link to the Perts Foundry
+contact page. `https://www.4001mossy.com` should 301 to the apex.
 
 ## 6. Clean up the import block
 
@@ -114,16 +114,21 @@ state).
 
 ## Ongoing changes
 
-Edit content (see the README's "Editing your listing"), open a PR, wait for
+Edit content (see the README's "Editing the showcase"), open a PR, wait for
 **Validate** to pass, and comment `deploy`. Done.
 
 ## Notes
 
-- **Matterport CSP:** the security headers in the infra repo allow framing
-  `https://my.matterport.com`. If your tour is hosted on a different Matterport
-  domain, update the `Content-Security-Policy` `frame-src` in
-  `cloudflare.tf` (the `mossy_response_headers` ruleset).
+- **Retiring the listing:** the home has sold, and the site is now a Perts
+  Foundry showcase. The retirement steps were: replace the listing page with the
+  showcase (no price, interior photos, floor plans, seller notes or contact
+  details), prune `public/images/` to the exterior keep-list, change the infra
+  repo's CSP to `frame-src 'none'` (applied only after the showcase is deployed),
+  and update the GitHub repo description and topics in the infra repo. Old
+  commits and old per-PR preview links still serve the former listing; Cloudflare
+  keeps those versions. Turning off Preview URLs or cleaning up old versions is a
+  separate decision made through the infra repo.
 - **No email is configured** for `4001mossy.com`: the zone ships with null-MX,
   SPF, and DMARC reject records, so the domain can't be used to send spoofed
-  mail. The contact email on the site (`mailto:`) can be any mailbox you already
-  own.
+  mail. The site lists no contact details; its only contact path is the link to
+  the Perts Foundry contact page.
