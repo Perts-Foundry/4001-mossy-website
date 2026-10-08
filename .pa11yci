@@ -5,7 +5,7 @@
     "chromeLaunchConfig": {
       "args": ["--no-sandbox"]
     },
-    "ignore": ["region", "color-contrast", "frame-tested"]
+    "ignore": ["region", "color-contrast"]
   },
   "urls": ["http://localhost:8080/", "http://localhost:8080/404.html"]
 }

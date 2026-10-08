@@ -148,10 +148,15 @@ jobs:
           HP="public/index.html"
           [ -f "$HP" ] || ERRORS="${ERRORS}Missing public/index.html\n"
           grep -qF "4001 Mossy Bank Lane" "$HP" || ERRORS="${ERRORS}Missing address text\n"
-          for id in hero-heading gallery tour details location contact; do
+          for id in hero-heading gallery tour built contact; do
             grep -qF "id=\"$id\"" "$HP" || ERRORS="${ERRORS}Missing section id: $id\n"
           done
-          grep -qF "my.matterport.com" "$HP" || ERRORS="${ERRORS}Missing Matterport tour embed\n"
+          grep -qF "pertsfoundry.com" "$HP" || ERRORS="${ERRORS}Missing Perts Foundry link\n"
+          grep -qF "pertsfoundry.com/contact/" "$HP" || ERRORS="${ERRORS}Missing Perts Foundry contact page link\n"
+          grep -rqiI "my[.]matterport[.]com" public && ERRORS="${ERRORS}Matterport embed must not return\n"
+          grep -rqiIE "[a-z0-9._-]+@[a-z0-9-]+[.][a-z]+" public && ERRORS="${ERRORS}Email address found under public/\n"
+          grep -rqiIE "mailto:|(tel|sms):[+0-9]" public && ERRORS="${ERRORS}mailto, tel or sms link found under public/\n"
+          grep -rqiI "cal[.]com" public && ERRORS="${ERRORS}cal.com link found under public/\n"
           grep -qF "application/ld+json" "$HP" || ERRORS="${ERRORS}Missing JSON-LD structured data\n"
           grep -qF "gallery-item" "$HP" || ERRORS="${ERRORS}Missing gallery items\n"
           [ -f public/404.html ] || ERRORS="${ERRORS}Missing public/404.html\n"
@@ -165,20 +170,6 @@ jobs:
             echo "All smoke checks passed."
             echo "exit_code=0" >> "$GITHUB_OUTPUT"
             { echo "output<<GHEOF"; echo "All smoke checks passed."; echo "GHEOF"; } >> "$GITHUB_OUTPUT"
-          fi
-
-      # ── Placeholder reminder (non-blocking) ─────────────────────
-      # Warns (does NOT fail) if go-live sentinels are still present, so the
-      # scaffold can deploy with placeholders but nobody forgets to fill them in.
-      - name: Placeholder reminder
-        if: always()
-        run: |
-          HP="public/index.html"
-          if grep -qF "REPLACE_WITH_MODEL_ID" "$HP"; then
-            echo "::warning file=public/index.html::Matterport tour still has the REPLACE_WITH_MODEL_ID placeholder; paste your real tour URL before go-live."
-          fi
-          if grep -qF 'og:image" content="https://4001mossy.com/images/og-cover.svg' "$HP"; then
-            echo "::warning file=public/index.html::Social-card image is still the SVG placeholder; most platforms won't render an SVG og:image; add a 1200x630 JPG/PNG before go-live."
           fi
 
       # ── Gitleaks (secret detection) ─────────────────────────────
