@@ -1,22 +1,25 @@
 /* =========================================================================
-   4001 Mossy Bank Lane listing site styles
+   4001 Mossy Bank Lane showcase site styles
    Single stylesheet, no build step. Design tokens live in :root below;
    adjust colors/spacing there to re-theme the whole site.
    ========================================================================= */
 
 :root {
-  /* Dark mode: deep-navy + mid-gray surfaces, light text, white CTAs. */
+  /* Dark mode: deep-navy + mid-gray surfaces, light text, Forge Blue CTAs
+     with white text. */
   --navy-900: #0a1626;
   --navy-700: #16263d;
   --navy-600: #2f4d7a;
   --accent: #7c8aa0;
-  /* Attention red for the for-sale-by-owner badge. */
-  --accent-red: #c62828;
+  /* Forge Blue (Perts Foundry primary). Use only as a fill behind white text,
+     or as a border/underline: white on it is about 4.8:1 (passes AA), but it
+     is about 3.5:1 against the navy page, so never use it as text on navy. */
+  --pf-blue: rgb(44 108 238);
+  --pf-blue-dark: #1f4fb8;
   --accent-dark: #94a2b6;
 
   /* Cool-blue accent ramp (steel -> sky), layered on the navy base. Drives the
-     heading underlines, hero stat numbers, card rims/glow, section kickers, and
-     nav underline. The solid --accent above is kept for the focus ring and the
+     heading underlines, card rims/glow, section kickers, and nav underline. The solid --accent above is kept for the focus ring and the
      small bullet dots so nothing regresses. */
   --accent-steel: #4f6f9e;
   --accent-sky: #8fb4e6;
@@ -57,9 +60,9 @@
 
   --header-h: 68px;
 
-  /* One token drives the vertical gap between every band (hero, facts, open
-     house, content sections, footer). Each band uses it as top AND bottom
-     padding, so every boundary gap is 2x this value -- uniform everywhere. */
+  /* One token drives the vertical gap between every band (hero, facts,
+     content sections, footer). Each band uses it as top AND bottom padding,
+     so every boundary gap is 2x this value -- uniform everywhere. */
   --section-space: clamp(2.75rem, 6vw, 4rem);
 }
 
@@ -183,14 +186,15 @@ h3 {
 }
 
 .btn-primary {
-  background: #fff;
-  color: var(--navy-900);
-  border-color: var(--navy-900);
+  background: var(--pf-blue);
+  color: #fff;
+  border-color: var(--pf-blue);
 }
 
-/* Keep the white-bg / navy-text contract; only layer a cool-blue glow halo. */
+/* Darker blue with white text on hover; never navy text on Forge Blue. */
 .btn-primary:hover {
-  background: var(--navy-900);
+  background: var(--pf-blue-dark);
+  border-color: var(--pf-blue-dark);
   color: #fff;
   box-shadow: 0 10px 26px var(--accent-glow);
 }
@@ -266,6 +270,26 @@ h3 {
   height: 1.3rem;
 }
 
+.header-brands {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  min-width: 0;
+}
+
+.pf-mark {
+  display: inline-flex;
+  align-items: center;
+  padding-left: 1rem;
+  border-left: 1px solid var(--border);
+}
+
+.pf-mark svg {
+  display: block;
+  width: auto;
+  height: 28px;
+}
+
 .site-nav {
   display: flex;
   align-items: center;
@@ -290,7 +314,7 @@ h3 {
 
 /* Gradient underline that wipes in (left to right) on hover, keyboard focus, or
    when the link's section is the active one (scroll-spy). Absolutely positioned
-   so it never shifts layout. The white Contact pill (.nav-cta) is excluded. */
+   so it never shifts layout. The Forge Blue CTA pill (.nav-cta) is excluded. */
 .nav-menu a:not(.nav-cta)::after {
   content: "";
   position: absolute;
@@ -312,15 +336,15 @@ h3 {
 }
 
 .nav-cta {
-  background: #fff;
-  color: var(--navy-900) !important;
+  background: var(--pf-blue);
+  color: #fff !important;
   padding: 0.5rem 1.1rem !important;
   border-radius: var(--radius);
   border-bottom: none !important;
 }
 
 .nav-cta:hover {
-  background: var(--navy-900);
+  background: var(--pf-blue-dark);
   color: #fff !important;
 }
 
@@ -513,55 +537,11 @@ h3 {
   margin-top: 0.3rem;
 }
 
-.hero-price {
-  margin: 0.6rem 0 1.2rem;
-  font-size: clamp(1.4rem, 3.4vw, 2rem);
-  font-weight: 700;
-}
-
-.hero-stats {
-  display: flex;
-  flex-wrap: wrap;
-  gap: clamp(1.2rem, 5vw, 2.6rem);
-  list-style: none;
+.hero-subtitle {
   margin: 0 0 1.6rem;
-  padding: 1rem 0 0;
-  border-top: 1px solid rgba(255, 255, 255, 0.25);
-}
-
-.hero-stats li {
-  display: flex;
-  flex-direction: column;
-}
-
-.hero-stats strong {
-  font-size: 1.6rem;
-  font-family: var(--font-display);
-  color: #fff;
-}
-
-.hero-stats span {
-  font-size: 0.85rem;
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
-  opacity: 0.9;
-}
-
-/* Hero metrics are solid white for maximum legibility over the photo slideshow
-   (the cool-blue gradient washed out over bright areas). The hero sits over a
-   layered photo + dark overlay (axe color-contrast is ignored here per
-   .pa11yci). */
-.price-amount {
-  color: #fff;
-}
-
-/* Dark outline so the white numerals stay legible over bright areas of the hero
-   photo (windows, pale walls), applied as a stacked drop-shadow filter. */
-.hero-stats strong,
-.price-amount {
-  filter: drop-shadow(0 0 1px rgba(8, 16, 30, 0.95))
-    drop-shadow(0 0 2px rgba(8, 16, 30, 0.7))
-    drop-shadow(0 1px 3px rgba(8, 16, 30, 0.5));
+  max-width: 40ch;
+  font-size: clamp(1.1rem, 2.6vw, 1.5rem);
+  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.45);
 }
 
 .hero-actions {
@@ -571,8 +551,8 @@ h3 {
 }
 
 /* ------------------------------ Facts --------------------------------- */
-/* Dense, single-line spec bar: each fact is "label value" on one line, the
-   row wraps as needed. Much shorter than the old stacked grid. */
+/* Dense project-facts strip: each fact is "label value" on one line, the row
+   wraps as needed. */
 .facts {
   background: var(--navy-900);
   color: #fff;
@@ -746,106 +726,60 @@ h3 {
 }
 
 /* ------------------------------ Tour ---------------------------------- */
-.tour-frame {
+/* Static placeholder for the deactivated 3D tour: an exterior photo with a
+   play-style overlay badge. Not interactive. */
+.tour-placeholder {
+  margin: 0;
+}
+
+/* Only the photo is overlaid; the caption sits below it, outside the scrim. */
+.tour-media {
   position: relative;
-  aspect-ratio: 16 / 9;
   border-radius: var(--radius-lg);
   overflow: hidden;
   box-shadow: var(--shadow-md);
   background: var(--navy-900);
 }
 
-.tour-frame iframe {
-  position: absolute;
-  inset: 0;
+.tour-media img {
   width: 100%;
-  height: 100%;
-  border: 0;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
 }
 
-.tour-fallback {
+.tour-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(9, 18, 32, 0.55);
+}
+
+.tour-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.7rem;
+  padding: 0.7rem 1.4rem;
+  border-radius: 999px;
+  background: var(--pf-blue);
+  color: #fff;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.45);
+}
+
+.tour-badge svg {
+  width: 1.4rem;
+  height: 1.4rem;
+}
+
+.tour-caption {
   margin-top: 1rem;
   color: var(--text-muted);
 }
 
-/* ----------------------------- Details -------------------------------- */
-.details-layout {
-  display: grid;
-  grid-template-columns: 1.6fr 1fr;
-  gap: clamp(1.5rem, 5vw, 3.5rem);
-  align-items: start;
-}
-
-.details-main p {
-  font-size: 1.08rem;
-  margin: 0 0 1.2rem;
-}
-
-.details-features {
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: var(--radius-lg);
-  padding: 1.6rem;
-  box-shadow: var(--shadow-sm);
-}
-
-.features-heading {
-  font-size: 1.25rem;
-  margin-bottom: 1rem;
-}
-
-.features-list {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  display: grid;
-  gap: 0.7rem;
-}
-
-.features-list li {
-  position: relative;
-  padding-left: 1.6rem;
-}
-
-.features-list li::before {
-  content: "";
-  position: absolute;
-  left: 0;
-  top: 0.55em;
-  width: 0.55rem;
-  height: 0.55rem;
-  border-radius: 50%;
-  background: var(--accent);
-}
-
-/* ------------------------ About & feature cards ----------------------- */
-.about-intro {
-  max-width: 72ch;
-}
-
-.about-intro p {
-  font-size: 1.08rem;
-  margin: 0 0 1.2rem;
-}
-
-.subsection-heading {
-  position: relative;
-  font-size: clamp(1.4rem, 3.4vw, 1.9rem);
-  margin: 2.75rem 0 1.3rem;
-  padding-bottom: 0.45rem;
-}
-
-.subsection-heading::after {
-  content: "";
-  display: block;
-  width: 2rem;
-  height: 2px;
-  margin-top: 0.45rem;
-  border-radius: 999px;
-  background: var(--grad-accent);
-  opacity: 0.85;
-}
-
+/* ---------------------------- Feature cards --------------------------- */
 .feature-cards {
   list-style: none;
   margin: 0;
@@ -915,105 +849,30 @@ h3 {
   background: var(--accent);
 }
 
-/* --------------------------- Floor plans ------------------------------ */
-.floorplan-grid {
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-}
-
-.floorplan-grid .gallery-item {
-  background: #fff;
-}
-
-.floorplan-grid .gallery-item img {
-  object-fit: contain;
-  padding: 0.5rem;
-}
-
-.floorplan-grid .gallery-item:hover img {
-  transform: none;
-}
-
-/* ---------------------------- Amenities ------------------------------- */
-.amenity-list {
-  list-style: none;
-  margin: 0 0 2rem;
-  padding: 0;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.6rem;
-}
-
-.amenity-list li {
-  border: 1px solid transparent;
-  border-radius: 999px;
-  padding: 0.45rem 1.05rem;
-  font-size: 0.95rem;
-  font-weight: 500;
-  background-color: var(--surface);
-  background-image:
-    linear-gradient(var(--surface), var(--surface)), var(--grad-accent-soft);
-  background-origin: border-box;
-  background-clip: padding-box, border-box;
-  transition:
-    transform 0.18s ease,
-    box-shadow 0.18s ease;
-}
-
-.amenity-list li:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 18px rgba(8, 16, 30, 0.4);
-  background-image:
-    linear-gradient(var(--surface), var(--surface)), var(--grad-accent);
-}
-
-.amenity-gallery {
-  margin-top: 0.5rem;
-}
-
-/* ----------------------------- Location ------------------------------- */
-.location-actions {
-  margin-bottom: 2rem;
-}
-
-.location-highlights {
+/* ------------------------------ Results -------------------------------- */
+.results-list {
   list-style: none;
   margin: 0;
   padding: 0;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
   gap: 1rem;
 }
 
-.location-highlights li {
-  display: flex;
-  flex-direction: column;
-  gap: 0.25rem;
-  border: 1px solid transparent;
+.results-list li {
+  padding: 1.2rem 1.4rem;
+  border: 1px solid var(--border);
+  border-left: 4px solid var(--pf-blue);
   border-radius: var(--radius);
-  padding: 1.1rem 1.2rem;
-  background-color: var(--surface);
-  background-image:
-    linear-gradient(var(--surface), var(--surface)), var(--grad-accent-soft);
-  background-origin: border-box;
-  background-clip: padding-box, border-box;
-  transition:
-    transform 0.25s ease,
-    box-shadow 0.25s ease;
+  background: var(--surface);
 }
 
-.location-highlights li:hover {
-  transform: translateY(-4px);
-  box-shadow: var(--shadow-glow);
-  background-image:
-    linear-gradient(var(--surface), var(--surface)), var(--grad-accent);
-}
-
-.location-highlights strong {
+.results-list strong {
+  display: block;
+  margin-bottom: 0.25rem;
+  font-family: var(--font-display);
+  font-size: 1.2rem;
   color: var(--heading);
-}
-
-.location-highlights span {
-  color: var(--text-muted);
 }
 
 /* ------------------------------ 404 ----------------------------------- */
@@ -1030,7 +889,7 @@ h3 {
 }
 
 /* ----------------------------- Contact -------------------------------- */
-/* Single centered column; the three methods sit in a horizontal row. */
+/* Single centered column: one line of copy, one button, one byline. */
 .contact-stack {
   max-width: 720px;
   margin-inline: auto;
@@ -1041,12 +900,7 @@ h3 {
   font-size: 1.1rem;
   color: var(--text-muted);
   max-width: 54ch;
-  margin: 0 auto 2rem;
-}
-
-.contact-lead strong {
-  color: var(--text);
-  font-weight: 600;
+  margin: 0 auto 1.7rem;
 }
 
 .contact-byline {
@@ -1055,79 +909,7 @@ h3 {
   font-size: 0.98rem;
 }
 
-.contact-tag {
-  font-size: 0.62rem;
-  font-weight: 700;
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
-  color: var(--navy-900);
-  background: #fff;
-  padding: 0.08rem 0.42rem;
-  border-radius: 999px;
-  margin-left: 0.35rem;
-  vertical-align: middle;
-}
-
-.contact-methods {
-  display: grid;
-  grid-template-columns: 1.3fr 1fr;
-  gap: 0.8rem;
-  text-align: left;
-}
-
-.contact-method {
-  display: flex;
-  flex-direction: column;
-  gap: 0.15rem;
-  padding: 0.9rem 1rem;
-  border: 1px solid transparent;
-  border-radius: var(--radius);
-  text-decoration: none;
-  color: #fff;
-  min-width: 0;
-  background-color: var(--surface);
-  background-image:
-    linear-gradient(var(--surface), var(--surface)), var(--grad-accent-soft);
-  background-origin: border-box;
-  background-clip: padding-box, border-box;
-  transition:
-    transform 0.2s ease,
-    box-shadow 0.2s ease;
-}
-
-.contact-method:hover,
-.contact-method:focus-visible {
-  transform: translateY(-3px);
-  box-shadow: var(--shadow-glow);
-  background-image:
-    linear-gradient(var(--surface), var(--surface)), var(--grad-accent);
-}
-
-/* The preferred (text/call) method carries the full gradient rim and a resting
-   glow so the path the owner prefers stands out at rest. */
-.contact-method.contact-method-pref {
-  background-image:
-    linear-gradient(var(--surface), var(--surface)), var(--grad-accent);
-  box-shadow:
-    0 0 0 1px rgba(143, 180, 230, 0.18),
-    0 8px 22px rgba(8, 16, 30, 0.4);
-}
-
-.contact-method-label {
-  font-size: 0.78rem;
-  text-transform: uppercase;
-  letter-spacing: 0.07em;
-  color: rgba(255, 255, 255, 0.75);
-}
-
-.contact-method-value {
-  font-size: 1rem;
-  font-weight: 600;
-  overflow-wrap: anywhere;
-}
-
 .contact-cta {
-  margin-top: 1.7rem;
   min-width: 240px;
 }
 
@@ -1152,22 +934,14 @@ h3 {
   margin: 0;
 }
 
-.footer-disclaimer {
+.footer-note {
   max-width: 70ch;
   margin: 0.3rem auto;
-  color: rgba(255, 255, 255, 0.62);
-  font-size: 0.82rem;
-  line-height: 1.55;
+  color: rgba(255, 255, 255, 0.82);
 }
 
-.footer-fairhousing {
-  margin: 0.2rem 0;
-  font-weight: 600;
+.footer-note a {
   color: #fff;
-}
-
-.eho {
-  font-size: 1.05rem;
 }
 
 .footer-copy {
@@ -1263,7 +1037,7 @@ h3 {
   line-height: 1;
 }
 
-/* --------------------- Announcement bar (FSBO) ------------------------ */
+/* ------------------------ Announcement bar ---------------------------- */
 .announce-bar {
   background: var(--navy-700);
   border-bottom: 1px solid var(--border);
@@ -1278,25 +1052,13 @@ h3 {
   gap: 0.5rem 1.1rem;
   padding-block: 0.55rem;
   text-align: center;
+  font-size: 0.9rem;
 }
 
-.announce-fsbo {
-  font-weight: 700;
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
-  font-size: 0.76rem;
+.announce-link {
   color: #fff;
-  background: var(--accent-red);
-  padding: 0.22rem 0.75rem;
-  border-radius: 999px;
-  box-shadow: 0 0 14px rgba(198, 40, 40, 0.45);
-  white-space: nowrap;
-}
-
-/* --------------------- Show more / collapse --------------------------- */
-.gallery-more {
-  text-align: center;
-  margin-top: 1.6rem;
+  font-weight: 600;
+  text-underline-offset: 3px;
 }
 
 /* --------------------------- Back to top ------------------------------ */
@@ -1458,9 +1220,12 @@ h3 {
     text-align: center;
   }
 
-  .details-layout,
-  .contact-methods {
-    grid-template-columns: 1fr;
+  .pf-mark {
+    padding-left: 0.6rem;
+  }
+
+  .pf-mark svg {
+    height: 22px;
   }
 
   /* Let long facts wrap instead of forcing horizontal scroll on tiny screens. */
@@ -1488,9 +1253,8 @@ h3 {
     padding: 0.28rem 0.7rem;
   }
 
-  .announce-fsbo {
-    font-size: 0.6rem;
-    padding: 0.2rem 0.55rem;
+  .announce-inner {
+    font-size: 0.8rem;
   }
 
   .back-to-top {
@@ -1503,6 +1267,29 @@ h3 {
     width: 44px;
     height: 44px;
     font-size: 1.6rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .brand {
+    font-size: 1rem;
+  }
+
+  .brand-mark {
+    display: none;
+  }
+
+  /* Keep the wordmark, logo and nav toggle on one row at 320-360px. */
+  .header-brands {
+    gap: 0.6rem;
+  }
+
+  .pf-mark {
+    padding-left: 0.6rem;
+  }
+
+  .pf-mark svg {
+    height: 16px;
   }
 }
 
@@ -1538,11 +1325,7 @@ h3 {
   .gallery-item:focus-visible,
   .btn:hover,
   .feature-card:hover,
-  .feature-card:focus-within,
-  .location-highlights li:hover,
-  .amenity-list li:hover,
-  .contact-method:hover,
-  .contact-method:focus-visible {
+  .feature-card:focus-within {
     transform: none;
   }
 }

@@ -2,65 +2,79 @@
 
 [![Cloudflare Workers](https://img.shields.io/badge/Cloudflare-Workers-f38020)](https://workers.cloudflare.com/)
 
-For-sale property website for **4001 Mossy Bank Lane, Fredericksburg, VA 22408**,
-live at **[4001mossy.com](https://4001mossy.com)**.
+Perts Foundry showcase page for **4001 Mossy Bank Lane, Fredericksburg, VA
+22408**, live at **[4001mossy.com](https://4001mossy.com)**.
 
-A single-page listing: hero, photo gallery with lightbox, an interactive
-Matterport 3D tour, property details and renovation highlights, floor plans,
-location and community amenities, and contact information. It is a plain static
-site (no build step) served by a Cloudflare Worker. DNS, the Worker route, and
-this repository are all managed as code in the
+The home has sold. The site began as its for-sale listing and is now kept as a
+portfolio piece: "the website that sold this home," designed, built and hosted
+by [Perts Foundry](https://pertsfoundry.com). It shows the hero carousel, a
+photo gallery with lightbox, a static placeholder for the 3D tour the listing
+carried, and a "What we built" summary. Its calls to action link to the Perts
+Foundry Website Design page and, in the contact section, to the Perts Foundry
+contact page. It is a plain static site (no build step) served by
+a Cloudflare Worker. DNS, the Worker route, and this repository are all managed
+as code in the
 [Perts-Foundry/infrastructure](https://github.com/Perts-Foundry/infrastructure)
 repo.
 
-## Editing your listing
+## Editing the showcase
 
-The listing content is populated. The handful of spots most likely to change are
-marked with **`EDIT:`** comments in **`public/index.html`** (search for `EDIT:`):
+A few spots are marked with **`EDIT:`** comments in **`public/index.html`**
+(search for `EDIT:`):
 
-| What                | Where (search `public/index.html` for…)                                     |
-| ------------------- | --------------------------------------------------------------------------- |
-| **Status**          | `EDIT: status` (For Sale by Owner, Coming Soon, etc.)                       |
-| **Price**           | `EDIT: list price` (currently "$499,900"; also update the JSON-LD `offers`) |
-| **FSBO banner**     | `EDIT: For-Sale-by-Owner banner` (top announcement bar)                     |
-| **Seller notes**    | `EDIT: seller notes` (availability, title company, utilities)               |
-| **Hero photos**     | `EDIT: hero slideshow images` (the auto-rotating hero carousel)             |
-| **Matterport tour** | `EDIT: Matterport tour` (iframe `src` + fallback)                           |
-| **Phone**           | `EDIT: phone number` (update the `sms:` link and the text)                  |
-| **Email**           | `EDIT: email` (update the `mailto:` link too)                               |
-| Social image        | `EDIT: 1200x630 social image`                                               |
-| Page title / SEO    | `EDIT: page title` and `EDIT: one-sentence summary`                         |
+| What                 | Where (search `public/index.html` for…)                     |
+| -------------------- | ----------------------------------------------------------- |
+| **Announcement bar** | `EDIT: announcement bar` (top bar, links to Website Design) |
+| **Hero photos**      | `EDIT: hero slideshow images` (the auto-rotating carousel)  |
+| Social image         | `EDIT: 1200x630 social image`                               |
+| Page title / SEO     | `EDIT: page title` and `EDIT: one-sentence summary`         |
 
-Everything else (beds/baths/square footage, quick facts, the written
-description, renovation highlights, floor plans, location, and amenities) is
-plain HTML in `public/index.html`. Edit it directly.
+Everything else (the facts strip, gallery, tour placeholder, "What we built"
+cards, results and contact sections) is plain HTML in `public/index.html`.
+Edit it directly.
+
+### Content rules
+
+- Copy may state only facts the owner of the page has confirmed: sold by owner,
+  listed on the MLS in July 2026 and sold in under three months, a homeowner
+  selling by owner, the design and platform features, WCAG 2.1 AA checks on
+  every change, and a preview link for every proposed change. Do not add claims
+  about price, traffic, showings, inquiries, speed or cost.
+- No listing content: no price, floor plans, seller notes, real-estate
+  disclaimers or JSON-LD `offers`.
+- No contact details of any kind: no email address, phone number, `mailto:`,
+  `tel:`, `sms:` or booking link. The only contact path is the link to the
+  Perts Foundry contact page.
+- Links to pertsfoundry.com carry the UTM tags `utm_source=4001mossy.com`,
+  `utm_medium=referral` and `utm_campaign=showcase`.
+- The Perts Foundry logo in the header is an inline copy of the main site's
+  horizontal dark logo. Do not draw a new one.
 
 ### Photos
 
 Real photos live in **`public/images/`** as optimized JPGs (EXIF/GPS stripped).
-Each gallery photo ships in two sizes: a `*-sm.jpg` thumbnail used as the grid
-`src`, and a full-size `*.jpg` used by the lightbox (`data-full`). To change a
-photo:
+Only exterior photos of the house are kept: no interior rooms, floor plans or
+community amenity photos. Each gallery photo ships in two sizes: a `*-sm.jpg`
+thumbnail used as the grid `src`, and a full-size `*.jpg` used by the lightbox
+(`data-full`). To change a photo:
 
-1. Add your image to `public/images/` (JPG or WebP; ~2000px wide for the hero,
-   ~1600px for gallery/full views, ~800px for thumbnails).
+1. Add your exterior image to `public/images/` (JPG or WebP; ~2000px wide for
+   the hero, ~1600px for gallery/full views, ~800px for thumbnails).
 2. Point the gallery item's `src` (thumbnail) and `data-full` (full size) at the
    new files and update the `alt` text and `data-caption`. Add or remove `<li>`
    items freely; the lightbox picks up every `.gallery-item` automatically. The
-   main photo grid and the amenity grid start collapsed (first 8 and 6 photos)
-   with a JS-added "Show all" toggle, so adding photos doesn't lengthen the
-   first scroll.
+   whole gallery shows, with no collapse toggle.
 3. The hero is `/images/hero.jpg` and the social card is `/images/og-cover.jpg`
    (1200×630).
 
 The favicon is a simple house mark (`public/favicon.svg`), with
 `public/apple-touch-icon.png` for iOS.
 
-### Matterport 3D tour
+### 3D tour placeholder
 
-In Matterport, open your model → **Share → Embed** and copy the URL (it looks
-like `https://my.matterport.com/show/?m=XXXXXXXXXXX`). Paste it into **both**
-the `<iframe src>` and the fallback `<a href>` in the `#tour` section.
+The `#tour` section is a static card: an exterior photo with a "3D tour"
+overlay and a caption saying the listing carried an interactive 3D tour that was
+deactivated after the sale. There is no iframe and no third-party embed.
 
 ## Local preview
 
@@ -83,7 +97,8 @@ This repo uses the same PR-and-comment flow as the other Perts Foundry sites:
 
 1. Create a branch, make your edits, open a pull request.
 2. The **Validate** check runs automatically (formatting, links, accessibility,
-   secret scan, a content smoke test). It posts a report on the PR.
+   secret scan, a content smoke test that also rejects a Matterport embed, email
+   addresses, and mailto/tel/sms or cal.com links). It posts a report on the PR.
 3. A **draft preview** also deploys automatically on every push. The **Preview**
    workflow posts (and keeps updating) a comment with a clickable URL where you
    can click through your changes live before anything goes to production. The
@@ -99,12 +114,12 @@ in **[docs/runbook.md](docs/runbook.md)**.
 
 ```
 public/              The site itself (served as-is by the Worker)
-  index.html         The single listing page (edit this)
+  index.html         The single showcase page (edit this)
   404.html           Not-found page
   css/styles.css     All styles (design tokens at the top)
   js/main.js         Mobile nav, lightbox, hero carousel (Ken Burns), scroll
-                     reveal/spy, sticky-header state, back-to-top, collapse
-  images/            Optimized photos, floor plans, logo, hero, og-cover
+                     reveal/spy, sticky-header state, back-to-top
+  images/            Exterior photos (thumbnails and full size), hero, og-cover
   robots.txt, sitemap.xml, favicon.svg, apple-touch-icon.png
   _headers           Cache-Control TTLs for /css, /js, /images
 src/worker.js        Minimal Worker that serves the static assets
@@ -131,5 +146,5 @@ repo. **Never make manual infrastructure changes** (open a PR there instead).
 
 ## License
 
-Code is released under the [MIT License](LICENSE). Property photos and listing
+Code is released under the [MIT License](LICENSE). Property photos and page
 content are © their owner and not covered by the code license.

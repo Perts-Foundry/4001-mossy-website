@@ -281,65 +281,6 @@
     }
   }
 
-  // ----------------------- Collapsible galleries ------------------------
-  // Show only the first few photos by default and add a "Show all" toggle, so
-  // the page is much shorter on first load. Without JS, every photo shows
-  // (progressive enhancement); the toggle is created here, not in the markup.
-  var setupCollapsible = function (grid, visibleCount) {
-    if (!grid) {
-      return;
-    }
-    var items = Array.prototype.slice.call(grid.children);
-    var total = items.length;
-    if (total <= visibleCount) {
-      return;
-    }
-
-    var expanded = false;
-    var applyVisibility = function () {
-      items.forEach(function (li, i) {
-        li.hidden = !expanded && i >= visibleCount;
-      });
-    };
-
-    var btn = document.createElement("button");
-    btn.type = "button";
-    btn.className = "btn btn-ghost gallery-more-btn";
-    if (grid.id) {
-      btn.setAttribute("aria-controls", grid.id);
-    }
-    var syncButton = function () {
-      btn.textContent = expanded
-        ? "Show fewer photos"
-        : "Show all " + total + " photos";
-      btn.setAttribute("aria-expanded", expanded ? "true" : "false");
-    };
-
-    btn.addEventListener("click", function () {
-      expanded = !expanded;
-      applyVisibility();
-      syncButton();
-      if (!expanded) {
-        // Collapsing can leave the viewport far below the grid; bring it back.
-        grid.scrollIntoView({
-          block: "start",
-          behavior: prefersReducedMotion ? "auto" : "smooth",
-        });
-      }
-    });
-
-    applyVisibility();
-    syncButton();
-
-    var wrap = document.createElement("div");
-    wrap.className = "gallery-more";
-    wrap.appendChild(btn);
-    grid.parentNode.insertBefore(wrap, grid.nextSibling);
-  };
-
-  setupCollapsible(document.getElementById("gallery-grid"), 8);
-  setupCollapsible(document.getElementById("amenity-grid"), 6);
-
   // --------------------------- Hero carousel ----------------------------
   // Auto-rotating crossfade behind the hero text. The images are decorative
   // (the heading carries the info). Respects reduced-motion (starts paused) and
