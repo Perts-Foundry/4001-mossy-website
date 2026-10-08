@@ -24,8 +24,8 @@ repo (Terraform).
 - `public/css/styles.css` holds all styles; design tokens (colors, spacing) are
   CSS custom properties in `:root` at the top, including a cool-blue accent ramp
   (`--accent-steel` -> `--accent-sky`, `--grad-accent`, `--grad-accent-soft`,
-  `--shadow-glow`) used for heading underlines, hero stat numbers, card rims and
-  hover glow, section kickers, and the nav underline. The original solid
+  `--shadow-glow`) used for heading underlines, card rims and hover glow,
+  section kickers, and the nav underline. The original solid
   `--accent` is kept for the focus ring and bullet dots.
 - `public/js/main.js` is vanilla JS: mobile nav toggle, an accessible photo
   lightbox (keyboard nav, focus trap, scroll lock), an auto-rotating hero
@@ -152,8 +152,8 @@ npx wrangler dev                    # run as a Worker locally
 - Preview deployments serve from `*.workers.dev`, a different origin than the
   production custom domain. The infra security-headers ruleset (CSP etc.) is
   attached to the custom domain, so it does **not** apply to preview URLs. That's
-  fine for review (the Matterport iframe still frames, since no CSP is enforced
-  there); just don't treat a preview URL as a faithful test of production headers.
+  fine for review; just don't treat a preview URL as a faithful test of
+  production headers.
 - All DNS / routing / header changes are Terraform — never make manual Cloudflare
   changes; open a PR in the infrastructure repo.
 

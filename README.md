@@ -9,8 +9,9 @@ The home has sold. The site began as its for-sale listing and is now kept as a
 portfolio piece: "the website that sold this home," designed, built and hosted
 by [Perts Foundry](https://pertsfoundry.com). It shows the hero carousel, a
 photo gallery with lightbox, a static placeholder for the 3D tour the listing
-carried, and a "What we built" summary. The one call to action is a link to the
-Perts Foundry contact page. It is a plain static site (no build step) served by
+carried, and a "What we built" summary. Its calls to action link to the Perts
+Foundry Website Design page and, in the contact section, to the Perts Foundry
+contact page. It is a plain static site (no build step) served by
 a Cloudflare Worker. DNS, the Worker route, and this repository are all managed
 as code in the
 [Perts-Foundry/infrastructure](https://github.com/Perts-Foundry/infrastructure)
@@ -96,8 +97,8 @@ This repo uses the same PR-and-comment flow as the other Perts Foundry sites:
 
 1. Create a branch, make your edits, open a pull request.
 2. The **Validate** check runs automatically (formatting, links, accessibility,
-   secret scan, a content smoke test that also rejects contact details and
-   listing remnants). It posts a report on the PR.
+   secret scan, a content smoke test that also rejects a Matterport embed, email
+   addresses, and mailto/tel/sms or cal.com links). It posts a report on the PR.
 3. A **draft preview** also deploys automatically on every push. The **Preview**
    workflow posts (and keeps updating) a comment with a clickable URL where you
    can click through your changes live before anything goes to production. The
