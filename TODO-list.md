@@ -4,7 +4,6 @@ Open items only. Delete an item when it is done; never check it off or annotate 
 
 ## Deferred review findings
 
-- **dreamy-wishing-pinwheel-1** (code-review, 2026-10-08): long single-line links in the page may fail the prettier check in CI -> run prettier write on the page if CI reports it
 - **dreamy-wishing-pinwheel-2** (code-review, 2026-10-08): the nav has no link to the contact section -> add a Contact nav entry
 - **dreamy-wishing-pinwheel-3** (code-review, 2026-10-08): smoke test email and booking-link patterns are unanchored and could match asset names -> anchor the patterns to link contexts
 - **dreamy-wishing-pinwheel-4** (code-review, 2026-10-08): the static tour placeholder looks clickable -> tone down the play badge or label it as a static image

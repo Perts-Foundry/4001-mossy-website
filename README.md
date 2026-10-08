@@ -22,11 +22,11 @@ repo.
 A few spots are marked with **`EDIT:`** comments in **`public/index.html`**
 (search for `EDIT:`):
 
-| What                 | Where (search `public/index.html` for…)                      |
-| -------------------- | ------------------------------------------------------------ |
-| **Announcement bar** | `EDIT: announcement bar` (top bar, links to Website Design)  |
-| **Hero photos**      | `EDIT: hero slideshow images` (the auto-rotating carousel)   |
-| Social image         | `EDIT: 1200x630 social image`                                |
+| What                 | Where (search `public/index.html` for…)                     |
+| -------------------- | ----------------------------------------------------------- |
+| **Announcement bar** | `EDIT: announcement bar` (top bar, links to Website Design) |
+| **Hero photos**      | `EDIT: hero slideshow images` (the auto-rotating carousel)  |
+| Social image         | `EDIT: 1200x630 social image`                               |
 | Page title / SEO     | `EDIT: page title` and `EDIT: one-sentence summary`         |
 
 Everything else (the facts strip, gallery, tour placeholder, "What we built"
